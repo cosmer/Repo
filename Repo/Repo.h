@@ -14,6 +14,10 @@ FOUNDATION_EXPORT double RepoVersionNumber;
 //! Project version string for Repo.
 FOUNDATION_EXPORT const unsigned char RepoVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Repo/PublicHeader.h>
-
-
+#import <Repo/RPRepo.h>
+#import <Repo/RPDiff.h>
+#import <Repo/RPDiffDelta.h>
+#import <Repo/RPDiffFile.h>
+#import <Repo/RPOID.h>
+#import <Repo/NSError+RPGitErrors.h>
+#import <Repo/RPMacros.h>

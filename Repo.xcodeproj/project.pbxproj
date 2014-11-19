@@ -7,9 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D1666A31A1952E500865359 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1666A11A1952E500865359 /* libcrypto.a */; };
+		6D1666A41A1952E500865359 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1666A21A1952E500865359 /* libssl.a */; };
+		6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BA61A1ABE95001DCDB1 /* RPDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D310BA71A1ABE95001DCDB1 /* RPDiff.m */; };
+		6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BAA1A1AC256001DCDB1 /* RPDiffDelta.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D310BAD1A1AC256001DCDB1 /* RPDiffDelta.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D310BAB1A1AC256001DCDB1 /* RPDiffDelta.m */; };
+		6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BAE1A1AC6D1001DCDB1 /* RPDiffFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D310BB11A1AC6D1001DCDB1 /* RPDiffFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D310BAF1A1AC6D1001DCDB1 /* RPDiffFile.m */; };
+		6D310BB31A1AD29E001DCDB1 /* RPDiffFile+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BB21A1AD1CB001DCDB1 /* RPDiffFile+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BB41A1B7144001DCDB1 /* RPOID.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D310BB51A1B7144001DCDB1 /* RPOID.m */; };
+		6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BA51A1AB949001DCDB1 /* RPMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DC7A0481A18E20000D808ED /* Repo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC7A0471A18E20000D808ED /* Repo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DC7A04E1A18E20000D808ED /* Repo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0421A18E20000D808ED /* Repo.framework */; };
 		6DC7A0551A18E20000D808ED /* RepoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0541A18E20000D808ED /* RepoTests.m */; };
+		6DC7A05F1A18E99D00D808ED /* libgit2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A05E1A18E99D00D808ED /* libgit2.a */; };
+		6DC7A0631A18F2B900D808ED /* RPRepo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC7A0611A18F2B900D808ED /* RPRepo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0621A18F2B900D808ED /* RPRepo.m */; };
+		6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */; };
+		6DC7A0701A194D4F00D808ED /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A06F1A194D4F00D808ED /* libz.dylib */; };
+		6DC7A0731A194F7000D808ED /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0721A194F7000D808ED /* libssh2.a */; };
+		6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0741A194F8300D808ED /* libiconv.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +43,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D1666A11A1952E500865359 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /usr/local/Cellar/openssl/1.0.1j/lib/libcrypto.a; sourceTree = "<absolute>"; };
+		6D1666A21A1952E500865359 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = /usr/local/Cellar/openssl/1.0.1j/lib/libssl.a; sourceTree = "<absolute>"; };
+		6D310BA51A1AB949001DCDB1 /* RPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPMacros.h; sourceTree = "<group>"; };
+		6D310BA61A1ABE95001DCDB1 /* RPDiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiff.h; sourceTree = "<group>"; };
+		6D310BA71A1ABE95001DCDB1 /* RPDiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiff.m; sourceTree = "<group>"; };
+		6D310BAA1A1AC256001DCDB1 /* RPDiffDelta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiffDelta.h; sourceTree = "<group>"; };
+		6D310BAB1A1AC256001DCDB1 /* RPDiffDelta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiffDelta.m; sourceTree = "<group>"; };
+		6D310BAE1A1AC6D1001DCDB1 /* RPDiffFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiffFile.h; sourceTree = "<group>"; };
+		6D310BAF1A1AC6D1001DCDB1 /* RPDiffFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiffFile.m; sourceTree = "<group>"; };
+		6D310BB21A1AD1CB001DCDB1 /* RPDiffFile+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPDiffFile+Private.h"; sourceTree = "<group>"; };
+		6D310BB41A1B7144001DCDB1 /* RPOID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPOID.h; sourceTree = "<group>"; };
+		6D310BB51A1B7144001DCDB1 /* RPOID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPOID.m; sourceTree = "<group>"; };
 		6DC7A0421A18E20000D808ED /* Repo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Repo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC7A0461A18E20000D808ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DC7A0471A18E20000D808ED /* Repo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Repo.h; sourceTree = "<group>"; };
 		6DC7A04D1A18E20000D808ED /* RepoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC7A0531A18E20000D808ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DC7A0541A18E20000D808ED /* RepoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepoTests.m; sourceTree = "<group>"; };
+		6DC7A05E1A18E99D00D808ED /* libgit2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgit2.a; path = External/libgit2.a; sourceTree = "<group>"; };
+		6DC7A0611A18F2B900D808ED /* RPRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPRepo.h; sourceTree = "<group>"; };
+		6DC7A0621A18F2B900D808ED /* RPRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPRepo.m; sourceTree = "<group>"; };
+		6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RPGitErrors.h"; sourceTree = "<group>"; };
+		6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPGitErrors.m"; sourceTree = "<group>"; };
+		6DC7A06F1A194D4F00D808ED /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6DC7A0721A194F7000D808ED /* libssh2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssh2.a; path = /usr/local/Cellar/libssh2/1.4.3_1/lib/libssh2.a; sourceTree = "<absolute>"; };
+		6DC7A0741A194F8300D808ED /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +76,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D1666A31A1952E500865359 /* libcrypto.a in Frameworks */,
+				6D1666A41A1952E500865359 /* libssl.a in Frameworks */,
+				6DC7A05F1A18E99D00D808ED /* libgit2.a in Frameworks */,
+				6DC7A0731A194F7000D808ED /* libssh2.a in Frameworks */,
+				6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */,
+				6DC7A0701A194D4F00D808ED /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +101,7 @@
 			children = (
 				6DC7A0441A18E20000D808ED /* Repo */,
 				6DC7A0511A18E20000D808ED /* RepoTests */,
+				6DC7A0601A18E9A700D808ED /* Libraries */,
 				6DC7A0431A18E20000D808ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,6 +119,20 @@
 			isa = PBXGroup;
 			children = (
 				6DC7A0471A18E20000D808ED /* Repo.h */,
+				6DC7A0611A18F2B900D808ED /* RPRepo.h */,
+				6DC7A0621A18F2B900D808ED /* RPRepo.m */,
+				6D310BA61A1ABE95001DCDB1 /* RPDiff.h */,
+				6D310BA71A1ABE95001DCDB1 /* RPDiff.m */,
+				6D310BAA1A1AC256001DCDB1 /* RPDiffDelta.h */,
+				6D310BAB1A1AC256001DCDB1 /* RPDiffDelta.m */,
+				6D310BAE1A1AC6D1001DCDB1 /* RPDiffFile.h */,
+				6D310BB21A1AD1CB001DCDB1 /* RPDiffFile+Private.h */,
+				6D310BAF1A1AC6D1001DCDB1 /* RPDiffFile.m */,
+				6D310BB41A1B7144001DCDB1 /* RPOID.h */,
+				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
+				6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */,
+				6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */,
+				6D310BA51A1AB949001DCDB1 /* RPMacros.h */,
 				6DC7A0451A18E20000D808ED /* Supporting Files */,
 			);
 			path = Repo;
@@ -102,6 +163,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6DC7A0601A18E9A700D808ED /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				6DC7A05E1A18E99D00D808ED /* libgit2.a */,
+				6DC7A0721A194F7000D808ED /* libssh2.a */,
+				6D1666A11A1952E500865359 /* libcrypto.a */,
+				6D1666A21A1952E500865359 /* libssl.a */,
+				6DC7A0741A194F8300D808ED /* libiconv.dylib */,
+				6DC7A06F1A194D4F00D808ED /* libz.dylib */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -110,6 +184,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DC7A0481A18E20000D808ED /* Repo.h in Headers */,
+				6DC7A0631A18F2B900D808ED /* RPRepo.h in Headers */,
+				6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */,
+				6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */,
+				6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */,
+				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
+				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
+				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
+				6D310BB31A1AD29E001DCDB1 /* RPDiffFile+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +291,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
+				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
+				6D310BAD1A1AC256001DCDB1 /* RPDiffDelta.m in Sources */,
+				6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */,
+				6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */,
+				6D310BB11A1AC6D1001DCDB1 /* RPDiffFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,11 +408,27 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/External/libgit2/include\"",
+				);
 				INFOPLIST_FILE = Repo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External",
+					/usr/local/Cellar/libssh2/1.4.3_1/lib,
+					/usr/local/Cellar/openssl/1.0.1j/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-missing-field-initializers",
+				);
 			};
 			name = Debug;
 		};
@@ -337,11 +441,27 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/External/libgit2/include\"",
+				);
 				INFOPLIST_FILE = Repo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External",
+					/usr/local/Cellar/libssh2/1.4.3_1/lib,
+					/usr/local/Cellar/openssl/1.0.1j/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-missing-field-initializers",
+				);
 			};
 			name = Release;
 		};
@@ -396,6 +516,7 @@
 				6DC7A05A1A18E20000D808ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6DC7A05B1A18E20000D808ED /* Build configuration list for PBXNativeTarget "RepoTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +525,7 @@
 				6DC7A05D1A18E20000D808ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
