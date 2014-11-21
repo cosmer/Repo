@@ -14,6 +14,9 @@ typedef struct git_repository git_repository;
 
 @interface RPRepo : NSObject
 
+/// Should be called once at startup before any other methods in the framework.
++ (NSError *)startup;
+
 - (instancetype)initWithGitRepository:(git_repository *)repository NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithURL:(NSURL *)url error:(NSError **)error;
