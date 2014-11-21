@@ -13,7 +13,7 @@ fi
 mkdir build
 cd build
 
-cmake -DBUILD_SHARED_LIBS:BOOL=OFF -DUSE_SSH:BOOL=OFF -DBUILD_CLAR:BOOL=OFF ..
+cmake -DTHREADSAFE:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=OFF -DUSE_SSH:BOOL=OFF -DBUILD_CLAR:BOOL=OFF ..
 cmake --build .
 
 product="libgit2.a"
