@@ -53,4 +53,16 @@
     return [self initWithGitRepository:repo];
 }
 
+- (NSString *)path
+{
+    const char *path = git_repository_path(self.gitRepository);
+    return path ? @(path) : @"";
+}
+
+- (NSString *)workingDirectory
+{
+    const char *path = git_repository_workdir(self.gitRepository);
+    return path ? @(path) : @"";
+}
+
 @end

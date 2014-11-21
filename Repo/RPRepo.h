@@ -20,4 +20,7 @@ typedef struct git_repository git_repository;
 
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 
+@property(nonatomic, strong, readonly) NSString *path;
+@property(nonatomic, strong, readonly) NSString *workingDirectory;
+
 @end
