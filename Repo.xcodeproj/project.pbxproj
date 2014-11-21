@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D1666A31A1952E500865359 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1666A11A1952E500865359 /* libcrypto.a */; };
-		6D1666A41A1952E500865359 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1666A21A1952E500865359 /* libssl.a */; };
+		6D307FA21A1FF7BB003DE0BD /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D307FA11A1FF7BB003DE0BD /* libssl.dylib */; };
+		6D307FA41A1FF7C1003DE0BD /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */; };
 		6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BA61A1ABE95001DCDB1 /* RPDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D310BA71A1ABE95001DCDB1 /* RPDiff.m */; };
 		6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BAA1A1AC256001DCDB1 /* RPDiffDelta.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,7 +28,6 @@
 		6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */; };
 		6DC7A0701A194D4F00D808ED /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A06F1A194D4F00D808ED /* libz.dylib */; };
-		6DC7A0731A194F7000D808ED /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0721A194F7000D808ED /* libssh2.a */; };
 		6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0741A194F8300D808ED /* libiconv.dylib */; };
 /* End PBXBuildFile section */
 
@@ -43,8 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6D1666A11A1952E500865359 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /usr/local/Cellar/openssl/1.0.1j/lib/libcrypto.a; sourceTree = "<absolute>"; };
-		6D1666A21A1952E500865359 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = /usr/local/Cellar/openssl/1.0.1j/lib/libssl.a; sourceTree = "<absolute>"; };
+		6D307FA11A1FF7BB003DE0BD /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		6D310BA51A1AB949001DCDB1 /* RPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPMacros.h; sourceTree = "<group>"; };
 		6D310BA61A1ABE95001DCDB1 /* RPDiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiff.h; sourceTree = "<group>"; };
 		6D310BA71A1ABE95001DCDB1 /* RPDiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiff.m; sourceTree = "<group>"; };
@@ -67,7 +66,6 @@
 		6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RPGitErrors.h"; sourceTree = "<group>"; };
 		6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPGitErrors.m"; sourceTree = "<group>"; };
 		6DC7A06F1A194D4F00D808ED /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6DC7A0721A194F7000D808ED /* libssh2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssh2.a; path = /usr/local/Cellar/libssh2/1.4.3_1/lib/libssh2.a; sourceTree = "<absolute>"; };
 		6DC7A0741A194F8300D808ED /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -76,11 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D1666A31A1952E500865359 /* libcrypto.a in Frameworks */,
-				6D1666A41A1952E500865359 /* libssl.a in Frameworks */,
 				6DC7A05F1A18E99D00D808ED /* libgit2.a in Frameworks */,
-				6DC7A0731A194F7000D808ED /* libssh2.a in Frameworks */,
 				6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */,
+				6D307FA41A1FF7C1003DE0BD /* libcrypto.dylib in Frameworks */,
+				6D307FA21A1FF7BB003DE0BD /* libssl.dylib in Frameworks */,
 				6DC7A0701A194D4F00D808ED /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,10 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				6DC7A05E1A18E99D00D808ED /* libgit2.a */,
-				6DC7A0721A194F7000D808ED /* libssh2.a */,
-				6D1666A11A1952E500865359 /* libcrypto.a */,
-				6D1666A21A1952E500865359 /* libssl.a */,
 				6DC7A0741A194F8300D808ED /* libiconv.dylib */,
+				6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */,
+				6D307FA11A1FF7BB003DE0BD /* libssl.dylib */,
 				6DC7A06F1A194D4F00D808ED /* libz.dylib */,
 			);
 			name = Libraries;
