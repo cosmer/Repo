@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6D307FA21A1FF7BB003DE0BD /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D307FA11A1FF7BB003DE0BD /* libssl.dylib */; };
 		6D307FA41A1FF7C1003DE0BD /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */; };
+		6D307FAD1A201EBA003DE0BD /* RPBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D307FAB1A201EBA003DE0BD /* RPBlob.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D307FAE1A201EBA003DE0BD /* RPBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D307FAC1A201EBA003DE0BD /* RPBlob.m */; };
 		6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BA61A1ABE95001DCDB1 /* RPDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D310BA71A1ABE95001DCDB1 /* RPDiff.m */; };
 		6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BAA1A1AC256001DCDB1 /* RPDiffDelta.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		6D307FA11A1FF7BB003DE0BD /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
 		6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		6D307FAB1A201EBA003DE0BD /* RPBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBlob.h; sourceTree = "<group>"; };
+		6D307FAC1A201EBA003DE0BD /* RPBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPBlob.m; sourceTree = "<group>"; };
 		6D310BA51A1AB949001DCDB1 /* RPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPMacros.h; sourceTree = "<group>"; };
 		6D310BA61A1ABE95001DCDB1 /* RPDiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiff.h; sourceTree = "<group>"; };
 		6D310BA71A1ABE95001DCDB1 /* RPDiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiff.m; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				6D310BAE1A1AC6D1001DCDB1 /* RPDiffFile.h */,
 				6D310BB21A1AD1CB001DCDB1 /* RPDiffFile+Private.h */,
 				6D310BAF1A1AC6D1001DCDB1 /* RPDiffFile.m */,
+				6D307FAB1A201EBA003DE0BD /* RPBlob.h */,
+				6D307FAC1A201EBA003DE0BD /* RPBlob.m */,
 				6D310BB41A1B7144001DCDB1 /* RPOID.h */,
 				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
 				6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */,
@@ -184,6 +190,7 @@
 				6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */,
 				6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */,
 				6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */,
+				6D307FAD1A201EBA003DE0BD /* RPBlob.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
 				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
@@ -292,6 +299,7 @@
 				6D310BAD1A1AC256001DCDB1 /* RPDiffDelta.m in Sources */,
 				6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */,
 				6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */,
+				6D307FAE1A201EBA003DE0BD /* RPBlob.m in Sources */,
 				6D310BB11A1AC6D1001DCDB1 /* RPDiffFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
