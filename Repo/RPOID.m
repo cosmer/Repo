@@ -31,4 +31,28 @@
     return &_oid;
 }
 
+- (BOOL)isZero
+{
+    return git_oid_iszero(self.gitOID) != 0;
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if (object == self) {
+        return YES;
+    }
+
+    if (![object isKindOfClass:RPOID.class]) {
+        return NO;
+    }
+    
+    RPOID *other = object;
+    return git_oid_equal(self.gitOID, other.gitOID) != 0;
+}
+
+- (NSUInteger)hash
+{
+    return [[NSData dataWithBytesNoCopy:(void *)self.gitOID->id length:GIT_OID_RAWSZ freeWhenDone:NO] hash];
+}
+
 @end

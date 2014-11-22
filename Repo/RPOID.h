@@ -18,4 +18,6 @@ typedef struct git_oid git_oid;
 
 @property(nonatomic, readonly) const git_oid *gitOID RP_RETURNS_INTERIOR_POINTER;
 
+@property(nonatomic, readonly) BOOL isZero;
+
 @end
