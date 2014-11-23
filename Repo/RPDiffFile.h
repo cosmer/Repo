@@ -10,6 +10,7 @@
 
 @class RPOID;
 
+/// RPDiffFile is immutable and thread safe.
 @interface RPDiffFile : NSObject
 
 /// Path to the receiver relative to the working directory of the repository.
