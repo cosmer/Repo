@@ -24,6 +24,11 @@
 
 @implementation RPBlob
 
+- (void)dealloc
+{
+    git_object_free(_gitObject);
+}
+
 - (instancetype)initWithGitObject:(git_object *)object inRepo:(RPRepo *)repo
 {
     NSParameterAssert(object != NULL);
