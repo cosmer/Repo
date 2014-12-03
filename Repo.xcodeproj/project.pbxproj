@@ -423,8 +423,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
-					/usr/local/Cellar/libssh2/1.4.3_1/lib,
-					/usr/local/Cellar/openssl/1.0.1j/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -456,8 +454,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
-					/usr/local/Cellar/libssh2/1.4.3_1/lib,
-					/usr/local/Cellar/openssl/1.0.1j/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
