@@ -16,6 +16,31 @@
 
 @implementation RPRepo
 
++ (BOOL)isRepositoryAtURL:(NSURL *)url
+{
+    NSParameterAssert(url != nil);
+    
+    BOOL isDir = NO;
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    
+    NSURL *gitURL = [url URLByAppendingPathComponent:@".git"];
+    if (![fm fileExistsAtPath:gitURL.path isDirectory:&isDir] || !isDir) {
+        return NO;
+    }
+    
+    NSURL *headURL = [gitURL URLByAppendingPathComponent:@"HEAD"];
+    if (![fm fileExistsAtPath:headURL.path isDirectory:&isDir] || isDir) {
+        return NO;
+    }
+    
+    NSURL *objectsURL = [gitURL URLByAppendingPathComponent:@"objects"];
+    if (![fm fileExistsAtPath:objectsURL.path isDirectory:&isDir] || !isDir) {
+        return NO;
+    }
+
+    return YES;
+}
+
 + (NSError *)startup
 {
     int r = git_threads_init();
