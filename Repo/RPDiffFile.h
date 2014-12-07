@@ -10,6 +10,15 @@
 
 @class RPOID;
 
+typedef NS_ENUM(NSInteger, RPFileMode) {
+    RPFileModeNew               = 0000000,
+    RPFileModeTree              = 0040000,
+    RPFileModeBlob              = 0100644,
+    RPFileModeBlobExecutable    = 0100755,
+    RPFileModeLink              = 0120000,
+    RPFileModeCommit            = 0160000,
+};
+
 /// RPDiffFile is immutable and thread safe.
 @interface RPDiffFile : NSObject
 
@@ -17,6 +26,9 @@
 @property(nonatomic, strong, readonly) NSString *path;
 /// The receiver's git OID.
 @property(nonatomic, strong, readonly) RPOID *oid;
+
+/// Describes the file type; commit, blob, tree, etc.
+@property(nonatomic, readonly) RPFileMode mode;
 
 /// The receiver is treated as binary data.
 @property(nonatomic, readonly) BOOL isBinary;

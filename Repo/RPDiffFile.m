@@ -11,6 +11,13 @@
 
 #import "RPOID.h"
 
+_Static_assert(RPFileModeNew == GIT_FILEMODE_NEW, "");
+_Static_assert(RPFileModeTree == GIT_FILEMODE_TREE, "");
+_Static_assert(RPFileModeBlob == GIT_FILEMODE_BLOB, "");
+_Static_assert(RPFileModeBlobExecutable == GIT_FILEMODE_BLOB_EXECUTABLE, "");
+_Static_assert(RPFileModeLink == GIT_FILEMODE_LINK, "");
+_Static_assert(RPFileModeCommit == GIT_FILEMODE_COMMIT, "");
+
 @interface RPDiffFile ()
 
 @property(nonatomic, readonly) uint32_t flags;
@@ -25,6 +32,7 @@
         _path = @(diffFile.path);
         _oid = [[RPOID alloc] initWithGitOID:&diffFile.id];
         _flags = diffFile.flags;
+        _mode = diffFile.mode;
     }
     return self;
 }
