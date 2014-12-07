@@ -24,8 +24,12 @@
     NSFileManager *fm = [[NSFileManager alloc] init];
     
     NSURL *gitURL = [url URLByAppendingPathComponent:@".git"];
-    if (![fm fileExistsAtPath:gitURL.path isDirectory:&isDir] || !isDir) {
+    if (![fm fileExistsAtPath:gitURL.path isDirectory:&isDir]) {
         return NO;
+    }
+    
+    if (!isDir) {
+        return YES; // submodule
     }
     
     NSURL *headURL = [gitURL URLByAppendingPathComponent:@"HEAD"];
