@@ -26,10 +26,11 @@
 {
     NSParameterAssert(repo != nil);
     
+    git_diff_options options = GIT_DIFF_OPTIONS_INIT;
+    options.flags = GIT_DIFF_INCLUDE_UNTRACKED | GIT_DIFF_RECURSE_UNTRACKED_DIRS | GIT_DIFF_IGNORE_CASE;
+    
     git_diff *diff = NULL;
-    git_diff_options diffOptions = GIT_DIFF_OPTIONS_INIT;
-    diffOptions.flags = GIT_DIFF_INCLUDE_UNTRACKED | GIT_DIFF_IGNORE_CASE;
-    int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, NULL, &diffOptions);
+    int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, NULL, &options);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff index to working directory"];
