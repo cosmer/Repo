@@ -71,6 +71,7 @@
 		6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPGitErrors.m"; sourceTree = "<group>"; };
 		6DC7A06F1A194D4F00D808ED /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6DC7A0741A194F8300D808ED /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		6DD748621A59DAB7007856CD /* RPDiffDelta+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPDiffDelta+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +126,7 @@
 				6D310BA61A1ABE95001DCDB1 /* RPDiff.h */,
 				6D310BA71A1ABE95001DCDB1 /* RPDiff.m */,
 				6D310BAA1A1AC256001DCDB1 /* RPDiffDelta.h */,
+				6DD748621A59DAB7007856CD /* RPDiffDelta+Private.h */,
 				6D310BAB1A1AC256001DCDB1 /* RPDiffDelta.m */,
 				6D310BAE1A1AC6D1001DCDB1 /* RPDiffFile.h */,
 				6D310BB21A1AD1CB001DCDB1 /* RPDiffFile+Private.h */,

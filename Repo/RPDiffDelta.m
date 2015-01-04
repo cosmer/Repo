@@ -7,6 +7,7 @@
 //
 
 #import "RPDiffDelta.h"
+#import "RPDiffDelta+Private.h"
 
 #import "RPDiff.h"
 #import "RPDiffFile.h"
@@ -29,31 +30,19 @@ _Static_assert(RPDiffDeltaStatusTypeChange == GIT_DELTA_TYPECHANGE, "");
 - (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex
 {
     NSParameterAssert(diff != nil);
+    const git_diff_delta *delta = git_diff_get_delta(diff.gitDiff, deltaIndex);
+    return [self initWithGitDiffDelta:delta];
+}
+
+- (instancetype)initWithGitDiffDelta:(const git_diff_delta *)delta
+{
+    NSParameterAssert(delta != NULL);
     if ((self = [super init])) {
-        _diff = diff;
-        _deltaIndex = deltaIndex;
+        _status = (RPDiffDeltaStatus)delta->status;
+        _oldFile = [[RPDiffFile alloc] initWithGitDiffFile:delta->old_file];
+        _newFile = [[RPDiffFile alloc] initWithGitDiffFile:delta->new_file];
     }
     return self;
-}
-
-- (const git_diff_delta *)gitDiffDelta
-{
-    return git_diff_get_delta(self.diff.gitDiff, self.deltaIndex);
-}
-
-- (RPDiffDeltaStatus)status
-{
-    return (RPDiffDeltaStatus)self.gitDiffDelta->status;
-}
-
-- (RPDiffFile *)oldFile
-{
-    return [[RPDiffFile alloc] initWithGitDiffFile:self.gitDiffDelta->old_file];
-}
-
-- (RPDiffFile *)newFile
-{
-    return [[RPDiffFile alloc] initWithGitDiffFile:self.gitDiffDelta->new_file];
 }
 
 @end

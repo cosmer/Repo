@@ -25,16 +25,13 @@ typedef NS_ENUM(NSInteger, RPDiffDeltaStatus) {
     RPDiffDeltaStatusTypeChange,
 };
 
+/// RPDiffDelta is immutable and thread safe.
 @interface RPDiffDelta : NSObject
 
-- (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex NS_DESIGNATED_INITIALIZER;
-
-- (RPDiffFile *)oldFile;
-- (RPDiffFile *)newFile;
-
-@property(nonatomic, strong, readonly) RPDiff *diff;
-@property(nonatomic, readonly) NSUInteger deltaIndex;
+- (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex;
 
 @property(nonatomic, readonly) RPDiffDeltaStatus status;
+@property(nonatomic, strong, readonly) RPDiffFile *oldFile;
+@property(nonatomic, strong, readonly) RPDiffFile *newFile NS_RETURNS_NOT_RETAINED;
 
 @end
