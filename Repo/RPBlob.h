@@ -17,6 +17,7 @@ typedef struct git_object git_object;
 
 @interface RPBlob : NSObject
 
+/// Assumes ownership of `object`.
 - (instancetype)initWithGitObject:(git_object *)object inRepo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
