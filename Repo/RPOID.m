@@ -55,4 +55,16 @@
     return [[NSData dataWithBytesNoCopy:(void *)self.gitOID->id length:GIT_OID_RAWSZ freeWhenDone:NO] hash];
 }
 
+- (NSString *)stringValue
+{
+    char buf[GIT_OID_HEXSZ + 1];
+    char *p = git_oid_tostr(buf, sizeof(buf), &_oid);
+    return [NSString stringWithUTF8String:p];
+}
+
+- (NSString *)description
+{
+    return self.stringValue;
+}
+
 @end
