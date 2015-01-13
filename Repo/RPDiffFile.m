@@ -10,6 +10,7 @@
 #import "RPDiffFile+Private.h"
 
 #import "RPOID.h"
+#import "NSException+RPExceptions.h"
 
 _Static_assert(RPFileModeNew == GIT_FILEMODE_NEW, "");
 _Static_assert(RPFileModeTree == GIT_FILEMODE_TREE, "");
@@ -50,6 +51,29 @@ _Static_assert(RPFileModeCommit == GIT_FILEMODE_COMMIT, "");
 - (BOOL)hasValidID
 {
     return _flags & GIT_DIFF_FLAG_VALID_ID;
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[RPDiffFile class]]) {
+        return NO;
+    }
+    
+    RPDiffFile *file = object;
+    return (self.mode == file.mode &&
+            self.flags == file.flags &&
+            [self.oid isEqual:file.oid] &&
+            [self.path isEqualToString:file.path]);
+}
+
+- (NSUInteger)hash
+{
+    [NSException rp_raiseSelector:_cmd notImplementedForClass:self.class];
+    return 0;
 }
 
 @end
