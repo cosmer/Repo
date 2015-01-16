@@ -11,6 +11,7 @@
 #import "NSError+RPGitErrors.h"
 
 #import <git2/repository.h>
+#import <git2/attr.h>
 #import <git2/threads.h>
 #import <git2/errors.h>
 
@@ -91,6 +92,18 @@
     }
     
     return [self initWithGitRepository:repo];
+}
+
+- (NSString *)stringEncodingNameForPath:(NSString *)path
+{
+    NSParameterAssert(path != nil);
+    
+    const char *value = NULL;
+    if (git_attr_get(&value, self.gitRepository, GIT_ATTR_CHECK_FILE_THEN_INDEX, path.UTF8String, "encoding") != GIT_OK) {
+        return nil;
+    }
+    
+    return (value ? @(value) : nil);
 }
 
 - (NSString *)path

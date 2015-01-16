@@ -24,6 +24,10 @@ typedef struct git_repository git_repository;
 
 - (instancetype)initWithURL:(NSURL *)url error:(NSError **)error;
 
+/// Get the value of the 'encoding' attributes.
+/// \return A string encoding name, or nil if no attribute is set for `path`.
+- (NSString *)stringEncodingNameForPath:(NSString *)path;
+
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, strong, readonly) NSString *path;
