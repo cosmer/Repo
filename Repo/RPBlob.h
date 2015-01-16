@@ -22,7 +22,7 @@ typedef struct git_object git_object;
 
 - (instancetype)initWithOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
 
-- (NSString *)content;
+- (NSString *)stringWithPreferredEncoding:(const NSStringEncoding *)preferredEncoding usedEncoding:(NSStringEncoding *)usedEncoding;
 
 @property(nonatomic, readonly) git_object *gitObject RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, strong, readonly) RPRepo *repo;
