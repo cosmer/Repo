@@ -103,7 +103,11 @@
         return nil;
     }
     
-    return (value ? @(value) : nil);
+    if (!value || !GIT_ATTR_HAS_VALUE(value)) {
+        return nil;
+    }
+    
+    return @(value);
 }
 
 - (NSString *)path
