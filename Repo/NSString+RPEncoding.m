@@ -8,6 +8,8 @@
 
 #import "NSString+RPEncoding.h"
 
+#import "NSData+RPEncoding.h"
+
 @implementation NSString (RPEncoding)
 
 + (NSArray *)rp_fallbackEncodings
@@ -28,6 +30,7 @@
 {
     NSParameterAssert(data != nil);
     
+    // Assume the preferred encoding is correct.
     if (preferredEncoding) {
         NSString *string = [[NSString alloc] initWithData:data encoding:*preferredEncoding];
         if (string) {
@@ -38,6 +41,20 @@
         }
     }
     
+    // Try to detect the encoding.
+    CFStringEncoding cfEncoding = [data rp_detectStringEncoding];
+    if (cfEncoding != kCFStringEncodingInvalidId) {
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+        NSString *string = [[NSString alloc] initWithData:data encoding:encoding];
+        if (string) {
+            if (usedEncoding) {
+                *usedEncoding = encoding;
+            }
+            return string;
+        }
+    }
+    
+    // Loop through the fallback encodings and hope something works.
     for (id object in [self rp_fallbackEncodings]) {
         NSStringEncoding encoding = [object unsignedIntegerValue];
         if (preferredEncoding && *preferredEncoding == encoding) {
@@ -52,6 +69,7 @@
             return string;
         }
     }
+
     return nil;
 }
 

@@ -25,6 +25,12 @@
 		6D42E8BB1A68836A00B02DD7 /* NSString+RPEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D42E8B91A68836A00B02DD7 /* NSString+RPEncoding.m */; };
 		6D4B172D1A5CC4B000ACC859 /* RPSubmodule.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D4B172E1A5CC4B000ACC859 /* RPSubmodule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */; };
+		6DBE96221A6DC91A00010A4C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE961D1A6DC6AF00010A4C /* libc++.dylib */; };
+		6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */; };
+		6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */; };
+		6DBE962A1A6DE15400010A4C /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96271A6DE15400010A4C /* libicudata.a */; };
+		6DBE962B1A6DE15400010A4C /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96281A6DE15400010A4C /* libicui18n.a */; };
+		6DBE962C1A6DE15400010A4C /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96291A6DE15400010A4C /* libicuuc.a */; };
 		6DC7A0481A18E20000D808ED /* Repo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC7A0471A18E20000D808ED /* Repo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DC7A04E1A18E20000D808ED /* Repo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0421A18E20000D808ED /* Repo.framework */; };
 		6DC7A0551A18E20000D808ED /* RepoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0541A18E20000D808ED /* RepoTests.m */; };
@@ -68,6 +74,12 @@
 		6D42E8B91A68836A00B02DD7 /* NSString+RPEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RPEncoding.m"; sourceTree = "<group>"; };
 		6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSubmodule.h; sourceTree = "<group>"; };
 		6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSubmodule.m; sourceTree = "<group>"; };
+		6DBE961D1A6DC6AF00010A4C /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RPEncoding.h"; sourceTree = "<group>"; };
+		6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RPEncoding.m"; sourceTree = "<group>"; };
+		6DBE96271A6DE15400010A4C /* libicudata.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicudata.a; path = "External/icu4c-osx/lib/libicudata.a"; sourceTree = "<group>"; };
+		6DBE96281A6DE15400010A4C /* libicui18n.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicui18n.a; path = "External/icu4c-osx/lib/libicui18n.a"; sourceTree = "<group>"; };
+		6DBE96291A6DE15400010A4C /* libicuuc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicuuc.a; path = "External/icu4c-osx/lib/libicuuc.a"; sourceTree = "<group>"; };
 		6DC7A0421A18E20000D808ED /* Repo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Repo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC7A0461A18E20000D808ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DC7A0471A18E20000D808ED /* Repo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Repo.h; sourceTree = "<group>"; };
@@ -91,7 +103,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DBE962A1A6DE15400010A4C /* libicudata.a in Frameworks */,
+				6DBE962B1A6DE15400010A4C /* libicui18n.a in Frameworks */,
+				6DBE962C1A6DE15400010A4C /* libicuuc.a in Frameworks */,
 				6DC7A05F1A18E99D00D808ED /* libgit2.a in Frameworks */,
+				6DBE96221A6DC91A00010A4C /* libc++.dylib in Frameworks */,
 				6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */,
 				6D307FA41A1FF7C1003DE0BD /* libcrypto.dylib in Frameworks */,
 				6D307FA21A1FF7BB003DE0BD /* libssl.dylib in Frameworks */,
@@ -155,6 +171,8 @@
 				6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */,
 				6D42E8B81A68836A00B02DD7 /* NSString+RPEncoding.h */,
 				6D42E8B91A68836A00B02DD7 /* NSString+RPEncoding.m */,
+				6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */,
+				6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */,
 				6D310BA51A1AB949001DCDB1 /* RPMacros.h */,
 				6DC7A0451A18E20000D808ED /* Supporting Files */,
 			);
@@ -190,6 +208,10 @@
 			isa = PBXGroup;
 			children = (
 				6DC7A05E1A18E99D00D808ED /* libgit2.a */,
+				6DBE96271A6DE15400010A4C /* libicudata.a */,
+				6DBE96281A6DE15400010A4C /* libicui18n.a */,
+				6DBE96291A6DE15400010A4C /* libicuuc.a */,
+				6DBE961D1A6DC6AF00010A4C /* libc++.dylib */,
 				6DC7A0741A194F8300D808ED /* libiconv.dylib */,
 				6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */,
 				6D307FA11A1FF7BB003DE0BD /* libssl.dylib */,
@@ -209,6 +231,7 @@
 				6DC7A0631A18F2B900D808ED /* RPRepo.h in Headers */,
 				6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */,
 				6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */,
+				6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */,
 				6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */,
 				6D307FAD1A201EBA003DE0BD /* RPBlob.h in Headers */,
 				6D4B172D1A5CC4B000ACC859 /* RPSubmodule.h in Headers */,
@@ -318,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
+				6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
 				6D4B172E1A5CC4B000ACC859 /* RPSubmodule.m in Sources */,
 				6D310BAD1A1AC256001DCDB1 /* RPDiffDelta.m in Sources */,
@@ -383,6 +407,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/External/icu4c-osx/include\"",
+					"\"$(SRCROOT)/External/libgit2/include\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,6 +451,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/External/icu4c-osx/include\"",
+					"\"$(SRCROOT)/External/libgit2/include\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -438,17 +474,13 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/External/libgit2/include\"",
-				);
 				INFOPLIST_FILE = Repo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
+					"$(PROJECT_DIR)/External/icu4c-osx/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -469,17 +501,13 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/External/libgit2/include\"",
-				);
 				INFOPLIST_FILE = Repo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
+					"$(PROJECT_DIR)/External/icu4c-osx/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
