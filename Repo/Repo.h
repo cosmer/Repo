@@ -15,6 +15,7 @@ FOUNDATION_EXPORT double RepoVersionNumber;
 FOUNDATION_EXPORT const unsigned char RepoVersionString[];
 
 #import <Repo/RPRepo.h>
+#import <Repo/RPConfig.h>
 #import <Repo/RPDiff.h>
 #import <Repo/RPDiffDelta.h>
 #import <Repo/RPDiffFile.h>
