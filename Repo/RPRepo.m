@@ -10,9 +10,9 @@
 
 #import "NSError+RPGitErrors.h"
 
+#import <git2/global.h>
 #import <git2/repository.h>
 #import <git2/attr.h>
-#import <git2/threads.h>
 #import <git2/errors.h>
 
 @implementation RPRepo
@@ -48,11 +48,7 @@
 
 + (NSError *)startup
 {
-    int r = git_threads_init();
-    if (r != GIT_OK) {
-        return [NSError rp_gitErrorForCode:r description:@"git_threads_init failed"];
-    }
-        
+    git_libgit2_init();
     return nil;
 }
 

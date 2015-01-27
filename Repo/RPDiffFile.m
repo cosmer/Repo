@@ -12,7 +12,7 @@
 #import "RPOID.h"
 #import "NSException+RPExceptions.h"
 
-_Static_assert(RPFileModeNew == GIT_FILEMODE_NEW, "");
+_Static_assert(RPFileModeUnreadable == GIT_FILEMODE_UNREADABLE, "");
 _Static_assert(RPFileModeTree == GIT_FILEMODE_TREE, "");
 _Static_assert(RPFileModeBlob == GIT_FILEMODE_BLOB, "");
 _Static_assert(RPFileModeBlobExecutable == GIT_FILEMODE_BLOB_EXECUTABLE, "");

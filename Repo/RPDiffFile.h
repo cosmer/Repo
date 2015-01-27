@@ -11,7 +11,7 @@
 @class RPOID;
 
 typedef NS_ENUM(NSInteger, RPFileMode) {
-    RPFileModeNew               = 0000000,
+    RPFileModeUnreadable        = 0000000,
     RPFileModeTree              = 0040000,
     RPFileModeBlob              = 0100644,
     RPFileModeBlobExecutable    = 0100755,
