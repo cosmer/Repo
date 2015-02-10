@@ -10,6 +10,8 @@
 
 #import "RPMacros.h"
 
+#pragma clang assume_nonnull begin
+
 typedef struct git_repository git_repository;
 
 @interface RPRepo : NSObject
@@ -18,15 +20,15 @@ typedef struct git_repository git_repository;
 + (BOOL)isRepositoryAtURL:(NSURL *)url;
 
 /// Should be called once at startup before any other methods in the framework.
-+ (NSError *)startup;
++ (nullable NSError *)startup;
 
 - (instancetype)initWithGitRepository:(git_repository *)repository NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithURL:(NSURL *)url error:(NSError **)error;
+- (nullable instancetype)initWithURL:(NSURL *)url error:(NSError **)error;
 
 /// Get the value of the 'encoding' attributes.
 /// \return A string encoding name, or nil if no attribute is set for `path`.
-- (NSString *)stringEncodingNameForPath:(NSString *)path;
+- (nullable NSString *)stringEncodingNameForPath:(NSString *)path;
 
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 
@@ -34,3 +36,5 @@ typedef struct git_repository git_repository;
 @property(nonatomic, strong, readonly) NSString *workingDirectory;
 
 @end
+
+#pragma clang assume_nonnull end

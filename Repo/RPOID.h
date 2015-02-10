@@ -10,6 +10,8 @@
 
 #import "RPMacros.h"
 
+#pragma clang assume_nonnull begin
+
 typedef struct git_oid git_oid;
 
 @interface RPOID : NSObject
@@ -23,3 +25,5 @@ typedef struct git_oid git_oid;
 @property(nonatomic, strong, readonly) NSString *stringValue;
 
 @end
+
+#pragma clang assume_nonnull end

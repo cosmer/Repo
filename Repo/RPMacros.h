@@ -9,3 +9,5 @@
 #define RP_RETURNS_INTERIOR_POINTER __attribute__((objc_returns_inner_pointer))
 
 #define RP_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+
+#define RP_NO_ESCAPE __attribute__((noescape))

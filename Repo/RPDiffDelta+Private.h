@@ -8,9 +8,13 @@
 
 #import <git2/diff.h>
 
+#pragma clang assume_nonnull begin
+
 @interface RPDiffDelta ()
 
 /// Does not assume ownership of `delta`.
 - (instancetype)initWithGitDiffDelta:(const git_diff_delta *)delta NS_DESIGNATED_INITIALIZER;
 
 @end
+
+#pragma clang assume_nonnull end

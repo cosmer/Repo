@@ -10,6 +10,8 @@
 
 #import "RPMacros.h"
 
+#pragma clang assume_nonnull begin
+
 @class RPRepo;
 @class RPOID;
 
@@ -20,11 +22,14 @@ typedef struct git_object git_object;
 /// Assumes ownership of `object`.
 - (instancetype)initWithGitObject:(git_object *)object inRepo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
+- (nullable instancetype)initWithOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
 
-- (NSString *)stringWithPreferredEncoding:(const NSStringEncoding *)preferredEncoding usedEncoding:(NSStringEncoding *)usedEncoding;
+- (nullable NSString *)stringWithPreferredEncoding:(nullable const NSStringEncoding *)preferredEncoding
+                                      usedEncoding:(nullable NSStringEncoding *)usedEncoding;
 
 @property(nonatomic, readonly) git_object *gitObject RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, strong, readonly) RPRepo *repo;
 
 @end
+
+#pragma clang assume_nonnull end

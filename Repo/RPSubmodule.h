@@ -10,6 +10,8 @@
 
 #import "RPMacros.h"
 
+#pragma clang assume_nonnull begin
+
 @class RPRepo;
 
 typedef struct git_submodule git_submodule;
@@ -19,10 +21,12 @@ typedef struct git_submodule git_submodule;
 /// Assumes ownership of `submodule`.
 - (instancetype)initWithGitSubmodule:(git_submodule *)submodule NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithRepo:(RPRepo *)repo path:(NSString *)path error:(NSError **)error;
+- (nullable instancetype)initWithRepo:(RPRepo *)repo path:(NSString *)path error:(NSError **)error;
 
 @property(nonatomic, readonly) git_submodule *gitSubmodule RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, readonly) BOOL isWorkingDirectoryDirty;
 
 @end
+
+#pragma clang assume_nonnull end

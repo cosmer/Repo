@@ -10,6 +10,8 @@
 
 #import "RPMacros.h"
 
+#pragma clang assume_nonnull begin
+
 @class RPDiff;
 @class RPDiffFile;
 
@@ -35,3 +37,5 @@ typedef NS_ENUM(NSInteger, RPDiffDeltaStatus) {
 @property(nonatomic, strong, readonly) RPDiffFile *newFile NS_RETURNS_NOT_RETAINED;
 
 @end
+
+#pragma clang assume_nonnull end

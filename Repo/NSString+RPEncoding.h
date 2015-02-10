@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang assume_nonnull begin
+
 @interface NSString (RPEncoding)
 
-+ (NSString *)rp_stringWithData:(NSData *)data preferredEncoding:(const NSStringEncoding *)preferredEncoding usedEncoding:(NSStringEncoding *)usedEncoding;
++ (nullable NSString *)rp_stringWithData:(NSData *)data
+                       preferredEncoding:(nullable const NSStringEncoding *)preferredEncoding
+                            usedEncoding:(nullable NSStringEncoding *)usedEncoding;
 
 @end
+
+#pragma clang assume_nonnull end

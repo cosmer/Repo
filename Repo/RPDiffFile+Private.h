@@ -10,8 +10,12 @@
 
 #import <git2/diff.h>
 
+#pragma clang assume_nonnull begin
+
 @interface RPDiffFile ()
 
 - (instancetype)initWithGitDiffFile:(git_diff_file)diffFile NS_DESIGNATED_INITIALIZER;
 
 @end
+
+#pragma clang assume_nonnull end

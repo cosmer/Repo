@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang assume_nonnull begin
+
 @interface NSData (RPEncoding)
 
 - (CFStringEncoding)rp_detectStringEncoding;
 
 @end
+
+#pragma clang assume_nonnull end

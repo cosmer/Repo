@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang assume_nonnull begin
+
 @class RPOID;
 
 typedef NS_ENUM(NSInteger, RPFileMode) {
@@ -38,3 +40,5 @@ typedef NS_ENUM(NSInteger, RPFileMode) {
 @property(nonatomic, readonly) BOOL hasValidID;
 
 @end
+
+#pragma clang assume_nonnull end

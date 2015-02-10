@@ -10,6 +10,8 @@
 
 #import "RPMacros.h"
 
+#pragma clang assume_nonnull begin
+
 @class RPRepo;
 
 typedef struct git_config git_config;
@@ -19,11 +21,13 @@ typedef struct git_config git_config;
 /// Assumes ownership of `config`.
 - (instancetype)initWithGitConfig:(git_config *)config NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithRepo:(RPRepo *)repo error:(NSError **)error;
+- (nullable instancetype)initWithRepo:(RPRepo *)repo error:(NSError **)error;
 
 /// \return String value, or nil if no value is set.
-- (NSString *)stringWithName:(NSString *)name;
+- (nullable NSString *)stringWithName:(NSString *)name;
 
 @property(nonatomic, readonly) git_config *gitConfig RP_RETURNS_INTERIOR_POINTER;
 
 @end
+
+#pragma clang assume_nonnull end

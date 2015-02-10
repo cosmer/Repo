@@ -10,6 +10,8 @@
 
 #import "RPMacros.h"
 
+#pragma clang assume_nonnull begin
+
 @class RPRepo;
 @class RPDiffDelta;
 
@@ -17,12 +19,12 @@ typedef struct git_diff git_diff;
 
 @interface RPDiff : NSObject
 
-+ (instancetype)diffIndexToWorkingDirectoryInRepo:(RPRepo *)repo error:(NSError **)error;
++ (nullable instancetype)diffIndexToWorkingDirectoryInRepo:(RPRepo *)repo error:(NSError **)error;
 
 /// Assumes ownership of `diff`.
 - (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;
 
-- (void)enumerateDeltasUsingBlock:(void (^)(RPDiffDelta *delta))block;
+- (void)enumerateDeltasUsingBlock:(RP_NO_ESCAPE void (^)(RPDiffDelta *delta))block;
 
 @property(nonatomic, readonly) git_diff *gitDiff RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, strong, readonly) RPRepo *repo;
@@ -30,3 +32,5 @@ typedef struct git_diff git_diff;
 @property(nonatomic, readonly) NSUInteger deltaCount;
 
 @end
+
+#pragma clang assume_nonnull end
