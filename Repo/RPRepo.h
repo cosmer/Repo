@@ -12,6 +12,8 @@
 
 #pragma clang assume_nonnull begin
 
+@class RPReference;
+
 typedef struct git_repository git_repository;
 
 @interface RPRepo : NSObject
@@ -22,6 +24,7 @@ typedef struct git_repository git_repository;
 /// Should be called once at startup before any other methods in the framework.
 + (nullable NSError *)startup;
 
+/// Assumes ownership of `repository`.
 - (instancetype)initWithGitRepository:(git_repository *)repository NS_DESIGNATED_INITIALIZER;
 
 - (nullable instancetype)initWithURL:(NSURL *)url error:(NSError **)error;
@@ -29,6 +32,9 @@ typedef struct git_repository git_repository;
 /// Get the value of the 'encoding' attributes.
 /// \return A string encoding name, or nil if no attribute is set for `path`.
 - (nullable NSString *)stringEncodingNameForPath:(NSString *)path;
+
+/// \return The reference pointed at by HEAD.
+- (nullable RPReference *)head;
 
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 

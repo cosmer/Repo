@@ -28,7 +28,7 @@
 		6D90F5DF1A772501009D0E99 /* RPConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D90F5DD1A772501009D0E99 /* RPConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D90F5E01A772501009D0E99 /* RPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D90F5DE1A772501009D0E99 /* RPConfig.m */; };
 		6DBE96221A6DC91A00010A4C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE961D1A6DC6AF00010A4C /* libc++.dylib */; };
-		6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */; };
+		6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */; };
 		6DBE962A1A6DE15400010A4C /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96271A6DE15400010A4C /* libicudata.a */; };
 		6DBE962B1A6DE15400010A4C /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96281A6DE15400010A4C /* libicui18n.a */; };
@@ -43,6 +43,8 @@
 		6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */; };
 		6DC7A0701A194D4F00D808ED /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A06F1A194D4F00D808ED /* libz.dylib */; };
 		6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0741A194F8300D808ED /* libiconv.dylib */; };
+		6DF929551A90CE6B0087E7D3 /* RPReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DF929531A90CE6B0087E7D3 /* RPReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF929541A90CE6B0087E7D3 /* RPReference.m */; };
 		6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6DFFE14A1A62E56900A8E617 /* NSException+RPExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,8 @@
 		6DC7A06F1A194D4F00D808ED /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6DC7A0741A194F8300D808ED /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		6DD748621A59DAB7007856CD /* RPDiffDelta+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPDiffDelta+Private.h"; sourceTree = "<group>"; };
+		6DF929531A90CE6B0087E7D3 /* RPReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPReference.h; sourceTree = "<group>"; };
+		6DF929541A90CE6B0087E7D3 /* RPReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPReference.m; sourceTree = "<group>"; };
 		6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+RPExceptions.h"; sourceTree = "<group>"; };
 		6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSException+RPExceptions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +173,8 @@
 				6D307FAC1A201EBA003DE0BD /* RPBlob.m */,
 				6D310BB41A1B7144001DCDB1 /* RPOID.h */,
 				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
+				6DF929531A90CE6B0087E7D3 /* RPReference.h */,
+				6DF929541A90CE6B0087E7D3 /* RPReference.m */,
 				6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */,
 				6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */,
 				6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */,
@@ -238,7 +244,7 @@
 				6DC7A0631A18F2B900D808ED /* RPRepo.h in Headers */,
 				6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */,
 				6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */,
-				6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */,
+				6DF929551A90CE6B0087E7D3 /* RPReference.h in Headers */,
 				6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */,
 				6D307FAD1A201EBA003DE0BD /* RPBlob.h in Headers */,
 				6D4B172D1A5CC4B000ACC859 /* RPSubmodule.h in Headers */,
@@ -247,6 +253,7 @@
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
 				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
 				6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */,
+				6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */,
 				6D310BB31A1AD29E001DCDB1 /* RPDiffFile+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
 				6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,

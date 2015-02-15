@@ -8,6 +8,7 @@
 
 #import "RPRepo.h"
 
+#import "RPReference.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/global.h>
@@ -104,6 +105,16 @@
     }
     
     return @(value);
+}
+
+- (RPReference *)head
+{
+    git_reference *ref = NULL;
+    if (git_repository_head(&ref, self.gitRepository) != GIT_OK) {
+        return nil;
+    }
+    
+    return [[RPReference alloc] initWithGitReference:ref];
 }
 
 - (NSString *)path
