@@ -19,7 +19,9 @@ typedef struct git_diff git_diff;
 
 @interface RPDiff : NSObject
 
-+ (nullable instancetype)diffIndexToWorkingDirectoryInRepo:(RPRepo *)repo error:(NSError **)error;
++ (nullable instancetype)diffIndexToWorkdirInRepo:(RPRepo *)repo error:(NSError **)error;
+
++ (nullable instancetype)diffHeadToWorkdirWithIndexInRepo:(RPRepo *)repo error:(NSError **)error;
 
 /// Assumes ownership of `diff`.
 - (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;

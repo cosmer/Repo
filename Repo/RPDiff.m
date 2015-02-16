@@ -13,6 +13,7 @@
 #import "NSError+RPGitErrors.h"
 
 #import <git2/diff.h>
+#import <git2/revparse.h>
 #import <git2/errors.h>
 
 @implementation RPDiff
@@ -22,7 +23,7 @@
     git_diff_free(_gitDiff);
 }
 
-+ (instancetype)diffIndexToWorkingDirectoryInRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffIndexToWorkdirInRepo:(RPRepo *)repo error:(NSError **)error
 {
     NSParameterAssert(repo != nil);
     
@@ -37,6 +38,53 @@
         }
         return nil;
     }
+    
+    return [[self alloc] initWithGitDiff:diff repo:repo];
+}
+
++ (instancetype)diffHeadToWorkdirWithIndexInRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(repo != nil);
+    
+    int gitError = GIT_OK;
+    
+    git_object *object = NULL;
+    gitError = git_revparse_single(&object, repo.gitRepository, "HEAD^{tree}");
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to parse rev for HEAD"];
+        }
+        return nil;
+    }
+    
+    git_tree *tree = NULL;
+    gitError = git_tree_lookup(&tree, repo.gitRepository, git_object_id(object));
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to create tree for HEAD"];
+        }
+        
+        git_object_free(object);
+        return nil;
+    }
+    
+    git_diff_options options = GIT_DIFF_OPTIONS_INIT;
+    options.flags = GIT_DIFF_INCLUDE_UNTRACKED | GIT_DIFF_RECURSE_UNTRACKED_DIRS | GIT_DIFF_IGNORE_CASE;
+    
+    git_diff *diff = NULL;
+    gitError = git_diff_tree_to_workdir_with_index(&diff, repo.gitRepository, tree, &options);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff head to working directory with index"];
+        }
+        
+        git_tree_free(tree);
+        git_object_free(object);
+        return nil;
+    }
+    
+    git_tree_free(tree);
+    git_object_free(object);
     
     return [[self alloc] initWithGitDiff:diff repo:repo];
 }
