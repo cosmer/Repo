@@ -10,7 +10,7 @@
 
 #import "RPMacros.h"
 
-#pragma clang assume_nonnull begin
+NS_ASSUME_NONNULL_BEGIN
 
 typedef struct git_oid git_oid;
 
@@ -26,4 +26,4 @@ typedef struct git_oid git_oid;
 
 @end
 
-#pragma clang assume_nonnull end
+NS_ASSUME_NONNULL_END

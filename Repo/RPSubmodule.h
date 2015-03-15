@@ -10,7 +10,7 @@
 
 #import "RPMacros.h"
 
-#pragma clang assume_nonnull begin
+NS_ASSUME_NONNULL_BEGIN
 
 @class RPRepo;
 
@@ -29,4 +29,4 @@ typedef struct git_submodule git_submodule;
 
 @end
 
-#pragma clang assume_nonnull end
+NS_ASSUME_NONNULL_END

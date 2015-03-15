@@ -8,7 +8,7 @@
 
 #import <git2/diff.h>
 
-#pragma clang assume_nonnull begin
+NS_ASSUME_NONNULL_BEGIN
 
 @interface RPDiffDelta ()
 
@@ -17,4 +17,4 @@
 
 @end
 
-#pragma clang assume_nonnull end
+NS_ASSUME_NONNULL_END

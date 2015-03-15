@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma clang assume_nonnull begin
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (RPEncoding)
 
@@ -18,4 +18,4 @@
 
 @end
 
-#pragma clang assume_nonnull end
+NS_ASSUME_NONNULL_END

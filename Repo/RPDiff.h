@@ -10,7 +10,7 @@
 
 #import "RPMacros.h"
 
-#pragma clang assume_nonnull begin
+NS_ASSUME_NONNULL_BEGIN
 
 @class RPRepo;
 @class RPDiffDelta;
@@ -35,4 +35,4 @@ typedef struct git_diff git_diff;
 
 @end
 
-#pragma clang assume_nonnull end
+NS_ASSUME_NONNULL_END

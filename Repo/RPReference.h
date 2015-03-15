@@ -10,7 +10,7 @@
 
 #import "RPMacros.h"
 
-#pragma clang assume_nonnull begin
+NS_ASSUME_NONNULL_BEGIN
 
 typedef struct git_reference git_reference;
 
@@ -25,4 +25,4 @@ typedef struct git_reference git_reference;
 
 @end
 
-#pragma clang assume_nonnull end
+NS_ASSUME_NONNULL_END
