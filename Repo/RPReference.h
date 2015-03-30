@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RPTypes.h"
 #import "RPMacros.h"
+
+@class RPObject;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +21,8 @@ typedef struct git_reference git_reference;
 
 /// Assumes ownership of `reference`.
 - (instancetype)initWithGitReference:(git_reference *)reference NS_DESIGNATED_INITIALIZER;
+
+- (nullable RPObject *)peelToType:(RPObjectType)type error:(NSError **)error;
 
 @property(nonatomic, readonly) git_reference *gitReference RP_RETURNS_INTERIOR_POINTER;
 

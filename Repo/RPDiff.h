@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class RPRepo;
 @class RPDiffDelta;
+@class RPTree;
+@class RPReference;
 
 typedef struct git_diff git_diff;
 
@@ -22,6 +24,13 @@ typedef struct git_diff git_diff;
 + (nullable instancetype)diffIndexToWorkdirInRepo:(RPRepo *)repo error:(NSError **)error;
 
 + (nullable instancetype)diffHeadToWorkdirWithIndexInRepo:(RPRepo *)repo error:(NSError **)error;
+
++ (instancetype)diffOldTree:(RPTree *)oldTree toNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error;
+
++ (nullable instancetype)diffOldReference:(RPReference *)oldReference
+                           toNewReference:(RPReference *)newReference
+                                   inRepo:(RPRepo *)repo
+                                    error:(NSError **)error;
 
 /// Assumes ownership of `diff`.
 - (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;

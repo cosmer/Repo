@@ -47,6 +47,14 @@
 		6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF929541A90CE6B0087E7D3 /* RPReference.m */; };
 		6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6DFFE14A1A62E56900A8E617 /* NSException+RPExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */; };
+		EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = EF08E0421ABEEF8400712DCC /* RPBranch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF08E0451ABEEF8400712DCC /* RPBranch.m in Sources */ = {isa = PBXBuildFile; fileRef = EF08E0431ABEEF8400712DCC /* RPBranch.m */; };
+		EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = EF36106A1AC888A700861AE9 /* RPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF36106D1AC888A700861AE9 /* RPTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = EF36106B1AC888A700861AE9 /* RPTypes.m */; };
+		EF3610701AC88B4300861AE9 /* RPObject.h in Headers */ = {isa = PBXBuildFile; fileRef = EF36106E1AC88B4300861AE9 /* RPObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF3610711AC88B4300861AE9 /* RPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF36106F1AC88B4300861AE9 /* RPObject.m */; };
+		EF3610741AC88E9400861AE9 /* RPTree.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3610721AC88E9400861AE9 /* RPTree.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF3610751AC88E9400861AE9 /* RPTree.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3610731AC88E9400861AE9 /* RPTree.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +112,14 @@
 		6DF929541A90CE6B0087E7D3 /* RPReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPReference.m; sourceTree = "<group>"; };
 		6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+RPExceptions.h"; sourceTree = "<group>"; };
 		6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSException+RPExceptions.m"; sourceTree = "<group>"; };
+		EF08E0421ABEEF8400712DCC /* RPBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBranch.h; sourceTree = "<group>"; };
+		EF08E0431ABEEF8400712DCC /* RPBranch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPBranch.m; sourceTree = "<group>"; };
+		EF36106A1AC888A700861AE9 /* RPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTypes.h; sourceTree = "<group>"; };
+		EF36106B1AC888A700861AE9 /* RPTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTypes.m; sourceTree = "<group>"; };
+		EF36106E1AC88B4300861AE9 /* RPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPObject.h; sourceTree = "<group>"; };
+		EF36106F1AC88B4300861AE9 /* RPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPObject.m; sourceTree = "<group>"; };
+		EF3610721AC88E9400861AE9 /* RPTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTree.h; sourceTree = "<group>"; };
+		EF3610731AC88E9400861AE9 /* RPTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTree.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +175,8 @@
 				6DC7A0471A18E20000D808ED /* Repo.h */,
 				6DC7A0611A18F2B900D808ED /* RPRepo.h */,
 				6DC7A0621A18F2B900D808ED /* RPRepo.m */,
+				EF08E0421ABEEF8400712DCC /* RPBranch.h */,
+				EF08E0431ABEEF8400712DCC /* RPBranch.m */,
 				6D90F5DD1A772501009D0E99 /* RPConfig.h */,
 				6D90F5DE1A772501009D0E99 /* RPConfig.m */,
 				6D310BA61A1ABE95001DCDB1 /* RPDiff.h */,
@@ -171,6 +189,12 @@
 				6D310BAF1A1AC6D1001DCDB1 /* RPDiffFile.m */,
 				6D307FAB1A201EBA003DE0BD /* RPBlob.h */,
 				6D307FAC1A201EBA003DE0BD /* RPBlob.m */,
+				EF3610721AC88E9400861AE9 /* RPTree.h */,
+				EF3610731AC88E9400861AE9 /* RPTree.m */,
+				EF36106A1AC888A700861AE9 /* RPTypes.h */,
+				EF36106B1AC888A700861AE9 /* RPTypes.m */,
+				EF36106E1AC88B4300861AE9 /* RPObject.h */,
+				EF36106F1AC88B4300861AE9 /* RPObject.m */,
 				6D310BB41A1B7144001DCDB1 /* RPOID.h */,
 				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
 				6DF929531A90CE6B0087E7D3 /* RPReference.h */,
@@ -247,8 +271,12 @@
 				6DF929551A90CE6B0087E7D3 /* RPReference.h in Headers */,
 				6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */,
 				6D307FAD1A201EBA003DE0BD /* RPBlob.h in Headers */,
+				EF3610701AC88B4300861AE9 /* RPObject.h in Headers */,
 				6D4B172D1A5CC4B000ACC859 /* RPSubmodule.h in Headers */,
+				EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */,
+				EF3610741AC88E9400861AE9 /* RPTree.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
+				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
 				6D42E8BA1A68836A00B02DD7 /* NSString+RPEncoding.h in Headers */,
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
 				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
@@ -365,8 +393,12 @@
 				6D307FAE1A201EBA003DE0BD /* RPBlob.m in Sources */,
 				6D310BB11A1AC6D1001DCDB1 /* RPDiffFile.m in Sources */,
 				6D90F5E01A772501009D0E99 /* RPConfig.m in Sources */,
+				EF08E0451ABEEF8400712DCC /* RPBranch.m in Sources */,
 				6D42E8BB1A68836A00B02DD7 /* NSString+RPEncoding.m in Sources */,
+				EF36106D1AC888A700861AE9 /* RPTypes.m in Sources */,
+				EF3610711AC88B4300861AE9 /* RPObject.m in Sources */,
 				6DFFE14A1A62E56900A8E617 /* NSException+RPExceptions.m in Sources */,
+				EF3610751AC88E9400861AE9 /* RPTree.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +516,7 @@
 		6DC7A0591A18E20000D808ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -500,6 +533,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Wextra",
@@ -511,6 +545,7 @@
 		6DC7A05A1A18E20000D808ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
