@@ -21,6 +21,8 @@ typedef NS_ENUM(NSInteger, RPFileMode) {
     RPFileModeCommit            = 0160000,
 };
 
+extern NSString *RPFileModeName(RPFileMode mode);
+
 /// RPDiffFile is immutable and thread safe.
 @interface RPDiffFile : NSObject
 

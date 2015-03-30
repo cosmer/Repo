@@ -26,6 +26,32 @@ _Static_assert(RPDiffDeltaStatusIgnored == GIT_DELTA_IGNORED, "");
 _Static_assert(RPDiffDeltaStatusUntracked == GIT_DELTA_UNTRACKED, "");
 _Static_assert(RPDiffDeltaStatusTypeChange == GIT_DELTA_TYPECHANGE, "");
 
+NSString *RPDiffDeltaStatusName(RPDiffDeltaStatus status)
+{
+    switch (status) {
+        case RPDiffDeltaStatusUnmodified:
+            return @"Unmodified";
+        case RPDiffDeltaStatusAdded:
+            return @"Added";
+        case RPDiffDeltaStatusDeleted:
+            return @"Deleted";
+        case RPDiffDeltaStatusModified:
+            return @"Modified";
+        case RPDiffDeltaStatusRenamed:
+            return @"Renamed";
+        case RPDiffDeltaStatusCopied:
+            return @"Copied";
+        case RPDiffDeltaStatusIgnored:
+            return @"Ignored";
+        case RPDiffDeltaStatusUntracked:
+            return @"Untracked";
+        case RPDiffDeltaStatusTypeChange:
+            return @"Type Change";
+    }
+    
+    return [NSString stringWithFormat:@"RPDiffDeltaStatus{%ld}", (long)status];
+}
+
 @implementation RPDiffDelta
 
 - (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex

@@ -43,7 +43,8 @@ NSString *RPObjectTypeName(RPObjectType type)
         case RPObjectTypeRefDelta:
             return @"RefDelta";
     }
-    return @"Unknown";
+    
+    return [NSString stringWithFormat:@"RPObjectType{%ld}", (long)type];
 }
 
 NSString *RPBranchTypeName(RPBranchType type)
@@ -56,5 +57,6 @@ NSString *RPBranchTypeName(RPBranchType type)
         case RPBranchTypeRemote:
             return @"Remote";
     }
-    return @"Unknown";
+    
+    return [NSString stringWithFormat:@"RPBranchType{%ld}", (long)type];
 }
