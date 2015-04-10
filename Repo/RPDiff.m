@@ -118,17 +118,17 @@ static git_diff_options defaultDiffOptions(void)
     return [[self alloc] initWithGitDiff:diff repo:repo];
 }
 
-+ (instancetype)diffOldObject:(RPObject *)oldObject toNewObject:(RPObject *)newObject inRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffOldTreeOID:(RPOID *)oldOID toNewTreeOID:(RPOID *)newOID inRepo:(RPRepo *)repo error:(NSError **)error
 {
-    NSParameterAssert(oldObject != nil);
-    NSParameterAssert(newObject != nil);
+    NSParameterAssert(oldOID != nil);
+    NSParameterAssert(newOID != nil);
     
-    RPTree *oldTree = [RPTree lookupOID:oldObject.OID inRepo:repo error:error];
+    RPTree *oldTree = [RPTree lookupOID:oldOID inRepo:repo error:error];
     if (!oldTree) {
         return nil;
     }
     
-    RPTree *newTree = [RPTree lookupOID:newObject.OID inRepo:repo error:error];
+    RPTree *newTree = [RPTree lookupOID:newOID inRepo:repo error:error];
     if (!newTree) {
         return nil;
     }
@@ -151,7 +151,45 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    return [self diffOldObject:oldObject toNewObject:newObject inRepo:repo error:error];
+    return [self diffOldTreeOID:oldObject.OID toNewTreeOID:newObject.OID inRepo:repo error:error];
+}
+
++ (instancetype)diffMergeBaseOfOldReference:(RPReference *)oldReference
+                             toNewReference:(RPReference *)newReference
+                                     inRepo:(RPRepo *)repo
+                                      error:(NSError **)error
+{
+    RPObject *oldCommit = [oldReference peelToType:RPObjectTypeCommit error:error];
+    if (!oldCommit) {
+        return nil;
+    }
+    
+    RPObject *newCommit = [newReference peelToType:RPObjectTypeCommit error:error];
+    if (!newCommit) {
+        return nil;
+    }
+    
+    RPOID *mergeBaseOID = [repo mergeBaseOfOID:oldCommit.OID withOID:newCommit.OID error:error];
+    if (!mergeBaseOID) {
+        return nil;
+    }
+    
+    RPObject *mergeBaseCommit = [RPObject lookupOID:mergeBaseOID withType:RPObjectTypeCommit inRepo:repo error:error];
+    if (!mergeBaseCommit) {
+        return nil;
+    }
+    
+    RPObject *oldTreeObject = [mergeBaseCommit peelToType:RPObjectTypeTree error:error];
+    if (!oldTreeObject) {
+        return nil;
+    }
+    
+    RPObject *newTreeObject = [newReference peelToType:RPObjectTypeTree error:error];
+    if (!newTreeObject) {
+        return nil;
+    }
+    
+    return [self diffOldTreeOID:oldTreeObject.OID toNewTreeOID:newTreeObject.OID inRepo:repo error:error];
 }
 
 - (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo

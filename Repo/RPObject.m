@@ -9,10 +9,27 @@
 #import "RPObject.h"
 
 #import "RPOID.h"
+#import "RPRepo.h"
+#import "NSError+RPGitErrors.h"
 
 #import <git2/object.h>
+#import <git2/errors.h>
 
 @implementation RPObject
+
++ (instancetype)lookupOID:(RPOID *)oid withType:(RPObjectType)type inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    git_object *object = NULL;
+    int gitError = git_object_lookup(&object, repo.gitRepository, oid.gitOID, (git_otype)type);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup %@ with type %@", oid, RPObjectTypeName(type)];
+        }
+        return nil;
+    }
+    
+    return [[RPObject alloc] initWithGitObject:object];
+}
 
 - (void)dealloc
 {
@@ -32,6 +49,20 @@
 {
     const git_oid *oid = git_object_id(self.gitObject);
     return [[RPOID alloc] initWithGitOID:oid];
+}
+
+- (instancetype)peelToType:(RPObjectType)type error:(NSError **)error
+{
+    git_object *peeled = NULL;
+    int gitError = git_object_peel(&peeled, self.gitObject, (git_otype)type);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't peel object %@ to type %@", self.OID, RPObjectTypeName(type)];
+        }
+        return nil;
+    }
+    
+    return [[RPObject alloc] initWithGitObject:peeled];
 }
 
 @end

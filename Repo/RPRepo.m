@@ -9,10 +9,12 @@
 #import "RPRepo.h"
 
 #import "RPReference.h"
+#import "RPOID.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/global.h>
 #import <git2/repository.h>
+#import <git2/merge.h>
 #import <git2/attr.h>
 #import <git2/errors.h>
 
@@ -115,6 +117,23 @@
     }
     
     return [[RPReference alloc] initWithGitReference:ref];
+}
+
+- (RPOID *)mergeBaseOfOID:(RPOID *)oid1 withOID:(RPOID *)oid2 error:(NSError **)error
+{
+    NSParameterAssert(oid1 != nil);
+    NSParameterAssert(oid2 != nil);
+    
+    git_oid base;
+    int gitError = git_merge_base(&base, self.gitRepository, oid1.gitOID, oid2.gitOID);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find merge base of %@ and %@.", oid1, oid2];
+        }
+        return nil;
+    }
+    
+    return [[RPOID alloc] initWithGitOID:&base];
 }
 
 - (NSString *)path

@@ -32,6 +32,11 @@ typedef struct git_diff git_diff;
                                    inRepo:(RPRepo *)repo
                                     error:(NSError **)error;
 
++ (nullable instancetype)diffMergeBaseOfOldReference:(RPReference *)oldReference
+                                      toNewReference:(RPReference *)newReference
+                                              inRepo:(RPRepo *)repo
+                                               error:(NSError **)error;
+
 /// Assumes ownership of `diff`.
 - (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;
 

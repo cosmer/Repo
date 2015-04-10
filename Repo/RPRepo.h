@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class RPReference;
+@class RPOID;
 
 typedef struct git_repository git_repository;
 
@@ -35,6 +36,9 @@ typedef struct git_repository git_repository;
 
 /// \return The reference pointed at by HEAD.
 - (nullable RPReference *)head;
+
+/// \return The merge base of two commits.
+- (nullable RPOID *)mergeBaseOfOID:(RPOID *)oid1 withOID:(RPOID *)oid2 error:(NSError **)error;
 
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 
