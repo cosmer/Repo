@@ -42,6 +42,10 @@ typedef struct git_diff git_diff;
 
 - (void)enumerateDeltasUsingBlock:(RP_NO_ESCAPE void (^)(RPDiffDelta *delta))block;
 
+/// Transform a diff marking file renames, copies, etc.
+/// \return YES if the find succeeded, NO if an error occurred.
+- (BOOL)findSimilarWithError:(NSError **)error;
+
 @property(nonatomic, readonly) git_diff *gitDiff RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, strong, readonly) RPRepo *repo;
 
