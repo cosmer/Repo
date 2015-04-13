@@ -12,7 +12,6 @@
 #import "NSError+RPGitErrors.h"
 
 #import <git2/buffer.h>
-#import <git2/branch.h>
 #import <git2/refs.h>
 #import <git2/errors.h>
 
@@ -34,12 +33,14 @@
 
 - (NSString *)name
 {
-    const char *name = NULL;
-    if (git_branch_name(&name, self.gitReference) != GIT_OK) {
-        return nil;
-    }
-    
-    return (name ? @(name) : nil);
+    const char *name = git_reference_name(self.gitReference);
+    return (name ? @(name) : @"");
+}
+
+- (NSString *)shortName
+{
+    const char *name = git_reference_shorthand(self.gitReference);
+    return (name ? @(name) : @"");
 }
 
 - (RPObject *)peelToType:(RPObjectType)type error:(NSError **)error
@@ -49,7 +50,7 @@
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError
-                                     description:@"Couldn't peel reference %@ to type %@", self.name, RPObjectTypeName(type)];
+                                     description:@"Couldn't peel reference %@ to type %@", self.shortName, RPObjectTypeName(type)];
         }
         return nil;
     }

@@ -26,7 +26,8 @@ typedef struct git_reference git_reference;
 
 @property(nonatomic, readonly) git_reference *gitReference RP_RETURNS_INTERIOR_POINTER;
 
-@property(nullable, nonatomic, strong, readonly) NSString *name;
+@property(nonatomic, strong, readonly) NSString *name;
+@property(nonatomic, strong, readonly) NSString *shortName;
 
 @end
 
