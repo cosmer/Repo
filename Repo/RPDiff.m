@@ -14,6 +14,8 @@
 #import "RPObject.h"
 #import "RPReference.h"
 #import "RPTree.h"
+#import "RPCommit.h"
+#import "RPIndex.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/diff.h>
@@ -190,6 +192,60 @@ static git_diff_options defaultDiffOptions(void)
     }
     
     return [self diffOldTreeOID:oldTreeObject.OID toNewTreeOID:newTreeObject.OID inRepo:repo error:error];
+}
+
++ (instancetype)diffPullRequestOfOldReference:(RPReference *)oldReference
+                               toNewReference:(RPReference *)newReference
+                                       inRepo:(RPRepo *)repo
+                                        error:(NSError **)error
+{
+    RPObject *oldCommitObject = [oldReference peelToType:RPObjectTypeCommit error:error];
+    if (!oldCommitObject) {
+        return nil;
+    }
+    
+    RPObject *newCommitObject = [newReference peelToType:RPObjectTypeCommit error:error];
+    if (!newCommitObject) {
+        return nil;
+    }
+    
+    RPCommit *oldCommit = [RPCommit lookupOID:oldCommitObject.OID inRepo:repo error:error];
+    if (!oldCommitObject) {
+        return nil;
+    }
+    
+    RPCommit *newCommit = [RPCommit lookupOID:newCommitObject.OID inRepo:repo error:error];
+    if (!newCommit) {
+        return nil;
+    }
+    
+    RPObject *oldTreeObject = [oldReference peelToType:RPObjectTypeTree error:error];
+    if (!oldTreeObject) {
+        return nil;
+    }
+    
+    RPTree *oldTree = [RPTree lookupOID:oldTreeObject.OID inRepo:repo error:error];
+    if (!oldTree) {
+        return nil;
+    }
+    
+    RPIndex *index = [repo mergeOurCommit:newCommit withTheirCommit:oldCommit error:error];
+    if (!index) {
+        return nil;
+    }
+    
+    git_diff_options options = defaultDiffOptions();
+    
+    git_diff *diff = NULL;
+    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, oldTree.gitTree, index.gitIndex, &options);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Pull request diff failed"];
+        }
+        return nil;
+    }
+    
+    return [[RPDiff alloc] initWithGitDiff:diff repo:repo];
 }
 
 - (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo

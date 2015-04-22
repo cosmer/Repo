@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class RPReference;
 @class RPOID;
+@class RPCommit;
+@class RPIndex;
 
 typedef struct git_repository git_repository;
 
@@ -39,6 +41,9 @@ typedef struct git_repository git_repository;
 
 /// \return The merge base of two commits.
 - (nullable RPOID *)mergeBaseOfOID:(RPOID *)oid1 withOID:(RPOID *)oid2 error:(NSError **)error;
+
+/// \return An index that reflects the result of the merge.
+- (nullable RPIndex *)mergeOurCommit:(RPCommit *)ourCommit withTheirCommit:(RPCommit *)theirCommit error:(NSError **)error;
 
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 

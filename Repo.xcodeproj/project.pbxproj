@@ -47,6 +47,10 @@
 		6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF929541A90CE6B0087E7D3 /* RPReference.m */; };
 		6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6DFFE14A1A62E56900A8E617 /* NSException+RPExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */; };
+		EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = EF0176A31AE5CDAA0092618D /* RPIndex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF0176A61AE5CDAA0092618D /* RPIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0176A41AE5CDAA0092618D /* RPIndex.m */; };
+		EF0176A91AE5DBFB0092618D /* RPCommit.h in Headers */ = {isa = PBXBuildFile; fileRef = EF0176A71AE5DBFB0092618D /* RPCommit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0176A81AE5DBFB0092618D /* RPCommit.m */; };
 		EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = EF08E0421ABEEF8400712DCC /* RPBranch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF08E0451ABEEF8400712DCC /* RPBranch.m in Sources */ = {isa = PBXBuildFile; fileRef = EF08E0431ABEEF8400712DCC /* RPBranch.m */; };
 		EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = EF36106A1AC888A700861AE9 /* RPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -112,6 +116,10 @@
 		6DF929541A90CE6B0087E7D3 /* RPReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPReference.m; sourceTree = "<group>"; };
 		6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+RPExceptions.h"; sourceTree = "<group>"; };
 		6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSException+RPExceptions.m"; sourceTree = "<group>"; };
+		EF0176A31AE5CDAA0092618D /* RPIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPIndex.h; sourceTree = "<group>"; };
+		EF0176A41AE5CDAA0092618D /* RPIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPIndex.m; sourceTree = "<group>"; };
+		EF0176A71AE5DBFB0092618D /* RPCommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPCommit.h; sourceTree = "<group>"; };
+		EF0176A81AE5DBFB0092618D /* RPCommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPCommit.m; sourceTree = "<group>"; };
 		EF08E0421ABEEF8400712DCC /* RPBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBranch.h; sourceTree = "<group>"; };
 		EF08E0431ABEEF8400712DCC /* RPBranch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPBranch.m; sourceTree = "<group>"; };
 		EF36106A1AC888A700861AE9 /* RPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTypes.h; sourceTree = "<group>"; };
@@ -177,6 +185,8 @@
 				6DC7A0621A18F2B900D808ED /* RPRepo.m */,
 				EF08E0421ABEEF8400712DCC /* RPBranch.h */,
 				EF08E0431ABEEF8400712DCC /* RPBranch.m */,
+				EF0176A71AE5DBFB0092618D /* RPCommit.h */,
+				EF0176A81AE5DBFB0092618D /* RPCommit.m */,
 				6D90F5DD1A772501009D0E99 /* RPConfig.h */,
 				6D90F5DE1A772501009D0E99 /* RPConfig.m */,
 				6D310BA61A1ABE95001DCDB1 /* RPDiff.h */,
@@ -193,6 +203,8 @@
 				EF3610731AC88E9400861AE9 /* RPTree.m */,
 				EF36106A1AC888A700861AE9 /* RPTypes.h */,
 				EF36106B1AC888A700861AE9 /* RPTypes.m */,
+				EF0176A31AE5CDAA0092618D /* RPIndex.h */,
+				EF0176A41AE5CDAA0092618D /* RPIndex.m */,
 				EF36106E1AC88B4300861AE9 /* RPObject.h */,
 				EF36106F1AC88B4300861AE9 /* RPObject.m */,
 				6D310BB41A1B7144001DCDB1 /* RPOID.h */,
@@ -266,6 +278,7 @@
 				6DC7A0481A18E20000D808ED /* Repo.h in Headers */,
 				6D90F5DF1A772501009D0E99 /* RPConfig.h in Headers */,
 				6DC7A0631A18F2B900D808ED /* RPRepo.h in Headers */,
+				EF0176A91AE5DBFB0092618D /* RPCommit.h in Headers */,
 				6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */,
 				6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */,
 				6DF929551A90CE6B0087E7D3 /* RPReference.h in Headers */,
@@ -276,6 +289,7 @@
 				EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */,
 				EF3610741AC88E9400861AE9 /* RPTree.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
+				EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */,
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
 				6D42E8BA1A68836A00B02DD7 /* NSString+RPEncoding.h in Headers */,
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
@@ -385,11 +399,13 @@
 				6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
 				6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */,
+				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
 				6D4B172E1A5CC4B000ACC859 /* RPSubmodule.m in Sources */,
 				6D310BAD1A1AC256001DCDB1 /* RPDiffDelta.m in Sources */,
 				6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */,
 				6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */,
+				EF0176A61AE5CDAA0092618D /* RPIndex.m in Sources */,
 				6D307FAE1A201EBA003DE0BD /* RPBlob.m in Sources */,
 				6D310BB11A1AC6D1001DCDB1 /* RPDiffFile.m in Sources */,
 				6D90F5E01A772501009D0E99 /* RPConfig.m in Sources */,

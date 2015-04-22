@@ -10,6 +10,8 @@
 
 #import "RPReference.h"
 #import "RPOID.h"
+#import "RPCommit.h"
+#import "RPIndex.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/global.h>
@@ -134,6 +136,23 @@
     }
     
     return [[RPOID alloc] initWithGitOID:&base];
+}
+
+- (RPIndex *)mergeOurCommit:(RPCommit *)ourCommit withTheirCommit:(RPCommit *)theirCommit error:(NSError **)error
+{
+    NSParameterAssert(ourCommit != nil);
+    NSParameterAssert(theirCommit != nil);
+    
+    git_index *index = NULL;
+    int gitError = git_merge_commits(&index, self.gitRepository, ourCommit.gitCommit, theirCommit.gitCommit, NULL);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to merge commits"];
+        }
+        return nil;
+    }
+
+    return [[RPIndex alloc] initWithGitIndex:index];
 }
 
 - (NSString *)path
