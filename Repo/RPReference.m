@@ -8,6 +8,7 @@
 
 #import "RPReference.h"
 
+#import "RPRepo.h"
 #import "RPObject.h"
 #import "NSError+RPGitErrors.h"
 
@@ -16,6 +17,23 @@
 #import <git2/errors.h>
 
 @implementation RPReference
+
++ (instancetype)lookupName:(NSString *)name inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(name != nil);
+    NSParameterAssert(repo != nil);
+    
+    git_reference *ref = NULL;
+    int gitError = git_reference_lookup(&ref, repo.gitRepository, name.UTF8String);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup reference %@", name];
+        }
+        return nil;
+    }
+    
+    return [[RPReference alloc] initWithGitReference:ref];
+}
 
 - (void)dealloc
 {

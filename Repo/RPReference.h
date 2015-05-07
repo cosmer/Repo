@@ -11,6 +11,7 @@
 #import "RPTypes.h"
 #import "RPMacros.h"
 
+@class RPRepo;
 @class RPObject;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef struct git_reference git_reference;
 
 @interface RPReference : NSObject
+
++ (nullable instancetype)lookupName:(NSString *)name inRepo:(RPRepo *)repo error:(NSError **)error;
 
 /// Assumes ownership of `reference`.
 - (instancetype)initWithGitReference:(git_reference *)reference NS_DESIGNATED_INITIALIZER;
