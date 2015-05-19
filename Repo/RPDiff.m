@@ -277,7 +277,10 @@ static git_diff_options defaultDiffOptions(void)
 
 - (BOOL)findSimilarWithError:(NSError **)error
 {
-    int gitError = git_diff_find_similar(self.gitDiff, NULL);
+    git_diff_find_options options = GIT_DIFF_FIND_OPTIONS_INIT;
+    options.flags = GIT_DIFF_FIND_RENAMES | GIT_DIFF_FIND_FOR_UNTRACKED;
+    
+    int gitError = git_diff_find_similar(self.gitDiff, &options);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find similarities in diff"];
