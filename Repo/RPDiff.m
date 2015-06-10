@@ -275,7 +275,7 @@ static git_diff_options defaultDiffOptions(void)
     }
 }
 
-- (BOOL)findSimilarWithError:(NSError **)error
+- (BOOL)findSimilar:(NSError **)error
 {
     git_diff_find_options options = GIT_DIFF_FIND_OPTIONS_INIT;
     options.flags = GIT_DIFF_FIND_RENAMES | GIT_DIFF_FIND_FOR_UNTRACKED;
