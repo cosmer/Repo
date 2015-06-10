@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable instancetype)lookupOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithGitTree:(git_tree *)tree NS_DESIGNATED_INITIALIZER;
 
 @property(nonatomic, readonly) git_tree *gitTree RP_RETURNS_INTERIOR_POINTER;

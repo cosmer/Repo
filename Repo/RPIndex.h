@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPIndex : NSObject
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /// Assumes ownership of `index`.
 - (instancetype)initWithGitIndex:(git_index *)index NS_DESIGNATED_INITIALIZER;
 

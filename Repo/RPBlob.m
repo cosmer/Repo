@@ -30,6 +30,12 @@
     git_object_free(_gitObject);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitObject:(git_object *)object inRepo:(RPRepo *)repo
 {
     NSParameterAssert(object != NULL);

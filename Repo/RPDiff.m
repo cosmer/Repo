@@ -248,6 +248,12 @@ static git_diff_options defaultDiffOptions(void)
     return [[RPDiff alloc] initWithGitDiff:diff repo:repo];
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo
 {
     NSParameterAssert(diff != nil);

@@ -30,6 +30,8 @@ typedef struct git_repository git_repository;
 /// Assumes ownership of `repository`.
 - (instancetype)initWithGitRepository:(git_repository *)repository NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (nullable instancetype)initWithURL:(NSURL *)url error:(NSError **)error;
 
 /// Get the value of the 'encoding' attributes.

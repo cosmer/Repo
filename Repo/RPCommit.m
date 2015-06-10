@@ -39,6 +39,12 @@
     git_commit_free(_gitCommit);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitCommit:(git_commit *)commit
 {
     NSParameterAssert(commit != nil);

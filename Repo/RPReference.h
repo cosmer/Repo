@@ -22,6 +22,8 @@ typedef struct git_reference git_reference;
 
 + (nullable instancetype)lookupName:(NSString *)name inRepo:(RPRepo *)repo error:(NSError **)error;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /// Assumes ownership of `reference`.
 - (instancetype)initWithGitReference:(git_reference *)reference NS_DESIGNATED_INITIALIZER;
 

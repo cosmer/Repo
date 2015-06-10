@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPDiffFile ()
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithGitDiffFile:(git_diff_file)diffFile NS_DESIGNATED_INITIALIZER;
 
 @end

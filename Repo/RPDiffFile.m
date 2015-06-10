@@ -47,6 +47,12 @@ NSString *RPFileModeName(RPFileMode mode)
 
 @implementation RPDiffFile
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitDiffFile:(git_diff_file)diffFile
 {
     if ((self = [super init])) {

@@ -18,6 +18,12 @@
 
 @implementation RPOID
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitOID:(const git_oid *)oid
 {
     if ((self = [super init])) {

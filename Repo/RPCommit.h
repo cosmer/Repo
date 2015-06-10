@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)lookupOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /// Assumes ownership of `commit`.
 - (instancetype)initWithGitCommit:(git_commit *)commit NS_DESIGNATED_INITIALIZER;
 

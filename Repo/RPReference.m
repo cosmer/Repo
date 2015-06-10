@@ -40,6 +40,12 @@
     git_reference_free(_gitReference);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitReference:(git_reference *)reference
 {
     NSParameterAssert(reference != NULL);

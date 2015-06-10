@@ -54,6 +54,12 @@ NSString *RPDiffDeltaStatusName(RPDiffDeltaStatus status)
 
 @implementation RPDiffDelta
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex
 {
     NSParameterAssert(diff != nil);

@@ -62,6 +62,12 @@
     git_repository_free(_gitRepository);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitRepository:(git_repository *)repository
 {
     NSParameterAssert(repository != nil);

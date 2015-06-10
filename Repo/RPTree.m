@@ -39,6 +39,12 @@
     git_tree_free(_gitTree);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitTree:(git_tree *)tree
 {
     NSParameterAssert(tree != NULL);

@@ -17,6 +17,12 @@
     git_index_free(_gitIndex);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitIndex:(git_index *)index
 {
     NSParameterAssert(index != NULL);
