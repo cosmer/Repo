@@ -12,13 +12,14 @@
 
 @class RPRepo;
 @class RPReference;
+@class RPBranch;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// RPDiffDelta is immutable and thread safe.
 @interface RPBranch : NSObject
 
-+ (nullable NSArray *)branchesInRepo:(RPRepo *)repo withTypes:(RPBranchType)types error:(NSError **)error;
++ (nullable NSArray<RPBranch *> *)branchesInRepo:(RPRepo *)repo withTypes:(RPBranchType)types error:(NSError **)error;
 
 - (nullable RPReference *)lookupReferenceInRepo:(RPRepo *)repo error:(NSError **)error;
 

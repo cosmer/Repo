@@ -20,7 +20,7 @@
 
 @implementation RPBranch
 
-+ (NSArray *)branchesInRepo:(RPRepo *)repo withTypes:(RPBranchType)types error:(NSError **)error
++ (NSArray<RPBranch *> *)branchesInRepo:(RPRepo *)repo withTypes:(RPBranchType)types error:(NSError **)error
 {
     git_branch_iterator *iterator = NULL;
     int gitError = git_branch_iterator_new(&iterator, repo.gitRepository, (git_branch_t)types);
