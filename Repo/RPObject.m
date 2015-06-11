@@ -17,6 +17,12 @@
 
 @implementation RPObject
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 + (instancetype)lookupOID:(RPOID *)oid withType:(RPObjectType)type inRepo:(RPRepo *)repo error:(NSError **)error
 {
     git_object *object = NULL;

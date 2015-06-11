@@ -22,6 +22,12 @@
     git_config_free(_gitConfig);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithRepo:(RPRepo *)repo error:(NSError **)error
 {
     git_config *config = NULL;

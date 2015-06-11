@@ -18,6 +18,8 @@ typedef struct git_config git_config;
 
 @interface RPConfig : NSObject
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /// Assumes ownership of `config`.
 - (instancetype)initWithGitConfig:(git_config *)config NS_DESIGNATED_INITIALIZER;
 

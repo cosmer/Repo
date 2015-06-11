@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable instancetype)lookupOID:(RPOID *)oid withType:(RPObjectType)type inRepo:(RPRepo *)repo error:(NSError **)error;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /// Assumes ownership of `gitObject`.
 - (instancetype)initWithGitObject:(git_object *)gitObject NS_DESIGNATED_INITIALIZER;
 

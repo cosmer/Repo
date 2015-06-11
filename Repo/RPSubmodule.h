@@ -18,6 +18,8 @@ typedef struct git_submodule git_submodule;
 
 @interface RPSubmodule : NSObject
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /// Assumes ownership of `submodule`.
 - (instancetype)initWithGitSubmodule:(git_submodule *)submodule NS_DESIGNATED_INITIALIZER;
 

@@ -22,6 +22,12 @@
     git_submodule_free(_gitSubmodule);
 }
 
+- (instancetype)init
+{
+    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
 - (instancetype)initWithGitSubmodule:(git_submodule *)submodule
 {
     NSParameterAssert(submodule != NULL);
