@@ -18,6 +18,8 @@
 #import "RPIndex.h"
 #import "NSError+RPGitErrors.h"
 
+#import "diff.h"
+
 #import <git2/diff.h>
 #import <git2/revparse.h>
 #import <git2/branch.h>
@@ -229,15 +231,23 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    RPIndex *index = [repo mergeOurCommit:newCommit withTheirCommit:oldCommit error:error];
+    RPIndex *index = [repo mergeOurCommit:oldCommit withTheirCommit:newCommit error:error];
     if (!index) {
+        return nil;
+    }
+    
+    int gitError = show_conflicts(repo.gitRepository, index.gitIndex, oldReference.shortName.UTF8String, newReference.shortName.UTF8String);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to show conflicts"];
+        }
         return nil;
     }
     
     git_diff_options options = defaultDiffOptions();
     
     git_diff *diff = NULL;
-    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, oldTree.gitTree, index.gitIndex, &options);
+    gitError = git_diff_tree_to_index(&diff, repo.gitRepository, oldTree.gitTree, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Pull request diff failed"];

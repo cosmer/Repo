@@ -59,6 +59,10 @@
 		EF3610711AC88B4300861AE9 /* RPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF36106F1AC88B4300861AE9 /* RPObject.m */; };
 		EF3610741AC88E9400861AE9 /* RPTree.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3610721AC88E9400861AE9 /* RPTree.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF3610751AC88E9400861AE9 /* RPTree.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3610731AC88E9400861AE9 /* RPTree.m */; };
+		EF713C951B23A6B100C8FD50 /* diff.c in Sources */ = {isa = PBXBuildFile; fileRef = EF713C931B23A6B100C8FD50 /* diff.c */; };
+		EF713C961B23A6B100C8FD50 /* diff.h in Headers */ = {isa = PBXBuildFile; fileRef = EF713C941B23A6B100C8FD50 /* diff.h */; };
+		EF713C991B23AF9E00C8FD50 /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = EF713C971B23AF9E00C8FD50 /* vector.c */; };
+		EF713C9A1B23AF9E00C8FD50 /* vector.h in Headers */ = {isa = PBXBuildFile; fileRef = EF713C981B23AF9E00C8FD50 /* vector.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +132,10 @@
 		EF36106F1AC88B4300861AE9 /* RPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPObject.m; sourceTree = "<group>"; };
 		EF3610721AC88E9400861AE9 /* RPTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTree.h; sourceTree = "<group>"; };
 		EF3610731AC88E9400861AE9 /* RPTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTree.m; sourceTree = "<group>"; };
+		EF713C931B23A6B100C8FD50 /* diff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = diff.c; sourceTree = "<group>"; };
+		EF713C941B23A6B100C8FD50 /* diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diff.h; sourceTree = "<group>"; };
+		EF713C971B23AF9E00C8FD50 /* vector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vector.c; sourceTree = "<group>"; };
+		EF713C981B23AF9E00C8FD50 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +230,10 @@
 				6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */,
 				6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */,
 				6D310BA51A1AB949001DCDB1 /* RPMacros.h */,
+				EF713C941B23A6B100C8FD50 /* diff.h */,
+				EF713C931B23A6B100C8FD50 /* diff.c */,
+				EF713C981B23AF9E00C8FD50 /* vector.h */,
+				EF713C971B23AF9E00C8FD50 /* vector.c */,
 				6DC7A0451A18E20000D808ED /* Supporting Files */,
 			);
 			path = Repo;
@@ -284,10 +296,12 @@
 				6DF929551A90CE6B0087E7D3 /* RPReference.h in Headers */,
 				6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */,
 				6D307FAD1A201EBA003DE0BD /* RPBlob.h in Headers */,
+				EF713C9A1B23AF9E00C8FD50 /* vector.h in Headers */,
 				EF3610701AC88B4300861AE9 /* RPObject.h in Headers */,
 				6D4B172D1A5CC4B000ACC859 /* RPSubmodule.h in Headers */,
 				EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */,
 				EF3610741AC88E9400861AE9 /* RPTree.h in Headers */,
+				EF713C961B23A6B100C8FD50 /* diff.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
 				EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */,
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
@@ -398,6 +412,7 @@
 			files = (
 				6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
+				EF713C991B23AF9E00C8FD50 /* vector.c in Sources */,
 				6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
@@ -414,6 +429,7 @@
 				EF36106D1AC888A700861AE9 /* RPTypes.m in Sources */,
 				EF3610711AC88B4300861AE9 /* RPObject.m in Sources */,
 				6DFFE14A1A62E56900A8E617 /* NSException+RPExceptions.m in Sources */,
+				EF713C951B23A6B100C8FD50 /* diff.c in Sources */,
 				EF3610751AC88E9400861AE9 /* RPTree.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
