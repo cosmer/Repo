@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPCommit : NSObject
 
-+ (instancetype)lookupOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
++ (nullable instancetype)lookupOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error;
 
 - (instancetype)init NS_UNAVAILABLE;
 
