@@ -54,4 +54,23 @@
     return self;
 }
 
+- (NSString *)message
+{
+    NSStringEncoding encoding = NSUTF8StringEncoding;
+    const char *encodingName = git_commit_message_encoding(self.gitCommit);
+    if (encodingName) {
+        CFStringEncoding cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)@(encodingName));
+        if (cfEncoding != kCFStringEncodingInvalidId) {
+            encoding = CFStringConvertNSStringEncodingToEncoding(cfEncoding);
+        }
+    }
+    
+    const char *message = git_commit_message(self.gitCommit);
+    if (!message) {
+        return nil;
+    }
+    
+    return [[NSString alloc] initWithCString:message encoding:encoding];
+}
+
 @end
