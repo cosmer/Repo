@@ -15,6 +15,17 @@
 #import <git2/commit.h>
 #import <git2/errors.h>
 
+static NSStringEncoding stringEncodingWithName(const char *name)
+{
+    if (name) {
+        CFStringEncoding encoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)@(name));
+        if (encoding != kCFStringEncodingInvalidId) {
+            return CFStringConvertNSStringEncodingToEncoding(encoding);
+        }
+    }
+    return NSUTF8StringEncoding;
+}
+
 @implementation RPCommit
 
 + (instancetype)lookupOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error
@@ -56,21 +67,28 @@
 
 - (NSString *)message
 {
-    NSStringEncoding encoding = NSUTF8StringEncoding;
-    const char *encodingName = git_commit_message_encoding(self.gitCommit);
-    if (encodingName) {
-        CFStringEncoding cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)@(encodingName));
-        if (cfEncoding != kCFStringEncodingInvalidId) {
-            encoding = CFStringConvertNSStringEncodingToEncoding(cfEncoding);
-        }
-    }
-    
     const char *message = git_commit_message(self.gitCommit);
     if (!message) {
         return nil;
     }
     
+    const char *encodingName = git_commit_message_encoding(self.gitCommit);
+    const NSStringEncoding encoding = stringEncodingWithName(encodingName);
+
     return [[NSString alloc] initWithCString:message encoding:encoding];
+}
+
+- (NSString *)summary
+{
+    const char *summary = git_commit_summary(self.gitCommit);
+    if (!summary) {
+        return nil;
+    }
+    
+    const char *encodingName = git_commit_message_encoding(self.gitCommit);
+    const NSStringEncoding encoding = stringEncodingWithName(encodingName);
+    
+    return [[NSString alloc] initWithCString:summary encoding:encoding];
 }
 
 @end

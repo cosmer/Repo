@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) git_commit *gitCommit RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, copy, readonly, nullable) NSString *message;
+@property(nonatomic, copy, readonly, nullable) NSString *summary;
 
 @end
 
