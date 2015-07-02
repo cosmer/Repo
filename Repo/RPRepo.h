@@ -47,6 +47,9 @@ typedef struct git_repository git_repository;
 /// \return An index that reflects the result of the merge.
 - (nullable RPIndex *)mergeOurCommit:(RPCommit *)ourCommit withTheirCommit:(RPCommit *)theirCommit error:(NSError **)error;
 
+/// Replace a file in the workspace with the version of the file in HEAD.
+- (BOOL)forceCheckoutFileAtPath:(NSString *)path error:(NSError **)error;
+
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, strong, readonly) NSString *path;

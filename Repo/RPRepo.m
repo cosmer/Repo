@@ -17,6 +17,7 @@
 #import <git2/global.h>
 #import <git2/repository.h>
 #import <git2/merge.h>
+#import <git2/checkout.h>
 #import <git2/attr.h>
 #import <git2/errors.h>
 
@@ -159,6 +160,31 @@
     }
 
     return [[RPIndex alloc] initWithGitIndex:index];
+}
+
+- (BOOL)forceCheckoutFileAtPath:(NSString *)path error:(NSError **)error
+{
+    NSParameterAssert(path != nil);
+
+    git_checkout_options options = GIT_CHECKOUT_OPTIONS_INIT;
+    options.checkout_strategy = GIT_CHECKOUT_FORCE | GIT_CHECKOUT_DISABLE_PATHSPEC_MATCH;
+    
+    char *pathString = strdup(path.UTF8String);
+    options.paths.count = 1;
+    options.paths.strings = &pathString;
+    
+    int gitError = git_checkout_head(self.gitRepository, &options);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to checkout file %@", path];
+        }
+        
+        free(pathString);
+        return NO;
+    }
+    
+    free(pathString);
+    return YES;
 }
 
 - (NSString *)path
