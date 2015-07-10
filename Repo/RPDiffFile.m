@@ -102,4 +102,9 @@ NSString *RPFileModeName(RPFileMode mode)
     return 0;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Diff file \"%@\" [%@]", self.path, RPFileModeName(self.mode)];
+}
+
 @end
