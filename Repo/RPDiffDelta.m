@@ -58,6 +58,16 @@ NSString *RPDiffDeltaStatusName(RPDiffDeltaStatus status)
     return [NSString stringWithFormat:@"RPDiffDeltaStatus{%ld}", (long)status];
 }
 
+NSString *RPDiffDeltaStatusLetter(RPDiffDeltaStatus status)
+{
+    if (status == RPDiffDeltaStatusConflicted) {
+        return @"!";
+    }
+
+    const char l = git_diff_status_char((git_delta_t)status);
+    return [NSString stringWithFormat:@"%c", l];
+}
+
 @implementation RPDiffDelta
 
 - (instancetype)init

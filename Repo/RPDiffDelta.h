@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, RPDiffDeltaStatus) {
 };
 
 extern NSString *RPDiffDeltaStatusName(RPDiffDeltaStatus status);
+extern NSString *RPDiffDeltaStatusLetter(RPDiffDeltaStatus status);
 
 /// RPDiffDelta is immutable and thread safe.
 @interface RPDiffDelta : NSObject
