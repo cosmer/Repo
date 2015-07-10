@@ -25,6 +25,8 @@ _Static_assert(RPDiffDeltaStatusCopied == GIT_DELTA_COPIED, "");
 _Static_assert(RPDiffDeltaStatusIgnored == GIT_DELTA_IGNORED, "");
 _Static_assert(RPDiffDeltaStatusUntracked == GIT_DELTA_UNTRACKED, "");
 _Static_assert(RPDiffDeltaStatusTypeChange == GIT_DELTA_TYPECHANGE, "");
+_Static_assert(RPDiffDeltaStatusUnreadable == GIT_DELTA_UNREADABLE, "");
+_Static_assert(RPDiffDeltaStatusConflicted == GIT_DELTA_CONFLICTED, "");
 
 NSString *RPDiffDeltaStatusName(RPDiffDeltaStatus status)
 {
@@ -47,6 +49,10 @@ NSString *RPDiffDeltaStatusName(RPDiffDeltaStatus status)
             return @"Untracked";
         case RPDiffDeltaStatusTypeChange:
             return @"Type Change";
+        case RPDiffDeltaStatusUnreadable:
+            return @"Unreadable";
+        case RPDiffDeltaStatusConflicted:
+            return @"Conflicted";
     }
     
     return [NSString stringWithFormat:@"RPDiffDeltaStatus{%ld}", (long)status];

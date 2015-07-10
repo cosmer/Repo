@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, RPDiffDeltaStatus) {
     RPDiffDeltaStatusIgnored,
     RPDiffDeltaStatusUntracked,
     RPDiffDeltaStatusTypeChange,
+    RPDiffDeltaStatusUnreadable,
+    RPDiffDeltaStatusConflicted,
 };
 
 extern NSString *RPDiffDeltaStatusName(RPDiffDeltaStatus status);
