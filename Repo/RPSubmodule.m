@@ -54,14 +54,4 @@
     return [self initWithGitSubmodule:submodule];
 }
 
-- (BOOL)isWorkingDirectoryDirty
-{
-    unsigned int status = 0;
-    if (git_submodule_status(&status, self.gitSubmodule) != GIT_OK) {
-        return NO;
-    }
-
-    return (GIT_SUBMODULE_STATUS_IS_WD_DIRTY(status) ? YES : NO);
-}
-
 @end

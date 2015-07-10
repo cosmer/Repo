@@ -50,6 +50,9 @@ typedef struct git_repository git_repository;
 /// Replace a file in the workspace with the version of the file in HEAD.
 - (BOOL)forceCheckoutFileAtPath:(NSString *)path error:(NSError **)error;
 
+/// \return YES if the submodule's status indicates its working directory is dirty.
+- (BOOL)isSubmoduleWorkingDirectoryDirty:(NSString *)path;
+
 @property(nonatomic, readonly) git_repository *gitRepository RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, strong, readonly) NSString *path;

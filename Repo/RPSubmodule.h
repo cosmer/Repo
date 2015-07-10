@@ -27,8 +27,6 @@ typedef struct git_submodule git_submodule;
 
 @property(nonatomic, readonly) git_submodule *gitSubmodule RP_RETURNS_INTERIOR_POINTER;
 
-@property(nonatomic, readonly) BOOL isWorkingDirectoryDirty;
-
 @end
 
 NS_ASSUME_NONNULL_END

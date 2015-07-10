@@ -16,6 +16,7 @@
 
 #import <git2/global.h>
 #import <git2/repository.h>
+#import <git2/submodule.h>
 #import <git2/merge.h>
 #import <git2/checkout.h>
 #import <git2/attr.h>
@@ -185,6 +186,18 @@
     
     free(pathString);
     return YES;
+}
+
+- (BOOL)isSubmoduleWorkingDirectoryDirty:(NSString *)path
+{
+    NSParameterAssert(path != nil);
+    
+    unsigned int status = 0;
+    if (git_submodule_status(&status, self.gitRepository, path.UTF8String, GIT_SUBMODULE_IGNORE_NONE) < 0) {
+        return NO;
+    }
+    
+    return (GIT_SUBMODULE_STATUS_IS_WD_DIRTY(status) ? YES : NO);
 }
 
 - (NSString *)path
