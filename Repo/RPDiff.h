@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class RPRepo;
 @class RPDiffDelta;
 @class RPTree;
-@class RPReference;
+@class RPObject;
 
 typedef struct git_diff git_diff;
 
@@ -27,20 +27,20 @@ typedef struct git_diff git_diff;
 
 + (instancetype)diffOldTree:(RPTree *)oldTree toNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error;
 
-+ (nullable instancetype)diffOldReference:(RPReference *)oldReference
-                           toNewReference:(RPReference *)newReference
-                                   inRepo:(RPRepo *)repo
-                                    error:(NSError **)error;
++ (nullable instancetype)diffOldObject:(RPObject *)oldObject
+                           toNewObject:(RPObject *)newObject
+                                inRepo:(RPRepo *)repo
+                                 error:(NSError **)error;
 
-+ (nullable instancetype)diffMergeBaseOfOldReference:(RPReference *)oldReference
-                                      toNewReference:(RPReference *)newReference
-                                              inRepo:(RPRepo *)repo
-                                               error:(NSError **)error;
++ (nullable instancetype)diffMergeBaseOfOldObject:(RPObject *)oldObject
+                                      toNewObject:(RPObject *)newObject
+                                           inRepo:(RPRepo *)repo
+                                            error:(NSError **)error;
 
-+ (nullable instancetype)diffPullRequestOfOldReference:(RPReference *)oldReference
-                                        toNewReference:(RPReference *)newReference
-                                                inRepo:(RPRepo *)repo
-                                                 error:(NSError **)error;
++ (nullable instancetype)diffPullRequestOfOldObject:(RPObject *)oldObject
+                                        toNewObject:(RPObject *)newObject
+                                             inRepo:(RPRepo *)repo
+                                              error:(NSError **)error;
 
 - (instancetype)init NS_UNAVAILABLE;
 

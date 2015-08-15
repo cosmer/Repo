@@ -12,7 +12,6 @@
 #import "RPDiffDelta.h"
 #import "RPOID.h"
 #import "RPObject.h"
-#import "RPReference.h"
 #import "RPTree.h"
 #import "RPCommit.h"
 #import "RPIndex.h"
@@ -112,7 +111,7 @@ static git_diff_options defaultDiffOptions(void)
     int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, oldTree.gitTree, newTree.gitTree, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff references"];
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff trees"];
         }
         return nil;
     }
@@ -138,35 +137,35 @@ static git_diff_options defaultDiffOptions(void)
     return [self diffOldTree:oldTree toNewTree:newTree inRepo:repo error:error];
 }
 
-+ (instancetype)diffOldReference:(RPReference *)oldReference
-                  toNewReference:(RPReference *)newReference
-                          inRepo:(RPRepo *)repo
-                           error:(NSError **)error
++ (instancetype)diffOldObject:(RPObject *)oldObject
+                  toNewObject:(RPObject *)newObject
+                       inRepo:(RPRepo *)repo
+                        error:(NSError **)error
 {
-    RPObject *oldObject = [oldReference peelToType:RPObjectTypeTree error:error];
-    if (!oldObject) {
+    RPObject *oldTree = [oldObject peelToType:RPObjectTypeTree error:error];
+    if (!oldTree) {
         return nil;
     }
     
-    RPObject *newObject = [newReference peelToType:RPObjectTypeTree error:error];
-    if (!newObject) {
+    RPObject *newTree = [newObject peelToType:RPObjectTypeTree error:error];
+    if (!newTree) {
         return nil;
     }
     
-    return [self diffOldTreeOID:oldObject.OID toNewTreeOID:newObject.OID inRepo:repo error:error];
+    return [self diffOldTreeOID:oldTree.OID toNewTreeOID:newTree.OID inRepo:repo error:error];
 }
 
-+ (instancetype)diffMergeBaseOfOldReference:(RPReference *)oldReference
-                             toNewReference:(RPReference *)newReference
-                                     inRepo:(RPRepo *)repo
-                                      error:(NSError **)error
++ (instancetype)diffMergeBaseOfOldObject:(RPObject *)oldObject
+                             toNewObject:(RPObject *)newObject
+                                  inRepo:(RPRepo *)repo
+                                   error:(NSError **)error
 {
-    RPObject *oldCommit = [oldReference peelToType:RPObjectTypeCommit error:error];
+    RPObject *oldCommit = [oldObject peelToType:RPObjectTypeCommit error:error];
     if (!oldCommit) {
         return nil;
     }
     
-    RPObject *newCommit = [newReference peelToType:RPObjectTypeCommit error:error];
+    RPObject *newCommit = [newObject peelToType:RPObjectTypeCommit error:error];
     if (!newCommit) {
         return nil;
     }
@@ -186,7 +185,7 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    RPObject *newTreeObject = [newReference peelToType:RPObjectTypeTree error:error];
+    RPObject *newTreeObject = [newObject peelToType:RPObjectTypeTree error:error];
     if (!newTreeObject) {
         return nil;
     }
@@ -194,17 +193,17 @@ static git_diff_options defaultDiffOptions(void)
     return [self diffOldTreeOID:oldTreeObject.OID toNewTreeOID:newTreeObject.OID inRepo:repo error:error];
 }
 
-+ (instancetype)diffPullRequestOfOldReference:(RPReference *)oldReference
-                               toNewReference:(RPReference *)newReference
++ (instancetype)diffPullRequestOfOldObject:(RPObject *)oldObject
+                               toNewObject:(RPObject *)newObject
                                        inRepo:(RPRepo *)repo
                                         error:(NSError **)error
 {
-    RPObject *oldCommitObject = [oldReference peelToType:RPObjectTypeCommit error:error];
+    RPObject *oldCommitObject = [oldObject peelToType:RPObjectTypeCommit error:error];
     if (!oldCommitObject) {
         return nil;
     }
     
-    RPObject *newCommitObject = [newReference peelToType:RPObjectTypeCommit error:error];
+    RPObject *newCommitObject = [newObject peelToType:RPObjectTypeCommit error:error];
     if (!newCommitObject) {
         return nil;
     }
@@ -219,7 +218,7 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    RPObject *oldTreeObject = [oldReference peelToType:RPObjectTypeTree error:error];
+    RPObject *oldTreeObject = [oldObject peelToType:RPObjectTypeTree error:error];
     if (!oldTreeObject) {
         return nil;
     }
