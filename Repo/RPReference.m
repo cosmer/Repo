@@ -35,6 +35,33 @@
     return [[RPReference alloc] initWithGitReference:ref];
 }
 
++ (NSArray<RPReference *> *)referencesInRepo:(RPRepo *)repo error:(NSError **)error
+{
+    git_reference_iterator *it = NULL;
+    int gitError = git_reference_iterator_new(&it, repo.gitRepository);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to get references in repo"];
+        }
+        return nil;
+    }
+    
+    NSMutableArray<RPReference *> *references = [[NSMutableArray alloc] init];
+    
+    git_reference *ref = NULL;
+    while (true) {
+        int r = git_reference_next(&ref, it);
+        if (r != GIT_OK) {
+            break;
+        }
+        
+        [references addObject:[[RPReference alloc] initWithGitReference:ref]];
+        ref = NULL;
+    }
+    
+    return references;
+}
+
 - (void)dealloc
 {
     git_reference_free(_gitReference);
