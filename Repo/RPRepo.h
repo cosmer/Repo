@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class RPOID;
 @class RPCommit;
 @class RPIndex;
+@class RPObject;
 
 typedef struct git_repository git_repository;
 
@@ -49,6 +50,9 @@ typedef struct git_repository git_repository;
 
 /// Replace a file in the workspace with the version of the file in HEAD.
 - (BOOL)forceCheckoutFileAtPath:(NSString *)path error:(NSError **)error;
+
+/// Find a single object, as specified by a revision string.
+- (nullable RPObject *)revParseSingle:(NSString *)spec error:(NSError **)error;
 
 /// \return YES if the submodule's status indicates its working directory is dirty.
 - (BOOL)isSubmoduleWorkingDirectoryDirty:(NSString *)path;

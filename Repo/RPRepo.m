@@ -12,6 +12,7 @@
 #import "RPOID.h"
 #import "RPCommit.h"
 #import "RPIndex.h"
+#import "RPObject.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/global.h>
@@ -19,6 +20,7 @@
 #import <git2/submodule.h>
 #import <git2/merge.h>
 #import <git2/checkout.h>
+#import <git2/revparse.h>
 #import <git2/attr.h>
 #import <git2/errors.h>
 
@@ -186,6 +188,22 @@
     
     free(pathString);
     return YES;
+}
+
+- (RPObject *)revParseSingle:(NSString *)spec error:(NSError **)error
+{
+    NSParameterAssert(spec != nil);
+    
+    git_object *object = NULL;
+    int gitError = git_revparse_single(&object, self.gitRepository, spec.UTF8String);
+    if (gitError != GIT_OK){
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to parse revision string %@", spec];
+        }
+        return nil;
+    }
+    
+    return [[RPObject alloc] initWithGitObject:object];
 }
 
 - (BOOL)isSubmoduleWorkingDirectoryDirty:(NSString *)path
