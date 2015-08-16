@@ -198,7 +198,7 @@
     int gitError = git_revparse_single(&object, self.gitRepository, spec.UTF8String);
     if (gitError != GIT_OK){
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to parse revision string %@", spec];
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to parse revision string '%@'", spec];
         }
         return nil;
     }

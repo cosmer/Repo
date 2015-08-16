@@ -56,7 +56,7 @@
     int gitError = git_object_lookup(&object, repo.gitRepository, oid.gitOID, GIT_OBJ_BLOB);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup blob"];
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup blob %@", oid];
         }
         return nil;
     }

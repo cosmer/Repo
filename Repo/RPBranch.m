@@ -79,7 +79,7 @@
     int gitError = git_branch_lookup(&ref, repo.gitRepository, self.name.UTF8String, (git_branch_t)self.type);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup reference for branch %@", self.name];
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup reference for branch '%@'", self.name];
         }
         return nil;
     }
