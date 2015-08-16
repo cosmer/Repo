@@ -37,6 +37,8 @@
 
 + (NSArray<RPReference *> *)referencesInRepo:(RPRepo *)repo error:(NSError **)error
 {
+    NSParameterAssert(repo != nil);
+
     git_reference_iterator *it = NULL;
     int gitError = git_reference_iterator_new(&it, repo.gitRepository);
     if (gitError != GIT_OK) {
