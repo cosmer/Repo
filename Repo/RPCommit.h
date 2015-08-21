@@ -26,10 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// Assumes ownership of `commit`.
 - (instancetype)initWithGitCommit:(git_commit *)commit NS_DESIGNATED_INITIALIZER;
 
+/// \return The first parent of `self` or nil.
+- (nullable RPCommit *)lookupParent:(NSError **)error;
+
 @property(nonatomic, readonly) git_commit *gitCommit RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, copy, readonly, nullable) NSString *message;
 @property(nonatomic, copy, readonly, nullable) NSString *summary;
+
+@property(nonatomic, strong, readonly) RPOID *oid;
 
 @end
 
