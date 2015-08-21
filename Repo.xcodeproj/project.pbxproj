@@ -59,6 +59,8 @@
 		EF3610711AC88B4300861AE9 /* RPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF36106F1AC88B4300861AE9 /* RPObject.m */; };
 		EF3610741AC88E9400861AE9 /* RPTree.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3610721AC88E9400861AE9 /* RPTree.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF3610751AC88E9400861AE9 /* RPTree.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3610731AC88E9400861AE9 /* RPTree.m */; };
+		EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD87A781B8694BF0012FF11 /* RPStash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD87A791B8694BF0012FF11 /* RPStash.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,8 @@
 		EF36106F1AC88B4300861AE9 /* RPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPObject.m; sourceTree = "<group>"; };
 		EF3610721AC88E9400861AE9 /* RPTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTree.h; sourceTree = "<group>"; };
 		EF3610731AC88E9400861AE9 /* RPTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTree.m; sourceTree = "<group>"; };
+		EFD87A781B8694BF0012FF11 /* RPStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPStash.h; sourceTree = "<group>"; };
+		EFD87A791B8694BF0012FF11 /* RPStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPStash.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +215,8 @@
 				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
 				6DF929531A90CE6B0087E7D3 /* RPReference.h */,
 				6DF929541A90CE6B0087E7D3 /* RPReference.m */,
+				EFD87A781B8694BF0012FF11 /* RPStash.h */,
+				EFD87A791B8694BF0012FF11 /* RPStash.m */,
 				6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */,
 				6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */,
 				6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */,
@@ -288,6 +294,7 @@
 				6D4B172D1A5CC4B000ACC859 /* RPSubmodule.h in Headers */,
 				EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */,
 				EF3610741AC88E9400861AE9 /* RPTree.h in Headers */,
+				EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
 				EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */,
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
@@ -345,6 +352,7 @@
 		6DC7A0391A18E20000D808ED /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Charles Osmer";
 				TargetAttributes = {
@@ -401,6 +409,7 @@
 				6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
+				EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */,
 				6D4B172E1A5CC4B000ACC859 /* RPSubmodule.m in Sources */,
 				6D310BAD1A1AC256001DCDB1 /* RPDiffDelta.m in Sources */,
 				6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */,
