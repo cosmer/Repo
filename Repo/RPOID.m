@@ -8,7 +8,10 @@
 
 #import "RPOID.h"
 
+#import "NSError+RPGitErrors.h"
+
 #import <git2/oid.h>
+#import <git2/errors.h>
 
 @interface RPOID () {
     git_oid _oid;
@@ -26,10 +29,27 @@
 
 - (instancetype)initWithGitOID:(const git_oid *)oid
 {
+    NSParameterAssert(oid != NULL);
     if ((self = [super init])) {
         git_oid_cpy(&_oid, oid);
     }
     return self;
+}
+
+- (instancetype)initWithString:(NSString *)string error:(NSError **)error
+{
+    NSParameterAssert(string != nil);
+    
+    git_oid oid;
+    int gitError = git_oid_fromstr(&oid, string.UTF8String);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't parse oid '%@'", string];
+        }
+        return nil;
+    }
+    
+    return [self initWithGitOID:&oid];
 }
 
 - (const git_oid *)gitOID
