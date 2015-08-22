@@ -91,6 +91,12 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return [[NSString alloc] initWithCString:summary encoding:encoding];
 }
 
+- (NSDate *)date
+{
+    const git_time_t t = git_commit_time(self.gitCommit);
+    return [NSDate dateWithTimeIntervalSince1970:t];
+}
+
 - (RPOID *)oid
 {
     const git_oid *oid = git_commit_id(self.gitCommit);
