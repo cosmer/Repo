@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable NSArray<RPStash *> *)stashesInRepo:(RPRepo *)repo error:(NSError **)error;
 
++ (BOOL)applyStashWithCommitOID:(RPOID *)commitOID inRepo:(RPRepo *)repo reinstateIndex:(BOOL)reinstateIndex error:(NSError **)error;
 + (BOOL)dropStashWithCommitOID:(RPOID *)commitOID inRepo:(RPRepo *)repo error:(NSError **)error;
 
 @property(nonatomic, readonly) size_t index;
