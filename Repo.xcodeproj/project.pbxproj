@@ -59,6 +59,7 @@
 		EF3610711AC88B4300861AE9 /* RPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF36106F1AC88B4300861AE9 /* RPObject.m */; };
 		EF3610741AC88E9400861AE9 /* RPTree.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3610721AC88E9400861AE9 /* RPTree.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF3610751AC88E9400861AE9 /* RPTree.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3610731AC88E9400861AE9 /* RPTree.m */; };
+		EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9CAC141B9115EA00A7C511 /* RPFunctions.m */; settings = {ASSET_TAGS = (); }; };
 		EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD87A781B8694BF0012FF11 /* RPStash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD87A791B8694BF0012FF11 /* RPStash.m */; };
 /* End PBXBuildFile section */
@@ -130,6 +131,8 @@
 		EF36106F1AC88B4300861AE9 /* RPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPObject.m; sourceTree = "<group>"; };
 		EF3610721AC88E9400861AE9 /* RPTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTree.h; sourceTree = "<group>"; };
 		EF3610731AC88E9400861AE9 /* RPTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTree.m; sourceTree = "<group>"; };
+		EF9CAC141B9115EA00A7C511 /* RPFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFunctions.m; sourceTree = "<group>"; };
+		EF9CAC161B9115F700A7C511 /* RPFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPFunctions.h; sourceTree = "<group>"; };
 		EFD87A781B8694BF0012FF11 /* RPStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPStash.h; sourceTree = "<group>"; };
 		EFD87A791B8694BF0012FF11 /* RPStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPStash.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +222,8 @@
 				EFD87A791B8694BF0012FF11 /* RPStash.m */,
 				6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */,
 				6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */,
+				EF9CAC161B9115F700A7C511 /* RPFunctions.h */,
+				EF9CAC141B9115EA00A7C511 /* RPFunctions.m */,
 				6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */,
 				6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */,
 				6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */,
@@ -421,6 +426,7 @@
 				EF08E0451ABEEF8400712DCC /* RPBranch.m in Sources */,
 				6D42E8BB1A68836A00B02DD7 /* NSString+RPEncoding.m in Sources */,
 				EF36106D1AC888A700861AE9 /* RPTypes.m in Sources */,
+				EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */,
 				EF3610711AC88B4300861AE9 /* RPObject.m in Sources */,
 				6DFFE14A1A62E56900A8E617 /* NSException+RPExceptions.m in Sources */,
 				EF3610751AC88E9400861AE9 /* RPTree.m in Sources */,

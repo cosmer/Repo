@@ -10,6 +10,7 @@
 
 #import "RPRepo.h"
 #import "RPOID.h"
+#import "RPFunctions.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/oid.h>
@@ -17,15 +18,18 @@
 #import <git2/stash.h>
 #import <git2/errors.h>
 
-static int stash_callback(size_t index, const char* cmessage, const git_oid *stash_id, void *payload);
-
 @implementation RPStash
 
 + (NSArray<RPStash *> *)stashesInRepo:(RPRepo *)repo error:(NSError **)error
 {
     NSMutableArray *stashes = [[NSMutableArray alloc] init];
+    int gitError = git_stash_foreach_block(repo.gitRepository, ^int(size_t index, const char *message, const git_oid *stash_id) {
+        RPOID *oid = [[RPOID alloc] initWithGitOID:stash_id];
+        RPStash *stash = [[RPStash alloc] initWithIndex:index message:@(message) oid:oid];
+        [stashes addObject:stash];
+        return 0;
+    });
     
-    int gitError = git_stash_foreach(repo.gitRepository, stash_callback, (__bridge void *)stashes);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to enumerate stashes"];
@@ -34,6 +38,46 @@ static int stash_callback(size_t index, const char* cmessage, const git_oid *sta
     }
     
     return stashes;
+}
+
+
++ (BOOL)dropStashWithCommitOID:(RPOID *)commitOID inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(commitOID != nil);
+    NSParameterAssert(repo != nil);
+    
+    __block size_t stashIndex = 0;
+    int gitError = git_stash_foreach_block(repo.gitRepository, ^int(size_t index, const char *message, const git_oid *stash_id) {
+        (void)message; // silence unused parameter warning
+        
+        if (git_oid_cmp(commitOID.gitOID, stash_id) == 0) {
+            stashIndex = index;
+            return GIT_EUSER;
+        }
+        
+        return 0;
+    });
+    
+    if (gitError != GIT_EUSER) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find stash with oid %@", commitOID];
+        }
+        return NO;
+    }
+    
+    return [self dropStashAtIndex:stashIndex inRepo:repo error:error];
+}
+
++ (BOOL)dropStashAtIndex:(size_t)index inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    int gitError = git_stash_drop(repo.gitRepository, index);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to drop stash at index %@", @(index)];
+        }
+        return NO;
+    }
+    return YES;
 }
 
 - (instancetype)initWithIndex:(size_t)index message:(NSString *)message oid:(RPOID *)oid
@@ -49,15 +93,3 @@ static int stash_callback(size_t index, const char* cmessage, const git_oid *sta
 }
 
 @end
-
-static int stash_callback(size_t index, const char* cmessage, const git_oid *stash_id, void *payload)
-{
-    NSString *message = cmessage ? @(cmessage) : @"";
-    RPOID *oid = [[RPOID alloc] initWithGitOID:stash_id];
-    
-    NSMutableArray *stashes = (__bridge NSMutableArray *)payload;
-    RPStash *stash = [[RPStash alloc] initWithIndex:index message:message oid:oid];
-    [stashes addObject:stash];
-    
-    return 0;
-}
