@@ -91,6 +91,15 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return [[NSString alloc] initWithCString:summary encoding:encoding];
 }
 
+- (NSString *)author
+{
+    const git_signature *sig = git_commit_author(self.gitCommit);
+    if (!sig || !sig->name) {
+        return @"";
+    }
+    return @(sig->name);
+}
+
 - (NSDate *)date
 {
     const git_time_t t = git_commit_time(self.gitCommit);
