@@ -16,6 +16,7 @@ FOUNDATION_EXPORT const unsigned char RepoVersionString[];
 
 #import <Repo/RPTypes.h>
 #import <Repo/RPRepo.h>
+#import <Repo/RPRepo+History.h>
 #import <Repo/RPBranch.h>
 #import <Repo/RPCommit.h>
 #import <Repo/RPConfig.h>
