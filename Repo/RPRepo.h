@@ -26,7 +26,7 @@ typedef struct git_repository git_repository;
 + (BOOL)isRepositoryAtURL:(NSURL *)url;
 
 /// Should be called once at startup before any other methods in the framework.
-+ (nullable NSError *)startup;
++ (BOOL)startupWithError:(NSError **)error;
 
 /// Assumes ownership of `repository`.
 - (instancetype)initWithGitRepository:(git_repository *)repository NS_DESIGNATED_INITIALIZER;

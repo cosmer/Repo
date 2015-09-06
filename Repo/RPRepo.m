@@ -55,10 +55,16 @@
     return YES;
 }
 
-+ (NSError *)startup
++ (BOOL)startupWithError:(NSError **)error
 {
-    git_libgit2_init();
-    return nil;
+    int gitError = git_libgit2_init();
+    if (gitError < 0) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"libgit2 initialization failed"];
+        }
+        return NO;
+    }
+    return YES;
 }
 
 - (void)dealloc
