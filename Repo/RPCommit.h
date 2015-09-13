@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, readonly, nullable) NSString *summary;
 @property(nonatomic, copy, readonly) NSString *author;
 @property(nonatomic, copy, readonly) NSDate *date;
+@property(nonatomic, readonly) NSInteger parentCount;
 
 @property(nonatomic, strong, readonly) RPOID *oid;
 

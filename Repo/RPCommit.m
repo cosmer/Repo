@@ -106,6 +106,11 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return [NSDate dateWithTimeIntervalSince1970:t];
 }
 
+- (NSInteger)parentCount
+{
+    return git_commit_parentcount(self.gitCommit);
+}
+
 - (RPOID *)oid
 {
     const git_oid *oid = git_commit_id(self.gitCommit);
