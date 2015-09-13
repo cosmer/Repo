@@ -100,6 +100,23 @@ static git_diff_options defaultDiffOptions(void)
     return [[self alloc] initWithGitDiff:diff repo:repo];
 }
 
++ (instancetype)diffNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(newTree != nil);
+    
+    git_diff_options options = defaultDiffOptions();
+    
+    git_diff *diff = NULL;
+    int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, NULL, newTree.gitTree, &options);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff tree"];
+        }
+        return nil;
+    }
+    
+    return [[self alloc] initWithGitDiff:diff repo:repo];}
+
 + (instancetype)diffOldTree:(RPTree *)oldTree toNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
 {
     NSParameterAssert(oldTree != nil);

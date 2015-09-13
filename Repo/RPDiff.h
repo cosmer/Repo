@@ -25,6 +25,10 @@ typedef struct git_diff git_diff;
 
 + (nullable instancetype)diffHeadToWorkdirWithIndexInRepo:(RPRepo *)repo error:(NSError **)error;
 
++ (nullable instancetype)diffNewTree:(RPTree *)newTree
+                              inRepo:(RPRepo *)repo
+                               error:(NSError **)error;
+
 + (nullable instancetype)diffOldTree:(RPTree *)oldTree
                            toNewTree:(RPTree *)newTree
                               inRepo:(RPRepo *)repo
