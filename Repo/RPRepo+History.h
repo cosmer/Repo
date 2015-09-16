@@ -8,11 +8,20 @@
 
 #import <Repo/Repo.h>
 
+typedef NS_OPTIONS(NSUInteger, RPHistorySortOptions) {
+    RPHistorySortOptionsTopological    = 1 << 0,
+    RPHistorySortOptionsTime           = 1 << 1,
+    RPHistorySortOptionsReverse        = 1 << 2,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RPRepo (History)
 
-- (BOOL)walkHistoryFromRef:(NSString *)ref callback:(BOOL(^)(RPCommit *))callback error:(NSError **)error;
+- (BOOL)walkHistoryFromRef:(NSString *)ref
+               sortOptions:(RPHistorySortOptions)options
+                  callback:(BOOL(^)(RPCommit *))callback
+                     error:(NSError **)error;
 
 @end
 

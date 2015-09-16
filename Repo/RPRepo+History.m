@@ -12,9 +12,16 @@
 #import <git2/revwalk.h>
 #import <git2/errors.h>
 
+_Static_assert(RPHistorySortOptionsTopological == GIT_SORT_TOPOLOGICAL, "");
+_Static_assert(RPHistorySortOptionsTime == GIT_SORT_TIME, "");
+_Static_assert(RPHistorySortOptionsReverse == GIT_SORT_REVERSE, "");
+
 @implementation RPRepo (History)
 
-- (BOOL)walkHistoryFromRef:(NSString *)ref callback:(BOOL(^)(RPCommit *))callback error:(NSError **)error
+- (BOOL)walkHistoryFromRef:(NSString *)ref
+               sortOptions:(RPHistorySortOptions)options
+                  callback:(BOOL(^)(RPCommit *))callback
+                     error:(NSError **)error
 {
     NSParameterAssert(ref != nil);
     NSParameterAssert(callback != nil);
@@ -28,7 +35,7 @@
         return NO;
     }
     
-    git_revwalk_sorting(walk, GIT_SORT_TOPOLOGICAL | GIT_SORT_TIME);
+    git_revwalk_sorting(walk, (unsigned int)options);
     
     gitError = git_revwalk_push_ref(walk, ref.UTF8String);
     if (gitError != GIT_OK) {
