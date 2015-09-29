@@ -32,6 +32,8 @@ typedef struct git_object git_object;
 @property(nonatomic, readonly) git_object *gitObject RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, strong, readonly) RPRepo *repo;
 
+@property(nonatomic, strong, readonly) NSData *data;
+
 @end
 
 NS_ASSUME_NONNULL_END

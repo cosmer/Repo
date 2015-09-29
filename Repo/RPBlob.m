@@ -74,6 +74,12 @@
     return git_blob_rawsize(self.gitBlob);
 }
 
+- (NSData *)data
+{
+    const void *content = git_blob_rawcontent(self.gitBlob);
+    return [NSData dataWithBytes:content length:self.size];
+}
+
 - (NSString *)stringWithPreferredEncoding:(const NSStringEncoding *)preferredEncoding usedEncoding:(NSStringEncoding *)usedEncoding
 {
     if (self.size <= 0) {
