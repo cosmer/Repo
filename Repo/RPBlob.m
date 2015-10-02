@@ -10,7 +10,6 @@
 
 #import "RPRepo.h"
 #import "RPOID.h"
-#import "NSString+RPEncoding.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/blob.h>
@@ -78,21 +77,6 @@
 {
     const void *content = git_blob_rawcontent(self.gitBlob);
     return [NSData dataWithBytes:content length:self.size];
-}
-
-- (NSString *)stringWithPreferredEncoding:(const NSStringEncoding *)preferredEncoding usedEncoding:(NSStringEncoding *)usedEncoding
-{
-    if (self.size <= 0) {
-        if (usedEncoding) {
-            *usedEncoding = (preferredEncoding ? *preferredEncoding : NSUTF8StringEncoding);
-        }
-        return @"";
-    }
-    
-    void *content = (void *)git_blob_rawcontent(self.gitBlob);
-    NSData *data = [NSData dataWithBytesNoCopy:content length:self.size freeWhenDone:NO];
-    
-    return [NSString rp_stringWithData:data preferredEncoding:preferredEncoding usedEncoding:usedEncoding];
 }
 
 @end

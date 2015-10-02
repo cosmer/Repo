@@ -21,18 +21,10 @@
 		6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BB41A1B7144001DCDB1 /* RPOID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D310BB51A1B7144001DCDB1 /* RPOID.m */; };
 		6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BA51A1AB949001DCDB1 /* RPMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6D42E8BA1A68836A00B02DD7 /* NSString+RPEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D42E8B81A68836A00B02DD7 /* NSString+RPEncoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6D42E8BB1A68836A00B02DD7 /* NSString+RPEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D42E8B91A68836A00B02DD7 /* NSString+RPEncoding.m */; };
 		6D4B172D1A5CC4B000ACC859 /* RPSubmodule.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D4B172E1A5CC4B000ACC859 /* RPSubmodule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */; };
 		6D90F5DF1A772501009D0E99 /* RPConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D90F5DD1A772501009D0E99 /* RPConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D90F5E01A772501009D0E99 /* RPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D90F5DE1A772501009D0E99 /* RPConfig.m */; };
-		6DBE96221A6DC91A00010A4C /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE961D1A6DC6AF00010A4C /* libc++.dylib */; };
-		6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */; };
-		6DBE962A1A6DE15400010A4C /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96271A6DE15400010A4C /* libicudata.a */; };
-		6DBE962B1A6DE15400010A4C /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96281A6DE15400010A4C /* libicui18n.a */; };
-		6DBE962C1A6DE15400010A4C /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DBE96291A6DE15400010A4C /* libicuuc.a */; };
 		6DC7A0481A18E20000D808ED /* Repo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC7A0471A18E20000D808ED /* Repo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DC7A04E1A18E20000D808ED /* Repo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0421A18E20000D808ED /* Repo.framework */; };
 		6DC7A0551A18E20000D808ED /* RepoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0541A18E20000D808ED /* RepoTests.m */; };
@@ -91,18 +83,10 @@
 		6D310BB21A1AD1CB001DCDB1 /* RPDiffFile+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPDiffFile+Private.h"; sourceTree = "<group>"; };
 		6D310BB41A1B7144001DCDB1 /* RPOID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPOID.h; sourceTree = "<group>"; };
 		6D310BB51A1B7144001DCDB1 /* RPOID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPOID.m; sourceTree = "<group>"; };
-		6D42E8B81A68836A00B02DD7 /* NSString+RPEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RPEncoding.h"; sourceTree = "<group>"; };
-		6D42E8B91A68836A00B02DD7 /* NSString+RPEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RPEncoding.m"; sourceTree = "<group>"; };
 		6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSubmodule.h; sourceTree = "<group>"; };
 		6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSubmodule.m; sourceTree = "<group>"; };
 		6D90F5DD1A772501009D0E99 /* RPConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPConfig.h; sourceTree = "<group>"; };
 		6D90F5DE1A772501009D0E99 /* RPConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPConfig.m; sourceTree = "<group>"; };
-		6DBE961D1A6DC6AF00010A4C /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RPEncoding.h"; sourceTree = "<group>"; };
-		6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RPEncoding.m"; sourceTree = "<group>"; };
-		6DBE96271A6DE15400010A4C /* libicudata.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicudata.a; path = "External/icu4c-osx/lib/libicudata.a"; sourceTree = "<group>"; };
-		6DBE96281A6DE15400010A4C /* libicui18n.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicui18n.a; path = "External/icu4c-osx/lib/libicui18n.a"; sourceTree = "<group>"; };
-		6DBE96291A6DE15400010A4C /* libicuuc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicuuc.a; path = "External/icu4c-osx/lib/libicuuc.a"; sourceTree = "<group>"; };
 		6DC7A0421A18E20000D808ED /* Repo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Repo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC7A0461A18E20000D808ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DC7A0471A18E20000D808ED /* Repo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Repo.h; sourceTree = "<group>"; };
@@ -146,11 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DBE962A1A6DE15400010A4C /* libicudata.a in Frameworks */,
-				6DBE962B1A6DE15400010A4C /* libicui18n.a in Frameworks */,
-				6DBE962C1A6DE15400010A4C /* libicuuc.a in Frameworks */,
 				6DC7A05F1A18E99D00D808ED /* libgit2.a in Frameworks */,
-				6DBE96221A6DC91A00010A4C /* libc++.dylib in Frameworks */,
 				6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */,
 				6D307FA41A1FF7C1003DE0BD /* libcrypto.dylib in Frameworks */,
 				6D307FA21A1FF7BB003DE0BD /* libssl.dylib in Frameworks */,
@@ -234,10 +214,6 @@
 				6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */,
 				6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */,
 				6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */,
-				6D42E8B81A68836A00B02DD7 /* NSString+RPEncoding.h */,
-				6D42E8B91A68836A00B02DD7 /* NSString+RPEncoding.m */,
-				6DBE96231A6DC97200010A4C /* NSData+RPEncoding.h */,
-				6DBE96241A6DC97200010A4C /* NSData+RPEncoding.m */,
 				6D310BA51A1AB949001DCDB1 /* RPMacros.h */,
 				6DC7A0451A18E20000D808ED /* Supporting Files */,
 			);
@@ -273,10 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				6DC7A05E1A18E99D00D808ED /* libgit2.a */,
-				6DBE96271A6DE15400010A4C /* libicudata.a */,
-				6DBE96281A6DE15400010A4C /* libicui18n.a */,
-				6DBE96291A6DE15400010A4C /* libicuuc.a */,
-				6DBE961D1A6DC6AF00010A4C /* libc++.dylib */,
 				6DC7A0741A194F8300D808ED /* libiconv.dylib */,
 				6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */,
 				6D307FA11A1FF7BB003DE0BD /* libssl.dylib */,
@@ -310,11 +282,9 @@
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
 				EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */,
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
-				6D42E8BA1A68836A00B02DD7 /* NSString+RPEncoding.h in Headers */,
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
 				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
 				6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */,
-				6DBE96251A6DC97200010A4C /* NSData+RPEncoding.h in Headers */,
 				6D310BB31A1AD29E001DCDB1 /* RPDiffFile+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,7 +389,6 @@
 				6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
 				EFC8E42C1B97AF9C00625403 /* RPRepo+History.m in Sources */,
-				6DBE96261A6DC97200010A4C /* NSData+RPEncoding.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
 				EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */,
@@ -432,7 +401,6 @@
 				6D310BB11A1AC6D1001DCDB1 /* RPDiffFile.m in Sources */,
 				6D90F5E01A772501009D0E99 /* RPConfig.m in Sources */,
 				EF08E0451ABEEF8400712DCC /* RPBranch.m in Sources */,
-				6D42E8BB1A68836A00B02DD7 /* NSString+RPEncoding.m in Sources */,
 				EF36106D1AC888A700861AE9 /* RPTypes.m in Sources */,
 				EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */,
 				EF3610711AC88B4300861AE9 /* RPObject.m in Sources */,
@@ -498,7 +466,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/External/icu4c-osx/include\"",
 					"\"$(SRCROOT)/External/libgit2/include\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -542,7 +509,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/External/icu4c-osx/include\"",
 					"\"$(SRCROOT)/External/libgit2/include\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
