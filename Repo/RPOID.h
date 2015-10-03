@@ -27,6 +27,7 @@ typedef struct git_oid git_oid;
 @property(nonatomic, readonly) BOOL isZero;
 
 @property(nonatomic, strong, readonly) NSString *stringValue;
+@property(nonatomic, strong, readonly) NSString *shortStringValue;
 
 @end
 

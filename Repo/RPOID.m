@@ -88,6 +88,11 @@
     return [NSString stringWithUTF8String:p];
 }
 
+- (NSString *)shortStringValue
+{
+    return [self.stringValue substringToIndex:7];
+}
+
 - (NSString *)description
 {
     return self.stringValue;
