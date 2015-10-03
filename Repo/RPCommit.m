@@ -10,6 +10,7 @@
 
 #import "RPOID.h"
 #import "RPRepo.h"
+#import "RPSignature.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/commit.h>
@@ -91,19 +92,16 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return [[NSString alloc] initWithCString:summary encoding:encoding];
 }
 
-- (NSString *)author
+- (RPSignature *)author
 {
     const git_signature *sig = git_commit_author(self.gitCommit);
-    if (!sig || !sig->name) {
-        return @"";
-    }
-    return @(sig->name);
+    return [[RPSignature alloc] initWithGitSignature:sig];
 }
 
-- (NSDate *)date
+- (RPSignature *)committer
 {
-    const git_time_t t = git_commit_time(self.gitCommit);
-    return [NSDate dateWithTimeIntervalSince1970:t];
+    const git_signature *sig = git_commit_committer(self.gitCommit);
+    return [[RPSignature alloc] initWithGitSignature:sig];
 }
 
 - (NSInteger)parentCount

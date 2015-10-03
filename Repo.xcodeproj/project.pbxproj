@@ -45,6 +45,8 @@
 		EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0176A81AE5DBFB0092618D /* RPCommit.m */; };
 		EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = EF08E0421ABEEF8400712DCC /* RPBranch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF08E0451ABEEF8400712DCC /* RPBranch.m in Sources */ = {isa = PBXBuildFile; fileRef = EF08E0431ABEEF8400712DCC /* RPBranch.m */; };
+		EF1339511BC0198700D66689 /* RPSignature.h in Headers */ = {isa = PBXBuildFile; fileRef = EF13394F1BC0198700D66689 /* RPSignature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF1339521BC0198700D66689 /* RPSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1339501BC0198700D66689 /* RPSignature.m */; settings = {ASSET_TAGS = (); }; };
 		EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = EF36106A1AC888A700861AE9 /* RPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF36106D1AC888A700861AE9 /* RPTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = EF36106B1AC888A700861AE9 /* RPTypes.m */; };
 		EF3610701AC88B4300861AE9 /* RPObject.h in Headers */ = {isa = PBXBuildFile; fileRef = EF36106E1AC88B4300861AE9 /* RPObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -111,6 +113,8 @@
 		EF0176A81AE5DBFB0092618D /* RPCommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPCommit.m; sourceTree = "<group>"; };
 		EF08E0421ABEEF8400712DCC /* RPBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBranch.h; sourceTree = "<group>"; };
 		EF08E0431ABEEF8400712DCC /* RPBranch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPBranch.m; sourceTree = "<group>"; };
+		EF13394F1BC0198700D66689 /* RPSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSignature.h; sourceTree = "<group>"; };
+		EF1339501BC0198700D66689 /* RPSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSignature.m; sourceTree = "<group>"; };
 		EF36106A1AC888A700861AE9 /* RPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTypes.h; sourceTree = "<group>"; };
 		EF36106B1AC888A700861AE9 /* RPTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTypes.m; sourceTree = "<group>"; };
 		EF36106E1AC88B4300861AE9 /* RPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPObject.h; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
 				6DF929531A90CE6B0087E7D3 /* RPReference.h */,
 				6DF929541A90CE6B0087E7D3 /* RPReference.m */,
+				EF13394F1BC0198700D66689 /* RPSignature.h */,
+				EF1339501BC0198700D66689 /* RPSignature.m */,
 				EFD87A781B8694BF0012FF11 /* RPStash.h */,
 				EFD87A791B8694BF0012FF11 /* RPStash.m */,
 				6D4B172B1A5CC4B000ACC859 /* RPSubmodule.h */,
@@ -279,6 +285,7 @@
 				EF08E0441ABEEF8400712DCC /* RPBranch.h in Headers */,
 				EF3610741AC88E9400861AE9 /* RPTree.h in Headers */,
 				EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */,
+				EF1339511BC0198700D66689 /* RPSignature.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
 				EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */,
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
@@ -386,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1339521BC0198700D66689 /* RPSignature.m in Sources */,
 				6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
 				EFC8E42C1B97AF9C00625403 /* RPRepo+History.m in Sources */,
