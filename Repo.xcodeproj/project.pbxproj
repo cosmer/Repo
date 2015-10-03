@@ -535,7 +535,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
-					"$(PROJECT_DIR)/External/icu4c-osx/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cosmer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -565,7 +564,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
-					"$(PROJECT_DIR)/External/icu4c-osx/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cosmer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
