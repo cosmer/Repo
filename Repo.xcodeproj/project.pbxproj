@@ -53,6 +53,8 @@
 		EF3610711AC88B4300861AE9 /* RPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF36106F1AC88B4300861AE9 /* RPObject.m */; };
 		EF3610741AC88E9400861AE9 /* RPTree.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3610721AC88E9400861AE9 /* RPTree.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF3610751AC88E9400861AE9 /* RPTree.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3610731AC88E9400861AE9 /* RPTree.m */; };
+		EF397E131BC1BBFE0055CBE8 /* RPDiffStats.h in Headers */ = {isa = PBXBuildFile; fileRef = EF397E111BC1BBFE0055CBE8 /* RPDiffStats.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF397E141BC1BBFE0055CBE8 /* RPDiffStats.m in Sources */ = {isa = PBXBuildFile; fileRef = EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */; settings = {ASSET_TAGS = (); }; };
 		EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9CAC141B9115EA00A7C511 /* RPFunctions.m */; settings = {ASSET_TAGS = (); }; };
 		EFC8E42B1B97AF9C00625403 /* RPRepo+History.h in Headers */ = {isa = PBXBuildFile; fileRef = EFC8E4291B97AF9C00625403 /* RPRepo+History.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFC8E42C1B97AF9C00625403 /* RPRepo+History.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC8E42A1B97AF9C00625403 /* RPRepo+History.m */; settings = {ASSET_TAGS = (); }; };
@@ -121,6 +123,8 @@
 		EF36106F1AC88B4300861AE9 /* RPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPObject.m; sourceTree = "<group>"; };
 		EF3610721AC88E9400861AE9 /* RPTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTree.h; sourceTree = "<group>"; };
 		EF3610731AC88E9400861AE9 /* RPTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTree.m; sourceTree = "<group>"; };
+		EF397E111BC1BBFE0055CBE8 /* RPDiffStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiffStats.h; sourceTree = "<group>"; };
+		EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiffStats.m; sourceTree = "<group>"; };
 		EF9CAC141B9115EA00A7C511 /* RPFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFunctions.m; sourceTree = "<group>"; };
 		EF9CAC161B9115F700A7C511 /* RPFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPFunctions.h; sourceTree = "<group>"; };
 		EFC8E4291B97AF9C00625403 /* RPRepo+History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RPRepo+History.h"; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				6D310BAE1A1AC6D1001DCDB1 /* RPDiffFile.h */,
 				6D310BB21A1AD1CB001DCDB1 /* RPDiffFile+Private.h */,
 				6D310BAF1A1AC6D1001DCDB1 /* RPDiffFile.m */,
+				EF397E111BC1BBFE0055CBE8 /* RPDiffStats.h */,
+				EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */,
 				6D307FAB1A201EBA003DE0BD /* RPBlob.h */,
 				6D307FAC1A201EBA003DE0BD /* RPBlob.m */,
 				EF3610721AC88E9400861AE9 /* RPTree.h */,
@@ -276,6 +282,7 @@
 				EFC8E42B1B97AF9C00625403 /* RPRepo+History.h in Headers */,
 				EF0176A91AE5DBFB0092618D /* RPCommit.h in Headers */,
 				6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */,
+				EF397E131BC1BBFE0055CBE8 /* RPDiffStats.h in Headers */,
 				6D310BAC1A1AC256001DCDB1 /* RPDiffDelta.h in Headers */,
 				6DF929551A90CE6B0087E7D3 /* RPReference.h in Headers */,
 				6D310BB01A1AC6D1001DCDB1 /* RPDiffFile.h in Headers */,
@@ -405,6 +412,7 @@
 				6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */,
 				6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */,
 				EF0176A61AE5CDAA0092618D /* RPIndex.m in Sources */,
+				EF397E141BC1BBFE0055CBE8 /* RPDiffStats.m in Sources */,
 				6D307FAE1A201EBA003DE0BD /* RPBlob.m in Sources */,
 				6D310BB11A1AC6D1001DCDB1 /* RPDiffFile.m in Sources */,
 				6D90F5E01A772501009D0E99 /* RPConfig.m in Sources */,

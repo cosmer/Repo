@@ -23,6 +23,7 @@ FOUNDATION_EXPORT const unsigned char RepoVersionString[];
 #import <Repo/RPDiff.h>
 #import <Repo/RPDiffDelta.h>
 #import <Repo/RPDiffFile.h>
+#import <Repo/RPDiffStats.h>
 #import <Repo/RPObject.h>
 #import <Repo/RPOID.h>
 #import <Repo/RPIndex.h>

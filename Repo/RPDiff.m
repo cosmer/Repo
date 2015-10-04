@@ -15,6 +15,7 @@
 #import "RPTree.h"
 #import "RPCommit.h"
 #import "RPIndex.h"
+#import "RPDiffStats.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/diff.h>
@@ -279,6 +280,16 @@ static git_diff_options defaultDiffOptions(void)
         _repo = repo;
     }
     return self;
+}
+
+- (RPDiffStats *)stats
+{
+    git_diff_stats *stats = NULL;
+    if (git_diff_get_stats(&stats, self.gitDiff) != GIT_OK) {
+        return nil;
+    }
+    
+    return [[RPDiffStats alloc] initWithGitDiffStats:stats];
 }
 
 - (NSUInteger)deltaCount

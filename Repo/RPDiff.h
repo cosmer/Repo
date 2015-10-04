@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class RPDiffDelta;
 @class RPTree;
 @class RPObject;
+@class RPDiffStats;
 
 typedef struct git_diff git_diff;
 
@@ -63,6 +64,7 @@ typedef struct git_diff git_diff;
 @property(nonatomic, readonly) git_diff *gitDiff RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, strong, readonly) RPRepo *repo;
 
+@property(nonatomic, strong, readonly, nullable) RPDiffStats *stats;
 @property(nonatomic, readonly) NSUInteger deltaCount;
 
 @end
