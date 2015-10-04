@@ -25,7 +25,7 @@
 static git_diff_options defaultDiffOptions(void)
 {
     git_diff_options options = GIT_DIFF_OPTIONS_INIT;
-    options.flags = GIT_DIFF_INCLUDE_UNTRACKED | GIT_DIFF_RECURSE_UNTRACKED_DIRS | GIT_DIFF_IGNORE_CASE;
+    options.flags = GIT_DIFF_PATIENCE | GIT_DIFF_INCLUDE_UNTRACKED | GIT_DIFF_RECURSE_UNTRACKED_DIRS | GIT_DIFF_IGNORE_CASE;
     return options;
 }
 
