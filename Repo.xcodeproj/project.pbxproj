@@ -60,6 +60,10 @@
 		EFC8E42C1B97AF9C00625403 /* RPRepo+History.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC8E42A1B97AF9C00625403 /* RPRepo+History.m */; settings = {ASSET_TAGS = (); }; };
 		EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD87A781B8694BF0012FF11 /* RPStash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD87A791B8694BF0012FF11 /* RPStash.m */; };
+		EFE010BF1BD3CFD400D4101A /* RPRevWalker.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */; settings = {ASSET_TAGS = (); }; };
+		EFF303EB1BD3D67700914FBA /* RPCommitWalker.h in Headers */ = {isa = PBXBuildFile; fileRef = EFF303E91BD3D67700914FBA /* RPCommitWalker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFF303EC1BD3D67700914FBA /* RPCommitWalker.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF303EA1BD3D67700914FBA /* RPCommitWalker.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +135,10 @@
 		EFC8E42A1B97AF9C00625403 /* RPRepo+History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RPRepo+History.m"; sourceTree = "<group>"; };
 		EFD87A781B8694BF0012FF11 /* RPStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPStash.h; sourceTree = "<group>"; };
 		EFD87A791B8694BF0012FF11 /* RPStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPStash.m; sourceTree = "<group>"; };
+		EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPRevWalker.h; sourceTree = "<group>"; };
+		EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPRevWalker.m; sourceTree = "<group>"; };
+		EFF303E91BD3D67700914FBA /* RPCommitWalker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPCommitWalker.h; sourceTree = "<group>"; };
+		EFF303EA1BD3D67700914FBA /* RPCommitWalker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPCommitWalker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +222,10 @@
 				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
 				6DF929531A90CE6B0087E7D3 /* RPReference.h */,
 				6DF929541A90CE6B0087E7D3 /* RPReference.m */,
+				EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */,
+				EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */,
+				EFF303E91BD3D67700914FBA /* RPCommitWalker.h */,
+				EFF303EA1BD3D67700914FBA /* RPCommitWalker.m */,
 				EF13394F1BC0198700D66689 /* RPSignature.h */,
 				EF1339501BC0198700D66689 /* RPSignature.m */,
 				EFD87A781B8694BF0012FF11 /* RPStash.h */,
@@ -293,9 +305,11 @@
 				EF3610741AC88E9400861AE9 /* RPTree.h in Headers */,
 				EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */,
 				EF1339511BC0198700D66689 /* RPSignature.h in Headers */,
+				EFF303EB1BD3D67700914FBA /* RPCommitWalker.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
 				EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */,
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
+				EFE010BF1BD3CFD400D4101A /* RPRevWalker.h in Headers */,
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
 				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
 				6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */,
@@ -404,6 +418,8 @@
 				6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
 				EFC8E42C1B97AF9C00625403 /* RPRepo+History.m in Sources */,
+				EFF303EC1BD3D67700914FBA /* RPCommitWalker.m in Sources */,
+				EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
 				EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */,

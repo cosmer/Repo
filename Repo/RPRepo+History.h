@@ -8,6 +8,8 @@
 
 #import <Repo/Repo.h>
 
+@class RPRevWalker;
+
 typedef NS_OPTIONS(NSUInteger, RPHistorySortOptions) {
     RPHistorySortOptionsTopological    = 1 << 0,
     RPHistorySortOptionsTime           = 1 << 1,
@@ -18,10 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPRepo (History)
 
-- (BOOL)walkHistoryFromRef:(NSString *)ref
-               sortOptions:(RPHistorySortOptions)options
-                  callback:(BOOL(^)(RPCommit *))callback
-                     error:(NSError **)error;
+- (nullable RPRevWalker *)revWalkerFromRef:(NSString *)ref
+                               sortOptions:(RPHistorySortOptions)options
+                                     error:(NSError **)error;
 
 @end
 

@@ -8,7 +8,6 @@
 
 #import "RPRepo+History.h"
 
-#import <git2/commit.h>
 #import <git2/revwalk.h>
 #import <git2/errors.h>
 
@@ -18,13 +17,10 @@ _Static_assert(RPHistorySortOptionsReverse == GIT_SORT_REVERSE, "");
 
 @implementation RPRepo (History)
 
-- (BOOL)walkHistoryFromRef:(NSString *)ref
-               sortOptions:(RPHistorySortOptions)options
-                  callback:(BOOL(^)(RPCommit *))callback
-                     error:(NSError **)error
+/// Caller is responsible for freeing the revwalk.
+- (git_revwalk *)makeRevWalkFromRef:(NSString *)ref sortOptions:(RPHistorySortOptions)options error:(NSError **)error
 {
     NSParameterAssert(ref != nil);
-    NSParameterAssert(callback != nil);
     
     git_revwalk *walk = NULL;
     int gitError = git_revwalk_new(&walk, self.gitRepository);
@@ -32,7 +28,7 @@ _Static_assert(RPHistorySortOptionsReverse == GIT_SORT_REVERSE, "");
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to create revwalk"];
         }
-        return NO;
+        return NULL;
     }
     
     git_revwalk_sorting(walk, (unsigned int)options);
@@ -43,27 +39,19 @@ _Static_assert(RPHistorySortOptionsReverse == GIT_SORT_REVERSE, "");
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to walk ref '%@'", ref];
         }
         git_revwalk_free(walk);
-        return NO;
+        return NULL;
     }
     
-    while (1) {
-        git_oid oid;
-        if (git_revwalk_next(&oid, walk) != GIT_OK) {
-            break;
-        }
-        
-        git_commit *gitCommit = NULL;
-        if (git_commit_lookup(&gitCommit, self.gitRepository, &oid) == GIT_OK) {
-            RPCommit *commit = [[RPCommit alloc] initWithGitCommit:gitCommit];
-            if (!callback(commit)) {
-                break;
-            }
-        }
+    return walk;
+}
+
+- (RPRevWalker *)revWalkerFromRef:(NSString *)ref sortOptions:(RPHistorySortOptions)options error:(NSError **)error
+{
+    git_revwalk *walk = [self makeRevWalkFromRef:ref sortOptions:options error:error];
+    if (!walk) {
+        return nil;
     }
-    
-    git_revwalk_free(walk);
-    
-    return YES;
+    return [[RPRevWalker alloc] initWithGitRevWalk:walk];
 }
 
 @end
