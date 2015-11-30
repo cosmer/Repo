@@ -66,17 +66,17 @@ NSString *RPFileModeName(RPFileMode mode)
 
 - (BOOL)isBinary
 {
-    return _flags & GIT_DIFF_FLAG_BINARY;
+    return _flags & GIT_DIFF_FLAG_BINARY ? YES : NO;
 }
 
 - (BOOL)isText
 {
-    return _flags & GIT_DIFF_FLAG_NOT_BINARY;
+    return _flags & GIT_DIFF_FLAG_NOT_BINARY ? YES : NO;
 }
 
 - (BOOL)hasValidID
 {
-    return _flags & GIT_DIFF_FLAG_VALID_ID;
+    return _flags & GIT_DIFF_FLAG_VALID_ID ? YES : NO;
 }
 
 - (BOOL)isEqual:(id)object
