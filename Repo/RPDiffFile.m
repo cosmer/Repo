@@ -79,6 +79,11 @@ NSString *RPFileModeName(RPFileMode mode)
     return _flags & GIT_DIFF_FLAG_VALID_ID ? YES : NO;
 }
 
+- (BOOL)fileExists
+{
+    return _flags & GIT_DIFF_FLAG_EXISTS ? YES : NO;
+}
+
 - (BOOL)isEqual:(id)object
 {
     if (self == object) {

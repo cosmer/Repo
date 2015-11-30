@@ -40,6 +40,8 @@ extern NSString *RPFileModeName(RPFileMode mode);
 @property(nonatomic, readonly) BOOL isText;
 /// The receiver's id is known to be correct.
 @property(nonatomic, readonly) BOOL hasValidID;
+/// A file exists at this side of the delta.
+@property(nonatomic, readonly) BOOL fileExists;
 
 @end
 
