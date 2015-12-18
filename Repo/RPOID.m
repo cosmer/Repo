@@ -27,13 +27,21 @@
     return nil;
 }
 
-- (instancetype)initWithGitOID:(const git_oid *)oid
+- (instancetype)initWithGitOID:(const git_oid *)oid length:(NSInteger)length
 {
     NSParameterAssert(oid != NULL);
+    NSParameterAssert(length > 0);
+    NSParameterAssert(length <= GIT_OID_HEXSZ);
     if ((self = [super init])) {
         git_oid_cpy(&_oid, oid);
+        _length = length;
     }
     return self;
+}
+
+- (instancetype)initWithGitOID:(const git_oid *)oid
+{
+    return [self initWithGitOID:oid length:GIT_OID_HEXSZ];
 }
 
 - (instancetype)initWithString:(NSString *)string error:(NSError **)error
@@ -41,7 +49,7 @@
     NSParameterAssert(string != nil);
     
     git_oid oid;
-    int gitError = git_oid_fromstr(&oid, string.UTF8String);
+    int gitError = git_oid_fromstrp(&oid, string.UTF8String);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't parse oid '%@'", string];
@@ -49,12 +57,52 @@
         return nil;
     }
     
-    return [self initWithGitOID:&oid];
+    return [self initWithGitOID:&oid length:GIT_OID_HEXSZ];
+}
+
+- (nullable instancetype)initWithPartialString:(NSString *)string error:(NSError **)error
+{
+    NSParameterAssert(string != nil);
+    
+    const char *utf8 = string.UTF8String;
+    if (!utf8) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:GIT_EINVALID description:@"Couldn't parse oid '%@'", string];
+        }
+        return nil;
+    }
+    
+    git_oid oid;
+    int gitError = git_oid_fromstrp(&oid, utf8);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't parse oid '%@'", string];
+        }
+        return nil;
+    }
+    
+    NSInteger length = strlen(utf8);
+    return [self initWithGitOID:&oid length:length];
 }
 
 - (const git_oid *)gitOID
 {
     return &_oid;
+}
+
+- (BOOL)hasPrefix:(RPOID *)oid
+{
+    NSParameterAssert(oid != nil);
+    
+    if (oid.length <= 0 || self.length <= 0) {
+        return NO;
+    }
+    
+    if (oid.length > self.length) {
+        return NO;
+    }
+    
+    return git_oid_ncmp(self.gitOID, oid.gitOID, oid.length) == 0;
 }
 
 - (BOOL)isZero
@@ -95,7 +143,7 @@
 
 - (NSString *)description
 {
-    return self.stringValue;
+    return [NSString stringWithFormat:@"%@ (%@)", self.stringValue, @(self.length)];
 }
 
 @end
