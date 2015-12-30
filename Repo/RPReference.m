@@ -96,6 +96,27 @@
     return (name ? @(name) : @"");
 }
 
+- (RPReferenceNamespace)referenceNamespace
+{
+    if (git_reference_is_remote(self.gitReference)) {
+        return RPReferenceNamespaceRemote;
+    }
+    
+    if (git_reference_is_branch(self.gitReference)) {
+        return RPReferenceNamespaceBranch;
+    }
+    
+    if (git_reference_is_tag(self.gitReference)) {
+        return RPReferenceNamespaceTag;
+    }
+    
+    if (git_reference_is_note(self.gitReference)) {
+        return RPReferenceNamespaceNote;
+    }
+    
+    return RPReferenceNamespaceUnknown;
+}
+
 - (RPObject *)peelToType:(RPObjectType)type error:(NSError **)error
 {
     git_object *object = NULL;

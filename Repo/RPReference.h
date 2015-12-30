@@ -14,6 +14,14 @@
 @class RPRepo;
 @class RPObject;
 
+typedef NS_ENUM(NSInteger, RPReferenceNamespace) {
+    RPReferenceNamespaceUnknown,
+    RPReferenceNamespaceBranch,
+    RPReferenceNamespaceRemote,
+    RPReferenceNamespaceTag,
+    RPReferenceNamespaceNote,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef struct git_reference git_reference;
@@ -36,6 +44,8 @@ typedef struct git_reference git_reference;
 
 @property(nonatomic, strong, readonly) NSString *name;
 @property(nonatomic, strong, readonly) NSString *shortName;
+
+@property(nonatomic, readonly) RPReferenceNamespace referenceNamespace;
 
 @end
 
