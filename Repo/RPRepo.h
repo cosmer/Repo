@@ -62,6 +62,8 @@ typedef struct git_repository git_repository;
 @property(nonatomic, strong, readonly) NSString *path;
 @property(nonatomic, strong, readonly) NSString *workingDirectory;
 
+@property(nullable, nonatomic, strong, readonly) NSString *originURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

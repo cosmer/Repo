@@ -236,4 +236,19 @@
     return path ? @(path) : @"";
 }
 
+- (NSString *)originURL
+{
+    git_remote *remote = NULL;
+    if (git_remote_lookup(&remote, self.gitRepository, "origin") < GIT_OK) {
+        return nil;
+    }
+    
+    const char *url = git_remote_url(remote);
+    NSString *urlString = url ? @(url) : nil;
+    
+    git_remote_free(remote);
+    
+    return urlString;
+}
+
 @end
