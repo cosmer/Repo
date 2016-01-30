@@ -9,6 +9,7 @@
 #import <Repo/Repo.h>
 
 @class RPRevWalker;
+@class RPOID;
 
 typedef NS_OPTIONS(NSUInteger, RPHistorySortOptions) {
     RPHistorySortOptionsTopological    = 1 << 0,
@@ -21,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RPRepo (History)
 
 - (nullable RPRevWalker *)revWalkerFromRef:(NSString *)ref
+                               sortOptions:(RPHistorySortOptions)options
+                                     error:(NSError **)error;
+
+- (nullable RPRevWalker *)revWalkerFromOID:(RPOID *)oid
                                sortOptions:(RPHistorySortOptions)options
                                      error:(NSError **)error;
 

@@ -45,9 +45,46 @@ _Static_assert(RPHistorySortOptionsReverse == GIT_SORT_REVERSE, "");
     return walk;
 }
 
+/// Caller is responsible for freeing the revwalk.
+- (git_revwalk *)makeRevWalkFromOID:(RPOID *)oid sortOptions:(RPHistorySortOptions)options error:(NSError **)error
+{
+    NSParameterAssert(oid != nil);
+    
+    git_revwalk *walk = NULL;
+    int gitError = git_revwalk_new(&walk, self.gitRepository);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to create revwalk"];
+        }
+        return NULL;
+    }
+    
+    git_revwalk_sorting(walk, (unsigned int)options);
+    
+    gitError = git_revwalk_push(walk, oid.gitOID);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to walk object '%@'", oid];
+        }
+        git_revwalk_free(walk);
+        return NULL;
+    }
+    
+    return walk;
+}
+
 - (RPRevWalker *)revWalkerFromRef:(NSString *)ref sortOptions:(RPHistorySortOptions)options error:(NSError **)error
 {
     git_revwalk *walk = [self makeRevWalkFromRef:ref sortOptions:options error:error];
+    if (!walk) {
+        return nil;
+    }
+    return [[RPRevWalker alloc] initWithGitRevWalk:walk];
+}
+
+- (RPRevWalker *)revWalkerFromOID:(RPOID *)oid sortOptions:(RPHistorySortOptions)options error:(NSError **)error
+{
+    git_revwalk *walk = [self makeRevWalkFromOID:oid sortOptions:options error:error];
     if (!walk) {
         return nil;
     }
