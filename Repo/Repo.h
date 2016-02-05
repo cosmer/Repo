@@ -20,6 +20,7 @@ FOUNDATION_EXPORT const unsigned char RepoVersionString[];
 #import <Repo/RPBranch.h>
 #import <Repo/RPCommit.h>
 #import <Repo/RPConfig.h>
+#import <Repo/RPConflict.h>
 #import <Repo/RPDiff.h>
 #import <Repo/RPDiffDelta.h>
 #import <Repo/RPDiffFile.h>

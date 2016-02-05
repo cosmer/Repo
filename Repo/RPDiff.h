@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class RPTree;
 @class RPObject;
 @class RPDiffStats;
+@class RPConflict;
 
 typedef struct git_diff git_diff;
 
@@ -53,7 +54,12 @@ typedef struct git_diff git_diff;
 - (instancetype)init NS_UNAVAILABLE;
 
 /// Assumes ownership of `diff`.
-- (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithGitDiff:(git_diff *)diff
+                      conflicts:(NSArray<RPConflict *> *)conflicts
+                           repo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;
+
+/// Assumes ownership of `diff`.
+- (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo;
 
 - (void)enumerateDeltasUsingBlock:(RP_NO_ESCAPE void (^)(RPDiffDelta *delta))block;
 
@@ -62,6 +68,7 @@ typedef struct git_diff git_diff;
 - (BOOL)findSimilar:(NSError **)error;
 
 @property(nonatomic, readonly) git_diff *gitDiff RP_RETURNS_INTERIOR_POINTER;
+@property(nonatomic, strong, readonly) NSArray<RPConflict *> *conflicts;
 @property(nonatomic, strong, readonly) RPRepo *repo;
 
 @property(nonatomic, strong, readonly, nullable) RPDiffStats *stats;

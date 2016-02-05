@@ -16,6 +16,7 @@
 #import "RPCommit.h"
 #import "RPIndex.h"
 #import "RPDiffStats.h"
+#import "RPConflict.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/diff.h>
@@ -262,7 +263,8 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    return [[RPDiff alloc] initWithGitDiff:diff repo:repo];
+    NSArray *conflicts = [RPConflict conflictsFromGitIndex:index.gitIndex];
+    return [[RPDiff alloc] initWithGitDiff:diff conflicts:conflicts repo:repo];
 }
 
 - (instancetype)init
@@ -271,15 +273,24 @@ static git_diff_options defaultDiffOptions(void)
     return nil;
 }
 
-- (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo
+- (instancetype)initWithGitDiff:(git_diff *)diff
+                      conflicts:(NSArray<RPConflict *> *)conflicts
+                           repo:(RPRepo *)repo
 {
     NSParameterAssert(diff != nil);
+    NSParameterAssert(conflicts != nil);
     NSParameterAssert(repo != nil);
     if ((self = [super init])) {
         _gitDiff = diff;
+        _conflicts = [conflicts copy];
         _repo = repo;
     }
     return self;
+}
+
+- (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo
+{
+    return [self initWithGitDiff:diff conflicts:@[] repo:repo];
 }
 
 - (RPDiffStats *)stats
