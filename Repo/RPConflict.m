@@ -8,10 +8,14 @@
 
 #import "RPConflict.h"
 
+#import "RPRepo.h"
+#import "RPBlob.h"
 #import "RPOID.h"
+#import "NSError+RPGitErrors.h"
 
 #import <git2/errors.h>
 #import <git2/index.h>
+#import <git2/merge.h>
 
 @implementation RPConflictEntry
 
@@ -95,6 +99,58 @@
     NSString *ours = [NSString stringWithFormat:@"{ ours     = %@ }", self.ours.description];
     NSString *theirs = [NSString stringWithFormat:@"{ theirs   = %@ }", self.theirs.description];
     return [@[@"conflict = ", ancestor, ours, theirs] componentsJoinedByString:@",\r"];
+}
+
+- (NSData *)mergeInRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(repo != nil);
+    
+    RPBlob *ancestorBlob = [[RPBlob alloc] initWithOID:self.ancestor.oid inRepo:repo error:error];
+    if (!ancestorBlob) {
+        return nil;
+    }
+    
+    RPBlob *ourBlob = [[RPBlob alloc] initWithOID:self.ours.oid inRepo:repo error:error];
+    if (!ourBlob) {
+        return nil;
+    }
+    
+    RPBlob *theirBlob = [[RPBlob alloc] initWithOID:self.theirs.oid inRepo:repo error:error];
+    if (!theirBlob) {
+        return nil;
+    }
+
+    git_merge_file_input ancestorInput = GIT_MERGE_FILE_INPUT_INIT;
+    ancestorInput.ptr = ancestorBlob.rawContent;
+    ancestorInput.size = ancestorBlob.rawSize;
+    ancestorInput.path = self.ancestor.path.UTF8String;
+    
+    git_merge_file_input ourInput = GIT_MERGE_FILE_INPUT_INIT;
+    ourInput.ptr = ourBlob.rawContent;
+    ourInput.size = ourBlob.rawSize;
+    ourInput.path = self.ours.path.UTF8String;
+    
+    git_merge_file_input theirInput = GIT_MERGE_FILE_INPUT_INIT;
+    theirInput.ptr = theirBlob.rawContent;
+    theirInput.size = theirBlob.rawSize;
+    theirInput.path = self.theirs.path.UTF8String;
+    
+    git_merge_file_options options = GIT_MERGE_FILE_OPTIONS_INIT;
+    options.flags = GIT_MERGE_FILE_STYLE_DIFF3;
+    
+    git_merge_file_result result = { 0 };
+    int gitError = git_merge_file(&result, &ancestorInput, &ourInput, &theirInput, &options);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to merge conflict"];
+        }
+        return nil;
+    }
+    
+    NSData *data = [[NSData alloc] initWithBytes:result.ptr length:result.len];
+    git_merge_file_result_free(&result);
+    
+    return data;
 }
 
 @end

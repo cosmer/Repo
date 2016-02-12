@@ -68,15 +68,20 @@
     return (git_blob *)self.gitObject;
 }
 
-- (git_off_t)size
+- (git_off_t)rawSize
 {
     return git_blob_rawsize(self.gitBlob);
+}
+
+- (const char *)rawContent
+{
+    return git_blob_rawcontent(self.gitBlob);
 }
 
 - (NSData *)data
 {
     const void *content = git_blob_rawcontent(self.gitBlob);
-    return [NSData dataWithBytes:content length:self.size];
+    return [NSData dataWithBytes:content length:self.rawSize];
 }
 
 @end

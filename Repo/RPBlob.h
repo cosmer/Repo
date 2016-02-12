@@ -29,6 +29,9 @@ typedef struct git_object git_object;
 @property(nonatomic, readonly) git_object *gitObject RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, strong, readonly) RPRepo *repo;
 
+@property(nonatomic, readonly) int64_t rawSize;
+@property(nonatomic, readonly) const char *rawContent RP_RETURNS_INTERIOR_POINTER;
+
 @property(nonatomic, strong, readonly) NSData *data;
 
 @end

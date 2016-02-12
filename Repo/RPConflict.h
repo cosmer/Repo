@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class RPOID;
+@class RPRepo;
 
 typedef struct git_index git_index;
 typedef struct git_index_entry git_index_entry;
@@ -36,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN;
 - (instancetype)initWithAncestor:(RPConflictEntry *)ancestor
                             ours:(RPConflictEntry *)ours
                           theirs:(RPConflictEntry *)theirs NS_DESIGNATED_INITIALIZER;
+
+- (nullable NSData *)mergeInRepo:(RPRepo *)repo error:(NSError **)error;
 
 @property(nonatomic, strong, readonly) RPConflictEntry *ancestor;
 @property(nonatomic, strong, readonly) RPConflictEntry *ours;
