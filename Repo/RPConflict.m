@@ -66,9 +66,21 @@
     const git_index_entry *gitOurs = NULL;
     const git_index_entry *gitTheirs = NULL;
     while (git_index_conflict_next(&gitAncestor, &gitOurs, &gitTheirs, it) == GIT_OK) {
-        RPConflictEntry *ancestor = [[RPConflictEntry alloc] initWithGitIndexEntry:gitAncestor];
-        RPConflictEntry *ours = [[RPConflictEntry alloc] initWithGitIndexEntry:gitOurs];
-        RPConflictEntry *theirs = [[RPConflictEntry alloc] initWithGitIndexEntry:gitTheirs];
+        RPConflictEntry *ancestor = nil;
+        if (gitAncestor) {
+            ancestor = [[RPConflictEntry alloc] initWithGitIndexEntry:gitAncestor];
+        }
+        
+        RPConflictEntry *ours = nil;
+        if (gitOurs) {
+            ours = [[RPConflictEntry alloc] initWithGitIndexEntry:gitOurs];
+        }
+        
+        RPConflictEntry *theirs = nil;
+        if (gitTheirs) {
+            theirs = [[RPConflictEntry alloc] initWithGitIndexEntry:gitTheirs];
+        }
+        
         RPConflict *conflict = [[RPConflict alloc] initWithAncestor:ancestor ours:ours theirs:theirs];
         [conflicts addObject:conflict];
     }
@@ -82,9 +94,6 @@
                             ours:(RPConflictEntry *)ours
                           theirs:(RPConflictEntry *)theirs
 {
-    NSParameterAssert(ancestor != nil);
-    NSParameterAssert(ours != nil);
-    NSParameterAssert(theirs != nil);
     if ((self = [super init])) {
         _ancestor = ancestor;
         _ours = ours;
@@ -105,25 +114,35 @@
 {
     NSParameterAssert(repo != nil);
     
-    RPBlob *ancestorBlob = [[RPBlob alloc] initWithOID:self.ancestor.oid inRepo:repo error:error];
-    if (!ancestorBlob) {
+    if (!self.ours) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, missing our side"];
+        }
+        return nil;
+    }
+    
+    if (!self.theirs) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, missing their side"];
+        }
         return nil;
     }
     
     RPBlob *ourBlob = [[RPBlob alloc] initWithOID:self.ours.oid inRepo:repo error:error];
     if (!ourBlob) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, our blob is missing"];
+        }
         return nil;
     }
     
     RPBlob *theirBlob = [[RPBlob alloc] initWithOID:self.theirs.oid inRepo:repo error:error];
     if (!theirBlob) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, their blob is missing"];
+        }
         return nil;
     }
-
-    git_merge_file_input ancestorInput = GIT_MERGE_FILE_INPUT_INIT;
-    ancestorInput.ptr = ancestorBlob.rawContent;
-    ancestorInput.size = ancestorBlob.rawSize;
-    ancestorInput.path = self.ancestor.path.UTF8String;
     
     git_merge_file_input ourInput = GIT_MERGE_FILE_INPUT_INIT;
     ourInput.ptr = ourBlob.rawContent;
@@ -138,8 +157,29 @@
     git_merge_file_options options = GIT_MERGE_FILE_OPTIONS_INIT;
     options.flags = GIT_MERGE_FILE_STYLE_DIFF3;
     
+    int gitError = GIT_OK;
     git_merge_file_result result = { 0 };
-    int gitError = git_merge_file(&result, &ancestorInput, &ourInput, &theirInput, &options);
+    
+    if (self.ancestor) {
+        RPBlob *ancestorBlob = [[RPBlob alloc] initWithOID:self.ancestor.oid inRepo:repo error:error];
+        if (!ancestorBlob) {
+            if (error) {
+                *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, ancestor blob is missing"];
+            }
+            return nil;
+        }
+        
+        git_merge_file_input ancestorInput = GIT_MERGE_FILE_INPUT_INIT;
+        ancestorInput.ptr = ancestorBlob.rawContent;
+        ancestorInput.size = ancestorBlob.rawSize;
+        ancestorInput.path = self.ancestor.path.UTF8String;
+        
+        gitError = git_merge_file(&result, &ancestorInput, &ourInput, &theirInput, &options);
+    }
+    else {
+        gitError = git_merge_file(&result, NULL, &ourInput, &theirInput, &options);
+    }
+    
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to merge conflict"];

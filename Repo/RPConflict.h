@@ -40,9 +40,9 @@ NS_ASSUME_NONNULL_BEGIN;
 
 - (nullable NSData *)mergeInRepo:(RPRepo *)repo error:(NSError **)error;
 
-@property(nonatomic, strong, readonly) RPConflictEntry *ancestor;
-@property(nonatomic, strong, readonly) RPConflictEntry *ours;
-@property(nonatomic, strong, readonly) RPConflictEntry *theirs;
+@property(nullable, nonatomic, strong, readonly) RPConflictEntry *ancestor;
+@property(nullable, nonatomic, strong, readonly) RPConflictEntry *ours;
+@property(nullable, nonatomic, strong, readonly) RPConflictEntry *theirs;
 
 @end
 
