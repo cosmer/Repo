@@ -55,6 +55,8 @@
 		EF3610751AC88E9400861AE9 /* RPTree.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3610731AC88E9400861AE9 /* RPTree.m */; };
 		EF397E131BC1BBFE0055CBE8 /* RPDiffStats.h in Headers */ = {isa = PBXBuildFile; fileRef = EF397E111BC1BBFE0055CBE8 /* RPDiffStats.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF397E141BC1BBFE0055CBE8 /* RPDiffStats.m in Sources */ = {isa = PBXBuildFile; fileRef = EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */; };
+		EF58D7971C70B7FB000B94E8 /* RPRepo+Merge.h in Headers */ = {isa = PBXBuildFile; fileRef = EF58D7951C70B7FB000B94E8 /* RPRepo+Merge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = EF58D7961C70B7FB000B94E8 /* RPRepo+Merge.m */; };
 		EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9CAC141B9115EA00A7C511 /* RPFunctions.m */; };
 		EFB0CF8F1C6382E40044702D /* RPConflict.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB0CF8D1C6382E40044702D /* RPConflict.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFB0CF901C6382E40044702D /* RPConflict.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB0CF8E1C6382E40044702D /* RPConflict.m */; };
@@ -131,6 +133,8 @@
 		EF3610731AC88E9400861AE9 /* RPTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTree.m; sourceTree = "<group>"; };
 		EF397E111BC1BBFE0055CBE8 /* RPDiffStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiffStats.h; sourceTree = "<group>"; };
 		EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiffStats.m; sourceTree = "<group>"; };
+		EF58D7951C70B7FB000B94E8 /* RPRepo+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RPRepo+Merge.h"; sourceTree = "<group>"; };
+		EF58D7961C70B7FB000B94E8 /* RPRepo+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RPRepo+Merge.m"; sourceTree = "<group>"; };
 		EF9CAC141B9115EA00A7C511 /* RPFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFunctions.m; sourceTree = "<group>"; };
 		EF9CAC161B9115F700A7C511 /* RPFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPFunctions.h; sourceTree = "<group>"; };
 		EFB0CF8D1C6382E40044702D /* RPConflict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPConflict.h; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				6DC7A0621A18F2B900D808ED /* RPRepo.m */,
 				EFC8E4291B97AF9C00625403 /* RPRepo+History.h */,
 				EFC8E42A1B97AF9C00625403 /* RPRepo+History.m */,
+				EF58D7951C70B7FB000B94E8 /* RPRepo+Merge.h */,
+				EF58D7961C70B7FB000B94E8 /* RPRepo+Merge.m */,
 				EF08E0421ABEEF8400712DCC /* RPBranch.h */,
 				EF08E0431ABEEF8400712DCC /* RPBranch.m */,
 				EF0176A71AE5DBFB0092618D /* RPCommit.h */,
@@ -298,6 +304,7 @@
 				6D90F5DF1A772501009D0E99 /* RPConfig.h in Headers */,
 				6DC7A0631A18F2B900D808ED /* RPRepo.h in Headers */,
 				EFC8E42B1B97AF9C00625403 /* RPRepo+History.h in Headers */,
+				EF58D7971C70B7FB000B94E8 /* RPRepo+Merge.h in Headers */,
 				EF0176A91AE5DBFB0092618D /* RPCommit.h in Headers */,
 				6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */,
 				EF397E131BC1BBFE0055CBE8 /* RPDiffStats.h in Headers */,
@@ -427,6 +434,7 @@
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
 				EFC8E42C1B97AF9C00625403 /* RPRepo+History.m in Sources */,
 				EFF303EC1BD3D67700914FBA /* RPCommitWalker.m in Sources */,
+				EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */,
 				EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
