@@ -46,8 +46,8 @@ typedef struct git_diff git_diff;
                                            inRepo:(RPRepo *)repo
                                             error:(NSError **)error;
 
-+ (nullable instancetype)diffPullRequestOfOldObject:(RPObject *)oldObject
-                                        toNewObject:(RPObject *)newObject
++ (nullable instancetype)diffPullRequestOfOurObject:(RPObject *)ourObject
+                                      toTheirObject:(RPObject *)theirObject
                                              inRepo:(RPRepo *)repo
                                               error:(NSError **)error;
 

@@ -212,42 +212,42 @@ static git_diff_options defaultDiffOptions(void)
     return [self diffOldTreeOID:oldTreeObject.OID toNewTreeOID:newTreeObject.OID inRepo:repo error:error];
 }
 
-+ (instancetype)diffPullRequestOfOldObject:(RPObject *)oldObject
-                               toNewObject:(RPObject *)newObject
-                                       inRepo:(RPRepo *)repo
-                                        error:(NSError **)error
++ (instancetype)diffPullRequestOfOurObject:(RPObject *)ourObject
+                             toTheirObject:(RPObject *)theirObject
+                                    inRepo:(RPRepo *)repo
+                                     error:(NSError **)error
 {
-    RPObject *oldCommitObject = [oldObject peelToType:RPObjectTypeCommit error:error];
-    if (!oldCommitObject) {
+    RPObject *theirCommitObject = [theirObject peelToType:RPObjectTypeCommit error:error];
+    if (!theirCommitObject) {
         return nil;
     }
     
-    RPObject *newCommitObject = [newObject peelToType:RPObjectTypeCommit error:error];
-    if (!newCommitObject) {
+    RPObject *ourCommitObject = [ourObject peelToType:RPObjectTypeCommit error:error];
+    if (!ourCommitObject) {
         return nil;
     }
     
-    RPCommit *oldCommit = [RPCommit lookupOID:oldCommitObject.OID inRepo:repo error:error];
-    if (!oldCommitObject) {
+    RPCommit *theirCommit = [RPCommit lookupOID:theirCommitObject.OID inRepo:repo error:error];
+    if (!theirCommit) {
         return nil;
     }
     
-    RPCommit *newCommit = [RPCommit lookupOID:newCommitObject.OID inRepo:repo error:error];
-    if (!newCommit) {
+    RPCommit *ourCommit = [RPCommit lookupOID:ourCommitObject.OID inRepo:repo error:error];
+    if (!ourCommit) {
         return nil;
     }
     
-    RPObject *oldTreeObject = [oldObject peelToType:RPObjectTypeTree error:error];
-    if (!oldTreeObject) {
+    RPObject *treeObject = [ourObject peelToType:RPObjectTypeTree error:error];
+    if (!treeObject) {
         return nil;
     }
     
-    RPTree *oldTree = [RPTree lookupOID:oldTreeObject.OID inRepo:repo error:error];
-    if (!oldTree) {
+    RPTree *tree = [RPTree lookupOID:treeObject.OID inRepo:repo error:error];
+    if (!tree) {
         return nil;
     }
     
-    RPIndex *index = [repo mergeOurCommit:newCommit withTheirCommit:oldCommit error:error];
+    RPIndex *index = [repo mergeOurCommit:ourCommit withTheirCommit:theirCommit error:error];
     if (!index) {
         return nil;
     }
@@ -255,7 +255,7 @@ static git_diff_options defaultDiffOptions(void)
     git_diff_options options = defaultDiffOptions();
     
     git_diff *diff = NULL;
-    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, oldTree.gitTree, index.gitIndex, &options);
+    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Pull request diff failed"];
