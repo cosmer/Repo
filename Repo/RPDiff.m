@@ -20,8 +20,8 @@
 #import "NSError+RPGitErrors.h"
 
 #import <git2/diff.h>
-#import <git2/revparse.h>
 #import <git2/branch.h>
+#import <git2/index.h>
 #import <git2/errors.h>
 
 static git_diff_options defaultDiffOptions(void)
@@ -29,6 +29,46 @@ static git_diff_options defaultDiffOptions(void)
     git_diff_options options = GIT_DIFF_OPTIONS_INIT;
     options.flags = GIT_DIFF_PATIENCE | GIT_DIFF_INCLUDE_UNTRACKED | GIT_DIFF_RECURSE_UNTRACKED_DIRS | GIT_DIFF_IGNORE_CASE;
     return options;
+}
+
+static int diff_tree_to_workdir_with_index(git_diff **diff, git_repository *repo, git_tree *tree, git_index *index, const git_diff_options *options)
+{
+    *diff = NULL;
+
+    int gitError = GIT_OK;
+    
+    git_diff *d1 = NULL;
+    git_diff *d2 = NULL;
+    
+    git_index_read(index, 0);
+    
+    gitError = git_diff_tree_to_index(&d1, repo, tree, index, options);
+    if (gitError != GIT_OK) {
+        goto done;
+    }
+    
+    gitError = git_diff_index_to_workdir(&d2, repo, index, options);
+    if (gitError != GIT_OK) {
+        goto done;
+    }
+    
+    gitError = git_diff_merge(d1, d2);
+    if (gitError != GIT_OK) {
+        goto done;
+    }
+    
+done:
+    
+    git_diff_free(d2);
+    
+    if (gitError == GIT_OK) {
+        *diff = d1;
+    }
+    else {
+        git_diff_free(d1);
+    }
+
+    return gitError;
 }
 
 @implementation RPDiff
@@ -42,10 +82,15 @@ static git_diff_options defaultDiffOptions(void)
 {
     NSParameterAssert(repo != nil);
     
+    RPIndex *index = [repo indexWithError:error];
+    if (!index) {
+        return nil;
+    }
+    
     git_diff_options options = defaultDiffOptions();
     
     git_diff *diff = NULL;
-    int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, NULL, &options);
+    int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff index to working directory"];
@@ -53,53 +98,42 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    return [[self alloc] initWithGitDiff:diff repo:repo];
+    NSArray *conflicts = [RPConflict conflictsFromGitIndex:index.gitIndex];
+    return [[self alloc] initWithGitDiff:diff conflicts:conflicts repo:repo];
 }
 
 + (instancetype)diffHeadToWorkdirWithIndexInRepo:(RPRepo *)repo error:(NSError **)error
 {
     NSParameterAssert(repo != nil);
     
-    int gitError = GIT_OK;
-    
-    git_object *object = NULL;
-    gitError = git_revparse_single(&object, repo.gitRepository, "HEAD^{tree}");
-    if (gitError != GIT_OK) {
-        if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to parse rev for HEAD"];
-        }
+    RPIndex *index = [repo indexWithError:error];
+    if (!index) {
         return nil;
     }
     
-    git_tree *tree = NULL;
-    gitError = git_tree_lookup(&tree, repo.gitRepository, git_object_id(object));
-    if (gitError != GIT_OK) {
-        if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to create tree for HEAD"];
-        }
-        
-        git_object_free(object);
+    RPObject *object = [repo revParseSingle:@"HEAD^{tree}" error:error];
+    if (!object) {
+        return nil;
+    }
+    
+    RPTree *tree = [RPTree lookupOID:object.OID inRepo:repo error:error];
+    if (!tree) {
         return nil;
     }
     
     git_diff_options options = defaultDiffOptions();
     
     git_diff *diff = NULL;
-    gitError = git_diff_tree_to_workdir_with_index(&diff, repo.gitRepository, tree, &options);
+    int gitError = diff_tree_to_workdir_with_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff head to working directory with index"];
         }
-        
-        git_tree_free(tree);
-        git_object_free(object);
         return nil;
     }
     
-    git_tree_free(tree);
-    git_object_free(object);
-    
-    return [[self alloc] initWithGitDiff:diff repo:repo];
+    NSArray *conflicts = [RPConflict conflictsFromGitIndex:index.gitIndex];
+    return [[self alloc] initWithGitDiff:diff conflicts:conflicts repo:repo];
 }
 
 + (instancetype)diffNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
