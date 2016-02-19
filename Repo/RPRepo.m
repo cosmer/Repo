@@ -137,6 +137,20 @@
     return [[RPReference alloc] initWithGitReference:ref];
 }
 
+- (RPIndex *)indexWithError:(NSError **)error
+{
+    git_index *index = NULL;
+    int gitError = git_repository_index(&index, self.gitRepository);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find the repository's index."];
+        }
+        return nil;
+    }
+    
+    return [[RPIndex alloc] initWithGitIndex:index];
+}
+
 - (RPOID *)mergeBaseOfOID:(RPOID *)oid1 withOID:(RPOID *)oid2 error:(NSError **)error
 {
     NSParameterAssert(oid1 != nil);

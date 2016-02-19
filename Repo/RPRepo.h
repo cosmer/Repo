@@ -42,6 +42,9 @@ typedef struct git_repository git_repository;
 /// \return The reference pointed at by HEAD.
 - (nullable RPReference *)head;
 
+/// \return Index owned by the repository.
+- (nullable RPIndex *)indexWithError:(NSError **)error;
+
 /// \return The merge base of two commits.
 - (nullable RPOID *)mergeBaseOfOID:(RPOID *)oid1 withOID:(RPOID *)oid2 error:(NSError **)error;
 
