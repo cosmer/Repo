@@ -37,7 +37,8 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"{ oid = %@, path = %@ }", self.oid.shortStringValue, self.path];
+    return [NSString stringWithFormat:@"{ oid = %@, path = %@, mode = %@ }",
+            self.oid.shortStringValue, self.path, RPFileModeName(self.mode)];
 }
 
 @end
