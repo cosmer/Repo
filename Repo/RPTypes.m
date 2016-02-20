@@ -23,6 +23,33 @@ _Static_assert(RPBranchTypeLocal == GIT_BRANCH_LOCAL, "");
 _Static_assert(RPBranchTypeRemote == GIT_BRANCH_REMOTE, "");
 _Static_assert(RPBranchTypeAll == GIT_BRANCH_ALL, "");
 
+_Static_assert(RPFileModeUnreadable == GIT_FILEMODE_UNREADABLE, "");
+_Static_assert(RPFileModeTree == GIT_FILEMODE_TREE, "");
+_Static_assert(RPFileModeBlob == GIT_FILEMODE_BLOB, "");
+_Static_assert(RPFileModeBlobExecutable == GIT_FILEMODE_BLOB_EXECUTABLE, "");
+_Static_assert(RPFileModeLink == GIT_FILEMODE_LINK, "");
+_Static_assert(RPFileModeCommit == GIT_FILEMODE_COMMIT, "");
+
+NSString *RPFileModeName(RPFileMode mode)
+{
+    switch (mode) {
+        case RPFileModeUnreadable:
+            return @"Unreadable";
+        case RPFileModeTree:
+            return @"Tree";
+        case RPFileModeBlob:
+            return @"Blob";
+        case RPFileModeBlobExecutable:
+            return @"Executable Blob";
+        case RPFileModeLink:
+            return @"Link";
+        case RPFileModeCommit:
+            return @"Commit";
+    }
+    
+    return [NSString stringWithFormat:@"RPFileMode{%ld}", (long)mode];
+}
+
 NSString *RPObjectTypeName(RPObjectType type)
 {
     switch (type) {

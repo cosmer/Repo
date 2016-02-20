@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Repo/RPTypes.h>
+
 @class RPOID;
 
 typedef struct git_index git_index;
@@ -19,11 +21,12 @@ NS_ASSUME_NONNULL_BEGIN;
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithOID:(RPOID *)oid path:(NSString *)path NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithOID:(RPOID *)oid path:(NSString *)path fileMode:(RPFileMode)mode NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithGitIndexEntry:(const git_index_entry *)entry;
 
 @property(nonatomic, strong, readonly) RPOID *oid;
 @property(nonatomic, strong, readonly) NSString *path;
+@property(nonatomic, readonly) RPFileMode mode;
 
 @end
 

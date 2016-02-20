@@ -15,13 +15,14 @@
 
 @implementation RPConflictEntry
 
-- (instancetype)initWithOID:(RPOID *)oid path:(NSString *)path
+- (instancetype)initWithOID:(RPOID *)oid path:(NSString *)path fileMode:(RPFileMode)mode
 {
     NSParameterAssert(oid != nil);
     NSParameterAssert(path != nil);
     if ((self = [super init])) {
         _oid = oid;
         _path = [path copy];
+        _mode = mode;
     }
     return self;
 }
@@ -31,7 +32,7 @@
     NSParameterAssert(entry != NULL);
     RPOID *oid = [[RPOID alloc] initWithGitOID:&entry->id];
     NSString *path = [[NSString alloc] initWithUTF8String:entry->path ?: ""];
-    return [self initWithOID:oid path:path];
+    return [self initWithOID:oid path:path fileMode:entry->mode];
 }
 
 - (NSString *)description

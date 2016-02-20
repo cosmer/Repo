@@ -10,6 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, RPFileMode) {
+    RPFileModeUnreadable        = 0000000,
+    RPFileModeTree              = 0040000,
+    RPFileModeBlob              = 0100644,
+    RPFileModeBlobExecutable    = 0100755,
+    RPFileModeLink              = 0120000,
+    RPFileModeCommit            = 0160000,
+};
+
 typedef NS_ENUM(NSInteger, RPObjectType) {
     RPObjectTypeAny         = -2,
     RPObjectTypeBad         = -1,
@@ -27,6 +36,7 @@ typedef NS_OPTIONS(NSUInteger, RPBranchType) {
     RPBranchTypeAll     = RPBranchTypeLocal | RPBranchTypeRemote,
 };
 
+NSString *RPFileModeName(RPFileMode mode);
 NSString *RPObjectTypeName(RPObjectType type);
 NSString *RPBranchTypeName(RPBranchType type);
 

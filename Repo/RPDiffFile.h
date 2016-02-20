@@ -8,20 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Repo/RPTypes.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class RPOID;
-
-typedef NS_ENUM(NSInteger, RPFileMode) {
-    RPFileModeUnreadable        = 0000000,
-    RPFileModeTree              = 0040000,
-    RPFileModeBlob              = 0100644,
-    RPFileModeBlobExecutable    = 0100755,
-    RPFileModeLink              = 0120000,
-    RPFileModeCommit            = 0160000,
-};
-
-extern NSString *RPFileModeName(RPFileMode mode);
 
 /// RPDiffFile is immutable and thread safe.
 @interface RPDiffFile : NSObject
