@@ -10,6 +10,7 @@
 
 #import "RPRepo.h"
 #import "RPObject.h"
+#import "RPOID.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/buffer.h>
@@ -84,6 +85,11 @@
     return self;
 }
 
+- (BOOL)isSymbolic
+{
+    return (git_reference_type(self.gitReference) == GIT_REF_SYMBOLIC);
+}
+
 - (NSString *)name
 {
     const char *name = git_reference_name(self.gitReference);
@@ -94,6 +100,15 @@
 {
     const char *name = git_reference_shorthand(self.gitReference);
     return (name ? @(name) : @"");
+}
+
+- (RPOID *)oid
+{
+    const git_oid *oid = git_reference_target(self.gitReference);
+    if (!oid) {
+        return nil;
+    }
+    return [[RPOID alloc] initWithGitOID:oid];
 }
 
 - (RPReferenceNamespace)referenceNamespace
@@ -130,6 +145,16 @@
     }
     
     return [[RPObject alloc] initWithGitObject:object];
+}
+
+- (RPReference *)resolve
+{
+    git_reference *resolved = NULL;
+    if (git_reference_resolve(&resolved, self.gitReference) != GIT_OK) {
+        return nil;
+    }
+
+    return [[RPReference alloc] initWithGitReference:resolved];
 }
 
 @end

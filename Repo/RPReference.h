@@ -13,6 +13,7 @@
 
 @class RPRepo;
 @class RPObject;
+@class RPOID;
 
 typedef NS_ENUM(NSInteger, RPReferenceNamespace) {
     RPReferenceNamespaceUnknown,
@@ -40,10 +41,17 @@ typedef struct git_reference git_reference;
 
 - (nullable RPObject *)peelToType:(RPObjectType)type error:(NSError **)error;
 
+/// Iteratively peels a symbolic reference until it resolves to a direct reference to an OID.
+- (nullable RPReference *)resolve;
+
 @property(nonatomic, readonly) git_reference *gitReference RP_RETURNS_INTERIOR_POINTER;
+
+@property(nonatomic, readonly) BOOL isSymbolic;
 
 @property(nonatomic, strong, readonly) NSString *name;
 @property(nonatomic, strong, readonly) NSString *shortName;
+
+@property(nullable, nonatomic, strong, readonly) RPOID *oid;
 
 @property(nonatomic, readonly) RPReferenceNamespace referenceNamespace;
 
