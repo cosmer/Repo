@@ -64,7 +64,7 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
     theirInput.path = theirs.path.UTF8String;
     
     git_merge_file_options gitOptions = GIT_MERGE_FILE_OPTIONS_INIT;
-    gitOptions.flags = options.flags;
+    gitOptions.flags = (git_merge_file_flag_t)options.flags;
     gitOptions.ancestor_label = options.ancestorLabel.UTF8String;
     gitOptions.our_label = options.ourLabel.UTF8String;
     gitOptions.their_label = options.theirLabel.UTF8String;

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D307FA21A1FF7BB003DE0BD /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D307FA11A1FF7BB003DE0BD /* libssl.dylib */; };
-		6D307FA41A1FF7C1003DE0BD /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */; };
 		6D307FAD1A201EBA003DE0BD /* RPBlob.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D307FAB1A201EBA003DE0BD /* RPBlob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D307FAE1A201EBA003DE0BD /* RPBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D307FAC1A201EBA003DE0BD /* RPBlob.m */; };
 		6D310BA81A1ABE95001DCDB1 /* RPDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D310BA61A1ABE95001DCDB1 /* RPDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,8 +31,6 @@
 		6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0621A18F2B900D808ED /* RPRepo.m */; };
 		6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */; };
-		6DC7A0701A194D4F00D808ED /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A06F1A194D4F00D808ED /* libz.dylib */; };
-		6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC7A0741A194F8300D808ED /* libiconv.dylib */; };
 		6DF929551A90CE6B0087E7D3 /* RPReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DF929531A90CE6B0087E7D3 /* RPReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF929541A90CE6B0087E7D3 /* RPReference.m */; };
 		6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -57,6 +53,11 @@
 		EF397E141BC1BBFE0055CBE8 /* RPDiffStats.m in Sources */ = {isa = PBXBuildFile; fileRef = EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */; };
 		EF58D7971C70B7FB000B94E8 /* RPRepo+Merge.h in Headers */ = {isa = PBXBuildFile; fileRef = EF58D7951C70B7FB000B94E8 /* RPRepo+Merge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = EF58D7961C70B7FB000B94E8 /* RPRepo+Merge.m */; };
+		EF790BB61C8B0C6A0050D59A /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB51C8B0C6A0050D59A /* libcurl.tbd */; };
+		EF790BB81C8B0C860050D59A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB71C8B0C860050D59A /* libz.tbd */; };
+		EF790BBA1C8B0C910050D59A /* libssl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB91C8B0C910050D59A /* libssl.tbd */; };
+		EF790BBC1C8B0C9E0050D59A /* libcrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BBB1C8B0C9E0050D59A /* libcrypto.tbd */; };
+		EF790BBE1C8B0CAB0050D59A /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */; };
 		EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9CAC141B9115EA00A7C511 /* RPFunctions.m */; };
 		EFB0CF8F1C6382E40044702D /* RPConflict.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB0CF8D1C6382E40044702D /* RPConflict.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFB0CF901C6382E40044702D /* RPConflict.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB0CF8E1C6382E40044702D /* RPConflict.m */; };
@@ -81,8 +82,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6D307FA11A1FF7BB003DE0BD /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
-		6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		6D307FAB1A201EBA003DE0BD /* RPBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBlob.h; sourceTree = "<group>"; };
 		6D307FAC1A201EBA003DE0BD /* RPBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPBlob.m; sourceTree = "<group>"; };
 		6D310BA51A1AB949001DCDB1 /* RPMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPMacros.h; sourceTree = "<group>"; };
@@ -110,8 +109,6 @@
 		6DC7A0621A18F2B900D808ED /* RPRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPRepo.m; sourceTree = "<group>"; };
 		6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RPGitErrors.h"; sourceTree = "<group>"; };
 		6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RPGitErrors.m"; sourceTree = "<group>"; };
-		6DC7A06F1A194D4F00D808ED /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6DC7A0741A194F8300D808ED /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		6DD748621A59DAB7007856CD /* RPDiffDelta+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPDiffDelta+Private.h"; sourceTree = "<group>"; };
 		6DF929531A90CE6B0087E7D3 /* RPReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPReference.h; sourceTree = "<group>"; };
 		6DF929541A90CE6B0087E7D3 /* RPReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPReference.m; sourceTree = "<group>"; };
@@ -135,6 +132,11 @@
 		EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiffStats.m; sourceTree = "<group>"; };
 		EF58D7951C70B7FB000B94E8 /* RPRepo+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RPRepo+Merge.h"; sourceTree = "<group>"; };
 		EF58D7961C70B7FB000B94E8 /* RPRepo+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RPRepo+Merge.m"; sourceTree = "<group>"; };
+		EF790BB51C8B0C6A0050D59A /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
+		EF790BB71C8B0C860050D59A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		EF790BB91C8B0C910050D59A /* libssl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libssl.tbd; path = usr/lib/libssl.tbd; sourceTree = SDKROOT; };
+		EF790BBB1C8B0C9E0050D59A /* libcrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcrypto.tbd; path = usr/lib/libcrypto.tbd; sourceTree = SDKROOT; };
+		EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		EF9CAC141B9115EA00A7C511 /* RPFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFunctions.m; sourceTree = "<group>"; };
 		EF9CAC161B9115F700A7C511 /* RPFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPFunctions.h; sourceTree = "<group>"; };
 		EFB0CF8D1C6382E40044702D /* RPConflict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPConflict.h; sourceTree = "<group>"; };
@@ -155,10 +157,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DC7A05F1A18E99D00D808ED /* libgit2.a in Frameworks */,
-				6DC7A0751A194F8300D808ED /* libiconv.dylib in Frameworks */,
-				6D307FA41A1FF7C1003DE0BD /* libcrypto.dylib in Frameworks */,
-				6D307FA21A1FF7BB003DE0BD /* libssl.dylib in Frameworks */,
-				6DC7A0701A194D4F00D808ED /* libz.dylib in Frameworks */,
+				EF790BB61C8B0C6A0050D59A /* libcurl.tbd in Frameworks */,
+				EF790BBE1C8B0CAB0050D59A /* libiconv.tbd in Frameworks */,
+				EF790BBC1C8B0C9E0050D59A /* libcrypto.tbd in Frameworks */,
+				EF790BBA1C8B0C910050D59A /* libssl.tbd in Frameworks */,
+				EF790BB81C8B0C860050D59A /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,10 +288,11 @@
 			isa = PBXGroup;
 			children = (
 				6DC7A05E1A18E99D00D808ED /* libgit2.a */,
-				6DC7A0741A194F8300D808ED /* libiconv.dylib */,
-				6D307FA31A1FF7C1003DE0BD /* libcrypto.dylib */,
-				6D307FA11A1FF7BB003DE0BD /* libssl.dylib */,
-				6DC7A06F1A194D4F00D808ED /* libz.dylib */,
+				EF790BB51C8B0C6A0050D59A /* libcurl.tbd */,
+				EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */,
+				EF790BBB1C8B0C9E0050D59A /* libcrypto.tbd */,
+				EF790BB91C8B0C910050D59A /* libssl.tbd */,
+				EF790BB71C8B0C860050D59A /* libz.tbd */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
