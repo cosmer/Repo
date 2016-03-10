@@ -93,4 +93,17 @@
     return YES;
 }
 
+- (NSInteger)count
+{
+    NSInteger count = 0;
+    while (true) {
+        git_oid oid;
+        if (git_revwalk_next(&oid, self.gitRevwalk) != GIT_OK) {
+            break;
+        }
+        count += 1;
+    }
+    return count;
+}
+
 @end

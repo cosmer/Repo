@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)push:(RPOID *)oid error:(NSError **)error;
 - (BOOL)hide:(RPOID *)oid error:(NSError **)error;
 
+/// Count commits by repeatedly calling `next`.
+- (NSInteger)count;
+
 @property(nonatomic, readonly) git_revwalk *gitRevwalk RP_RETURNS_INTERIOR_POINTER;
 
 @end
