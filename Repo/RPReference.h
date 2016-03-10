@@ -44,6 +44,9 @@ typedef struct git_reference git_reference;
 /// Iteratively peels a symbolic reference until it resolves to a direct reference to an OID.
 - (nullable RPReference *)resolve;
 
+/// \returns The receiver's remote tracking branch.
+- (nullable RPReference *)upstream;
+
 @property(nonatomic, readonly) git_reference *gitReference RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, readonly) BOOL isSymbolic;

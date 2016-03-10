@@ -15,6 +15,7 @@
 
 #import <git2/buffer.h>
 #import <git2/refs.h>
+#import <git2/branch.h>
 #import <git2/errors.h>
 
 @implementation RPReference
@@ -155,6 +156,16 @@
     }
 
     return [[RPReference alloc] initWithGitReference:resolved];
+}
+
+- (RPReference *)upstream
+{
+    git_reference *upstream = NULL;
+    if (git_branch_upstream(&upstream, self.gitReference) != GIT_OK) {
+        return nil;
+    }
+    
+    return [[RPReference alloc] initWithGitReference:upstream];
 }
 
 @end
