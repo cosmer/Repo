@@ -10,6 +10,7 @@
 
 #import "RPMacros.h"
 
+@class RPRepo;
 @class RPOID;
 
 typedef struct git_revwalk git_revwalk;
@@ -24,8 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// Assumes ownership of `revwalk`.
 - (instancetype)initWithGitRevWalk:(git_revwalk *)revwalk NS_DESIGNATED_INITIALIZER;
 
+- (nullable instancetype)initWithRepo:(RPRepo *)repo error:(NSError **)error;
+
 - (nullable RPOID *)next;
 - (BOOL)nextGitOID:(git_oid *)oid;
+
+- (BOOL)push:(RPOID *)oid error:(NSError **)error;
+- (BOOL)hide:(RPOID *)oid error:(NSError **)error;
 
 @property(nonatomic, readonly) git_revwalk *gitRevwalk RP_RETURNS_INTERIOR_POINTER;
 
