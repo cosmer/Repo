@@ -10,7 +10,6 @@
 #import "RPDiffFile+Private.h"
 
 #import "RPOID.h"
-#import "NSException+RPExceptions.h"
 
 @interface RPDiffFile ()
 
@@ -55,29 +54,6 @@
 - (BOOL)fileExists
 {
     return _flags & GIT_DIFF_FLAG_EXISTS ? YES : NO;
-}
-
-- (BOOL)isEqual:(id)object
-{
-    if (self == object) {
-        return YES;
-    }
-    
-    if (![object isKindOfClass:[RPDiffFile class]]) {
-        return NO;
-    }
-    
-    RPDiffFile *file = object;
-    return (self.mode == file.mode &&
-            self.flags == file.flags &&
-            [self.oid isEqual:file.oid] &&
-            [self.path isEqualToString:file.path]);
-}
-
-- (NSUInteger)hash
-{
-    [NSException rp_raiseSelector:_cmd notImplementedForClass:self.class];
-    return 0;
 }
 
 - (NSString *)description
