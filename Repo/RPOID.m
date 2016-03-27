@@ -90,6 +90,20 @@
     return &_oid;
 }
 
+- (NSComparisonResult)compare:(RPOID *)oid
+{
+    NSParameterAssert(oid != nil);
+    
+    const int r = git_oid_cmp(self.gitOID, oid.gitOID);
+    if (r < 0) {
+        return NSOrderedAscending;
+    }
+    if (r > 0) {
+        return NSOrderedDescending;
+    }
+    return NSOrderedSame;
+}
+
 - (BOOL)hasPrefix:(RPOID *)oid
 {
     NSParameterAssert(oid != nil);

@@ -27,6 +27,8 @@ typedef struct git_oid git_oid;
 /// Creates an object id with 40 or fewer significant hex characters.
 - (nullable instancetype)initWithPartialString:(NSString *)string error:(NSError **)error;
 
+- (NSComparisonResult)compare:(RPOID *)oid;
+
 - (BOOL)hasPrefix:(RPOID *)oid;
 
 @property(nonatomic, readonly) const git_oid *gitOID RP_RETURNS_INTERIOR_POINTER;
