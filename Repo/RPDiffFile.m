@@ -11,6 +11,33 @@
 
 #import "RPOID.h"
 
+static RPDiffFileTime MakeFileTime(const git_diff_file_time *fileTime)
+{
+    return (RPDiffFileTime){
+        .seconds = fileTime->seconds,
+        .nanoseconds = fileTime->nanoseconds
+    };
+}
+
+NSComparisonResult RPCompareDiffFileTimes(RPDiffFileTime left, RPDiffFileTime right)
+{
+    if (left.seconds < right.seconds) {
+        return NSOrderedAscending;
+    }
+    if (left.seconds > right.seconds) {
+        return NSOrderedDescending;
+    }
+    
+    if (left.nanoseconds < right.nanoseconds) {
+        return NSOrderedAscending;
+    }
+    if (left.nanoseconds > right.nanoseconds) {
+        return NSOrderedDescending;
+    }
+
+    return NSOrderedSame;
+}
+
 @interface RPDiffFile ()
 
 @property(nonatomic, readonly) uint32_t flags;
@@ -32,6 +59,8 @@
         _oid = [[RPOID alloc] initWithGitOID:&diffFile.id];
         _flags = diffFile.flags;
         _mode = diffFile.mode;
+        _ctime = MakeFileTime(&diffFile.ctime);
+        _mtime = MakeFileTime(&diffFile.mtime);
     }
     return self;
 }

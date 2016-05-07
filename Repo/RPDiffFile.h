@@ -12,6 +12,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef struct {
+    NSInteger seconds;
+    NSInteger nanoseconds;
+} RPDiffFileTime;
+
+NSComparisonResult RPCompareDiffFileTimes(RPDiffFileTime left, RPDiffFileTime right);
+
 @class RPOID;
 
 /// RPDiffFile is immutable and thread safe.
@@ -24,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Describes the file type; commit, blob, tree, etc.
 @property(nonatomic, readonly) RPFileMode mode;
+
+/// The receiver's creation time.
+@property(nonatomic, readonly) RPDiffFileTime ctime;
+/// The receiver's modification time.
+@property(nonatomic, readonly) RPDiffFileTime mtime;
 
 /// The receiver is treated as binary data.
 @property(nonatomic, readonly) BOOL isBinary;
