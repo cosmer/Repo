@@ -53,6 +53,8 @@
 		EF397E141BC1BBFE0055CBE8 /* RPDiffStats.m in Sources */ = {isa = PBXBuildFile; fileRef = EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */; };
 		EF58D7971C70B7FB000B94E8 /* RPRepo+Merge.h in Headers */ = {isa = PBXBuildFile; fileRef = EF58D7951C70B7FB000B94E8 /* RPRepo+Merge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = EF58D7961C70B7FB000B94E8 /* RPRepo+Merge.m */; };
+		EF663DF61CDE052A00E8A19D /* RPLineDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = EF663DF41CDE052A00E8A19D /* RPLineDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF663DF71CDE052A00E8A19D /* RPLineDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF663DF51CDE052A00E8A19D /* RPLineDiff.m */; };
 		EF790BB61C8B0C6A0050D59A /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB51C8B0C6A0050D59A /* libcurl.tbd */; };
 		EF790BB81C8B0C860050D59A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB71C8B0C860050D59A /* libz.tbd */; };
 		EF790BBA1C8B0C910050D59A /* libssl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB91C8B0C910050D59A /* libssl.tbd */; };
@@ -132,6 +134,8 @@
 		EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiffStats.m; sourceTree = "<group>"; };
 		EF58D7951C70B7FB000B94E8 /* RPRepo+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RPRepo+Merge.h"; sourceTree = "<group>"; };
 		EF58D7961C70B7FB000B94E8 /* RPRepo+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RPRepo+Merge.m"; sourceTree = "<group>"; };
+		EF663DF41CDE052A00E8A19D /* RPLineDiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPLineDiff.h; sourceTree = "<group>"; };
+		EF663DF51CDE052A00E8A19D /* RPLineDiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLineDiff.m; sourceTree = "<group>"; };
 		EF790BB51C8B0C6A0050D59A /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		EF790BB71C8B0C860050D59A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EF790BB91C8B0C910050D59A /* libssl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libssl.tbd; path = usr/lib/libssl.tbd; sourceTree = SDKROOT; };
@@ -249,6 +253,8 @@
 				6D4B172C1A5CC4B000ACC859 /* RPSubmodule.m */,
 				EF9CAC161B9115F700A7C511 /* RPFunctions.h */,
 				EF9CAC141B9115EA00A7C511 /* RPFunctions.m */,
+				EF663DF41CDE052A00E8A19D /* RPLineDiff.h */,
+				EF663DF51CDE052A00E8A19D /* RPLineDiff.m */,
 				6DC7A0651A18F5B300D808ED /* NSError+RPGitErrors.h */,
 				6DC7A0661A18F5B300D808ED /* NSError+RPGitErrors.m */,
 				6DFFE1471A62E56900A8E617 /* NSException+RPExceptions.h */,
@@ -329,6 +335,7 @@
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
 				EFE010BF1BD3CFD400D4101A /* RPRevWalker.h in Headers */,
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
+				EF663DF61CDE052A00E8A19D /* RPLineDiff.h in Headers */,
 				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
 				6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */,
 				6D310BB31A1AD29E001DCDB1 /* RPDiffFile+Private.h in Headers */,
@@ -439,6 +446,7 @@
 				EFC8E42C1B97AF9C00625403 /* RPRepo+History.m in Sources */,
 				EFF303EC1BD3D67700914FBA /* RPCommitWalker.m in Sources */,
 				EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */,
+				EF663DF71CDE052A00E8A19D /* RPLineDiff.m in Sources */,
 				EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
@@ -519,6 +527,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/External/libgit2/include\"",
+					"\"$(SRCROOT)/External/libgit2/src/xdiff\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -562,6 +571,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/External/libgit2/include\"",
+					"\"$(SRCROOT)/External/libgit2/src/xdiff\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -596,6 +606,7 @@
 					"-Wall",
 					"-Wextra",
 					"-Wno-missing-field-initializers",
+					"-Wno-missing-braces",
 				);
 			};
 			name = Debug;
@@ -624,6 +635,7 @@
 					"-Wall",
 					"-Wextra",
 					"-Wno-missing-field-initializers",
+					"-Wno-missing-braces",
 				);
 			};
 			name = Release;
