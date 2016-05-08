@@ -11,6 +11,9 @@
 
 #import "RPOID.h"
 
+_Static_assert(sizeof(((RPDiffFileTime *)(NULL))->seconds) == sizeof(((git_diff_file_time *)(NULL))->seconds), "");
+_Static_assert(sizeof(((RPDiffFileTime *)(NULL))->nanoseconds) == sizeof(((git_diff_file_time *)(NULL))->nanoseconds), "");
+
 static RPDiffFileTime MakeFileTime(const git_diff_file_time *fileTime)
 {
     return (RPDiffFileTime){

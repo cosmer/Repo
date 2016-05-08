@@ -13,8 +13,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef struct {
-    NSInteger seconds;
-    NSInteger nanoseconds;
+    int32_t seconds;
+    uint32_t nanoseconds;
 } RPDiffFileTime;
 
 NSComparisonResult RPCompareDiffFileTimes(RPDiffFileTime left, RPDiffFileTime right);
