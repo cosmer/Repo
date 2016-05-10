@@ -36,6 +36,13 @@ typedef NS_OPTIONS(NSUInteger, RPBranchType) {
     RPBranchTypeAll     = RPBranchTypeLocal | RPBranchTypeRemote,
 };
 
+typedef NS_ENUM(NSInteger, RPDiffLocation) {
+    RPDiffLocationOther,
+    RPDiffLocationIndex,
+    RPDiffLocationWorkdir,
+    RPDiffLocationWorkdirWithIndex,
+};
+
 NSString *RPFileModeName(RPFileMode mode);
 NSString *RPObjectTypeName(RPObjectType type);
 NSString *RPBranchTypeName(RPBranchType type);

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RPMacros.h"
+#import "RPTypes.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,8 +36,9 @@ extern NSString *RPDiffDeltaStatusLetter(RPDiffDeltaStatus status);
 /// RPDiffDelta is immutable and thread safe.
 @interface RPDiffDelta : NSObject
 
-- (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex;
+- (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex location:(RPDiffLocation)location;
 
+@property(nonatomic, readonly) RPDiffLocation location;
 @property(nonatomic, readonly) RPDiffDeltaStatus status;
 @property(nonatomic, strong, readonly) RPDiffFile *oldFile;
 @property(nonatomic, strong, readonly) RPDiffFile *newFile NS_RETURNS_NOT_RETAINED;

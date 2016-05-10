@@ -8,6 +8,8 @@
 
 #import <git2/diff.h>
 
+#import "RPTypes.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RPDiffDelta ()
@@ -15,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 /// Does not assume ownership of `delta`.
-- (instancetype)initWithGitDiffDelta:(const git_diff_delta *)delta NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithGitDiffDelta:(const git_diff_delta *)delta location:(RPDiffLocation)location NS_DESIGNATED_INITIALIZER;
 
 @end
 

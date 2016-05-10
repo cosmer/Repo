@@ -75,17 +75,18 @@ NSString *RPDiffDeltaStatusLetter(RPDiffDeltaStatus status)
     return nil;
 }
 
-- (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex
+- (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex location:(RPDiffLocation)location
 {
     NSParameterAssert(diff != nil);
     const git_diff_delta *delta = git_diff_get_delta(diff.gitDiff, deltaIndex);
-    return [self initWithGitDiffDelta:delta];
+    return [self initWithGitDiffDelta:delta location:location];
 }
 
-- (instancetype)initWithGitDiffDelta:(const git_diff_delta *)delta
+- (instancetype)initWithGitDiffDelta:(const git_diff_delta *)delta location:(RPDiffLocation)location
 {
     NSParameterAssert(delta != NULL);
     if ((self = [super init])) {
+        _location = location;
         _status = (RPDiffDeltaStatus)delta->status;
         _oldFile = [[RPDiffFile alloc] initWithGitDiffFile:delta->old_file];
         _newFile = [[RPDiffFile alloc] initWithGitDiffFile:delta->new_file];

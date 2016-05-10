@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RPMacros.h"
+#import "RPTypes.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -55,11 +56,12 @@ typedef struct git_diff git_diff;
 
 /// Assumes ownership of `diff`.
 - (instancetype)initWithGitDiff:(git_diff *)diff
+                       location:(RPDiffLocation)location
                       conflicts:(NSArray<RPConflict *> *)conflicts
                            repo:(RPRepo *)repo NS_DESIGNATED_INITIALIZER;
 
 /// Assumes ownership of `diff`.
-- (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo;
+- (instancetype)initWithGitDiff:(git_diff *)diff location:(RPDiffLocation)location repo:(RPRepo *)repo;
 
 - (void)enumerateDeltasUsingBlock:(RP_NO_ESCAPE void (^)(RPDiffDelta *delta))block;
 
@@ -68,6 +70,7 @@ typedef struct git_diff git_diff;
 - (BOOL)findSimilar:(NSError **)error;
 
 @property(nonatomic, readonly) git_diff *gitDiff RP_RETURNS_INTERIOR_POINTER;
+@property(nonatomic, readonly) RPDiffLocation location;
 @property(nonatomic, strong, readonly) NSArray<RPConflict *> *conflicts;
 @property(nonatomic, strong, readonly) RPRepo *repo;
 

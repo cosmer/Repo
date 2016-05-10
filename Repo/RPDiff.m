@@ -99,7 +99,7 @@ done:
     }
     
     NSArray *conflicts = [RPConflict conflictsFromGitIndex:index.gitIndex];
-    return [[self alloc] initWithGitDiff:diff conflicts:conflicts repo:repo];
+    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationWorkdir conflicts:conflicts repo:repo];
 }
 
 + (instancetype)diffHeadToWorkdirWithIndexInRepo:(RPRepo *)repo error:(NSError **)error
@@ -133,7 +133,7 @@ done:
     }
     
     NSArray *conflicts = [RPConflict conflictsFromGitIndex:index.gitIndex];
-    return [[self alloc] initWithGitDiff:diff conflicts:conflicts repo:repo];
+    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationWorkdirWithIndex conflicts:conflicts repo:repo];
 }
 
 + (instancetype)diffNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
@@ -151,7 +151,7 @@ done:
         return nil;
     }
     
-    return [[self alloc] initWithGitDiff:diff repo:repo];}
+    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationOther repo:repo];}
 
 + (instancetype)diffOldTree:(RPTree *)oldTree toNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
 {
@@ -169,7 +169,7 @@ done:
         return nil;
     }
     
-    return [[self alloc] initWithGitDiff:diff repo:repo];
+    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationOther repo:repo];
 }
 
 + (instancetype)diffOldTreeOID:(RPOID *)oldOID toNewTreeOID:(RPOID *)newOID inRepo:(RPRepo *)repo error:(NSError **)error
@@ -298,7 +298,7 @@ done:
     }
     
     NSArray *conflicts = [RPConflict conflictsFromGitIndex:index.gitIndex];
-    return [[RPDiff alloc] initWithGitDiff:diff conflicts:conflicts repo:repo];
+    return [[RPDiff alloc] initWithGitDiff:diff location:RPDiffLocationOther conflicts:conflicts repo:repo];
 }
 
 - (instancetype)init
@@ -308,6 +308,7 @@ done:
 }
 
 - (instancetype)initWithGitDiff:(git_diff *)diff
+                       location:(RPDiffLocation)location
                       conflicts:(NSArray<RPConflict *> *)conflicts
                            repo:(RPRepo *)repo
 {
@@ -316,15 +317,16 @@ done:
     NSParameterAssert(repo != nil);
     if ((self = [super init])) {
         _gitDiff = diff;
+        _location = location;
         _conflicts = [conflicts copy];
         _repo = repo;
     }
     return self;
 }
 
-- (instancetype)initWithGitDiff:(git_diff *)diff repo:(RPRepo *)repo
+- (instancetype)initWithGitDiff:(git_diff *)diff location:(RPDiffLocation)location repo:(RPRepo *)repo
 {
-    return [self initWithGitDiff:diff conflicts:@[] repo:repo];
+    return [self initWithGitDiff:diff location:location conflicts:@[] repo:repo];
 }
 
 - (RPDiffStats *)stats
@@ -346,9 +348,10 @@ done:
 {
     NSParameterAssert(block != nil);
     
+    RPDiffLocation location = self.location;
     NSUInteger count = self.deltaCount;
     for (NSUInteger i = 0; i < count; ++i) {
-        RPDiffDelta *delta = [[RPDiffDelta alloc] initWithDiff:self deltaIndex:i];
+        RPDiffDelta *delta = [[RPDiffDelta alloc] initWithDiff:self deltaIndex:i location:location];
         block(delta);
     }
 }
