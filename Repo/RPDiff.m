@@ -31,46 +31,6 @@ static git_diff_options defaultDiffOptions(void)
     return options;
 }
 
-static int diff_tree_to_workdir_with_index(git_diff **diff, git_repository *repo, git_tree *tree, git_index *index, const git_diff_options *options)
-{
-    *diff = NULL;
-
-    int gitError = GIT_OK;
-    
-    git_diff *d1 = NULL;
-    git_diff *d2 = NULL;
-    
-    git_index_read(index, 0);
-    
-    gitError = git_diff_tree_to_index(&d1, repo, tree, index, options);
-    if (gitError != GIT_OK) {
-        goto done;
-    }
-    
-    gitError = git_diff_index_to_workdir(&d2, repo, index, options);
-    if (gitError != GIT_OK) {
-        goto done;
-    }
-    
-    gitError = git_diff_merge(d1, d2);
-    if (gitError != GIT_OK) {
-        goto done;
-    }
-    
-done:
-    
-    git_diff_free(d2);
-    
-    if (gitError == GIT_OK) {
-        *diff = d1;
-    }
-    else {
-        git_diff_free(d1);
-    }
-
-    return gitError;
-}
-
 @implementation RPDiff
 
 - (void)dealloc
@@ -78,14 +38,10 @@ done:
     git_diff_free(_gitDiff);
 }
 
-+ (instancetype)diffIndexToWorkdirInRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffIndex:(RPIndex *)index toWorkdirInRepo:(RPRepo *)repo error:(NSError **)error
 {
+    NSParameterAssert(index != nil);
     NSParameterAssert(repo != nil);
-    
-    RPIndex *index = [repo indexWithError:error];
-    if (!index) {
-        return nil;
-    }
     
     git_diff_options options = defaultDiffOptions();
     
@@ -102,38 +58,25 @@ done:
     return [[self alloc] initWithGitDiff:diff location:RPDiffLocationWorkdir conflicts:conflicts repo:repo];
 }
 
-+ (instancetype)diffHeadToWorkdirWithIndexInRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffTree:(RPTree *)tree toIndex:(RPIndex *)index inRepo:(RPRepo *)repo error:(NSError **)error
 {
     NSParameterAssert(repo != nil);
     
-    RPIndex *index = [repo indexWithError:error];
-    if (!index) {
-        return nil;
-    }
-    
-    RPObject *object = [repo revParseSingle:@"HEAD^{tree}" error:error];
-    if (!object) {
-        return nil;
-    }
-    
-    RPTree *tree = [RPTree lookupOID:object.OID inRepo:repo error:error];
-    if (!tree) {
-        return nil;
-    }
+    git_index_read(index.gitIndex, 0);
     
     git_diff_options options = defaultDiffOptions();
     
     git_diff *diff = NULL;
-    int gitError = diff_tree_to_workdir_with_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
+    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff head to working directory with index"];
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff tree to index"];
         }
         return nil;
     }
     
     NSArray *conflicts = [RPConflict conflictsFromGitIndex:index.gitIndex];
-    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationWorkdirWithIndex conflicts:conflicts repo:repo];
+    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationIndex conflicts:conflicts repo:repo];
 }
 
 + (instancetype)diffNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
