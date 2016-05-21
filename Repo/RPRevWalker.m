@@ -15,6 +15,10 @@
 #import <git2/revwalk.h>
 #import <git2/errors.h>
 
+_Static_assert(RPRevWalkSortOptionsTopological == GIT_SORT_TOPOLOGICAL, "");
+_Static_assert(RPRevWalkSortOptionsTime == GIT_SORT_TIME, "");
+_Static_assert(RPRevWalkSortOptionsReverse == GIT_SORT_REVERSE, "");
+
 @implementation RPRevWalker
 
 - (void)dealloc
@@ -67,7 +71,7 @@
     return YES;
 }
 
-- (BOOL)push:(RPOID *)oid error:(NSError **)error
+- (BOOL)pushCommit:(RPOID *)oid error:(NSError **)error
 {
     NSParameterAssert(oid != nil);
     int gitError = git_revwalk_push(self.gitRevwalk, oid.gitOID);
@@ -80,7 +84,20 @@
     return YES;
 }
 
-- (BOOL)hide:(RPOID *)oid error:(NSError **)error
+- (BOOL)pushReference:(NSString *)reference error:(NSError **)error
+{
+    NSParameterAssert(reference != nil);
+    int gitError = git_revwalk_push_ref(self.gitRevwalk, reference.UTF8String);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to push reference %@.", reference];
+        }
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)hideCommit:(RPOID *)oid error:(NSError **)error
 {
     NSParameterAssert(oid != nil);
     int gitError = git_revwalk_hide(self.gitRevwalk, oid.gitOID);
@@ -91,6 +108,16 @@
         return NO;
     }
     return YES;
+}
+
+- (void)sortBy:(RPRevWalkSortOptions)options
+{
+    git_revwalk_sorting(self.gitRevwalk, (unsigned int)options);
+}
+
+- (void)simplifyFirstParent
+{
+    git_revwalk_simplify_first_parent(self.gitRevwalk);
 }
 
 - (NSInteger)count
