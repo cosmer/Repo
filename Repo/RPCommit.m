@@ -11,6 +11,7 @@
 #import "RPOID.h"
 #import "RPRepo.h"
 #import "RPSignature.h"
+#import "RPTree.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/commit.h>
@@ -115,6 +116,12 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return [[RPOID alloc] initWithGitOID:oid];
 }
 
+- (RPOID *)treeOID
+{
+    const git_oid *oid = git_commit_tree_id(self.gitCommit);
+    return [[RPOID alloc] initWithGitOID:oid];
+}
+
 - (RPCommit *)lookupParent:(NSError **)error
 {
     git_commit *parent = NULL;
@@ -127,6 +134,20 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     }
     
     return [[RPCommit alloc] initWithGitCommit:parent];
+}
+
+- (RPTree *)tree:(NSError **)error
+{
+    git_tree *tree = NULL;
+    int gitError = git_commit_tree(&tree, self.gitCommit);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't load tree for commit '%@'", self.oid];
+        }
+        return nil;
+    }
+
+    return [[RPTree alloc] initWithGitTree:tree];
 }
 
 @end

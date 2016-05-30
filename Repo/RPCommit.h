@@ -13,6 +13,7 @@
 @class RPOID;
 @class RPRepo;
 @class RPSignature;
+@class RPTree;
 
 typedef struct git_commit git_commit;
 
@@ -30,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// \return The first parent of `self` or nil.
 - (nullable RPCommit *)lookupParent:(NSError **)error;
 
+/// \return The tree pointed to by this commit or nil.
+- (nullable RPTree *)tree:(NSError **)error;
+
 @property(nonatomic, readonly) git_commit *gitCommit RP_RETURNS_INTERIOR_POINTER;
 
 @property(nonatomic, copy, readonly, nullable) NSString *message;
@@ -39,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSInteger parentCount;
 
 @property(nonatomic, strong, readonly) RPOID *oid;
+@property(nonatomic, strong, readonly) RPOID *treeOID;
 
 @end
 
