@@ -8,9 +8,22 @@
 
 #import "NSError+RPGitErrors.h"
 
+#import <git2/errors.h>
+
 NSString * const RPGitErrorDomain = @"RPGitErrorDomain";
 
 @implementation NSError (RPGitErrors)
+
++ (NSError *)rp_lastGitError
+{
+    const git_error *error = giterr_last();
+    if (!error) {
+        return nil;
+    }
+
+    NSString *d = error->message ? @(error->message) : @"";
+    return [self rp_gitErrorForCode:error->klass description:d];
+}
 
 + (NSError *)rp_gitErrorForCode:(int)code description:(NSString *)description, ...
 {
