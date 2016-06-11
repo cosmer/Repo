@@ -13,6 +13,8 @@
 #import "RPCommit.h"
 #import "RPIndex.h"
 #import "RPObject.h"
+#import "RPDiffDelta.h"
+#import "RPDiffFile.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/global.h>
@@ -22,6 +24,7 @@
 #import <git2/checkout.h>
 #import <git2/revparse.h>
 #import <git2/attr.h>
+#import <git2/reset.h>
 #import <git2/errors.h>
 
 @implementation RPRepo
@@ -127,14 +130,23 @@
     return @(value);
 }
 
-- (RPReference *)head
+- (RPReference *)headWithError:(NSError **)error
 {
     git_reference *ref = NULL;
-    if (git_repository_head(&ref, self.gitRepository) != GIT_OK) {
+    int gitError = git_repository_head(&ref, self.gitRepository);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_gitErrorForCode:gitError description:@"The repository is headless"];
+        }
         return nil;
     }
-    
+
     return [[RPReference alloc] initWithGitReference:ref];
+}
+
+- (RPReference *)head
+{
+    return [self headWithError:nil];
 }
 
 - (RPIndex *)indexWithError:(NSError **)error
@@ -208,6 +220,39 @@
     
     free(pathString);
     return YES;
+}
+
+- (BOOL)resetDiffDelta:(RPDiffDelta *)delta error:(NSError **)error
+{
+    NSParameterAssert(delta != nil);
+
+    RPIndex *index = [self indexWithError:error];
+    if (!index) {
+        return NO;
+    }
+
+    int gitError = git_index_conflict_remove(index.gitIndex, delta.newFile.path.UTF8String);
+    if (gitError < 0) {
+        if (!(delta.status == RPDiffDeltaStatusDeleted && gitError == GIT_ENOTFOUND)) {
+            if (error) {
+                *error = [NSError rp_lastGitError];
+            }
+            return NO;
+        }
+    }
+
+    if (delta.status == RPDiffDeltaStatusAdded) {
+        if (![index removeFileAtPath:delta.newFile.path stage:0 error:error]) {
+            return NO;
+        }
+    }
+    else {
+        if (![index addDiffFile:delta.oldFile error:error]) {
+            return NO;
+        }
+    }
+
+    return [index writeWithError:error];
 }
 
 - (RPObject *)revParseSingle:(NSString *)spec error:(NSError **)error
