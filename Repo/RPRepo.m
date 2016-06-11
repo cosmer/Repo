@@ -185,7 +185,7 @@
     return [[RPIndex alloc] initWithGitIndex:index];
 }
 
-- (BOOL)forceCheckoutFileAtPath:(NSString *)path error:(NSError **)error
+- (BOOL)forceCheckoutFileFromIndex:(RPIndex *)index atPath:(NSString *)path error:(NSError **)error
 {
     NSParameterAssert(path != nil);
 
@@ -196,7 +196,7 @@
     options.paths.count = 1;
     options.paths.strings = &pathString;
     
-    int gitError = git_checkout_head(self.gitRepository, &options);
+    int gitError = git_checkout_index(self.gitRepository, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to checkout file %@", path];

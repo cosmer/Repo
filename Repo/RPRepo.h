@@ -51,8 +51,8 @@ typedef struct git_repository git_repository;
 /// \return An index that reflects the result of the merge.
 - (nullable RPIndex *)mergeOurCommit:(RPCommit *)ourCommit withTheirCommit:(RPCommit *)theirCommit error:(NSError **)error;
 
-/// Replace a file in the workspace with the version of the file in HEAD.
-- (BOOL)forceCheckoutFileAtPath:(NSString *)path error:(NSError **)error;
+/// Replace a file in the workspace with the version of the file in the index.
+- (BOOL)forceCheckoutFileFromIndex:(nullable RPIndex *)index atPath:(NSString *)path error:(NSError **)error;
 
 /// Find a single object, as specified by a revision string.
 - (nullable RPObject *)revParseSingle:(NSString *)spec error:(NSError **)error;
