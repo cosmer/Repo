@@ -55,8 +55,11 @@ typedef struct git_repository git_repository;
 /// Replace a file in the workspace with the version of the file in the index.
 - (BOOL)forceCheckoutFileFromIndex:(nullable RPIndex *)index atPath:(NSString *)path error:(NSError **)error;
 
-/// Reset file at path relative to the repo's working directory.
-- (BOOL)resetDiffDelta:(RPDiffDelta *)delta error:(NSError **)error;
+/// Stage changes in diff delta.
+- (BOOL)stageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error;
+
+/// Unstage changes in diff delta.
+- (BOOL)unstageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error;
 
 /// Find a single object, as specified by a revision string.
 - (nullable RPObject *)revParseSingle:(NSString *)spec error:(NSError **)error;

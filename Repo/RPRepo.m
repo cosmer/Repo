@@ -222,7 +222,40 @@
     return YES;
 }
 
-- (BOOL)resetDiffDelta:(RPDiffDelta *)delta error:(NSError **)error
+- (BOOL)stageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error
+{
+    NSParameterAssert(delta != nil);
+
+    RPIndex *index = [self indexWithError:error];
+    if (!index) {
+        return NO;
+    }
+
+    int gitError = git_index_conflict_remove(index.gitIndex, delta.newFile.path.UTF8String);
+    if (gitError < 0) {
+        if (!(delta.status == RPDiffDeltaStatusUntracked && gitError == GIT_ENOTFOUND)) {
+            if (error) {
+                *error = [NSError rp_lastGitError];
+            }
+            return NO;
+        }
+    }
+
+    if (delta.status == RPDiffDeltaStatusDeleted) {
+        if (![index removeFileAtPath:delta.oldFile.path stage:0 error:error]) {
+            return NO;
+        }
+    }
+    else {
+        if (![index addFileAtPath:delta.newFile.path error:error]) {
+            return NO;
+        }
+    }
+
+    return [index writeWithError:error];
+}
+
+- (BOOL)unstageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error
 {
     NSParameterAssert(delta != nil);
 
