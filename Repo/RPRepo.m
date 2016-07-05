@@ -222,6 +222,24 @@
     return YES;
 }
 
+- (BOOL)removeConflictsInIndex:(RPIndex *)index atPath:(NSString *)path allowNotFound:(BOOL)allowNotFound error:(NSError **)error
+{
+    NSParameterAssert(index != nil);
+    NSParameterAssert(path != nil);
+
+    int gitError = git_index_conflict_remove(index.gitIndex, path.UTF8String);
+    if (gitError < 0) {
+        if (!(allowNotFound && gitError == GIT_ENOTFOUND)) {
+            if (error) {
+                *error = [NSError rp_lastGitError];
+            }
+            return NO;
+        }
+    }
+
+    return YES;
+}
+
 - (BOOL)stageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error
 {
     NSParameterAssert(delta != nil);
@@ -231,22 +249,35 @@
         return NO;
     }
 
-    int gitError = git_index_conflict_remove(index.gitIndex, delta.newFile.path.UTF8String);
-    if (gitError < 0) {
-        if (!(delta.status == RPDiffDeltaStatusUntracked && gitError == GIT_ENOTFOUND)) {
-            if (error) {
-                *error = [NSError rp_lastGitError];
-            }
+    if (delta.status == RPDiffDeltaStatusDeleted) {
+        if (![self removeConflictsInIndex:index atPath:delta.oldFile.path allowNotFound:NO error:error]) {
             return NO;
         }
-    }
-
-    if (delta.status == RPDiffDeltaStatusDeleted) {
         if (![index removeFileAtPath:delta.oldFile.path stage:0 error:error]) {
             return NO;
         }
     }
+    else if (delta.status == RPDiffDeltaStatusRenamed) {
+        if (![self removeConflictsInIndex:index atPath:delta.oldFile.path allowNotFound:YES error:error]) {
+            return NO;
+        }
+        if (![self removeConflictsInIndex:index atPath:delta.newFile.path allowNotFound:YES error:error]) {
+            return NO;
+        }
+
+        if (![index removeFileAtPath:delta.oldFile.path stage:0 error:error]) {
+            return NO;
+        }
+        if (![index addFileAtPath:delta.newFile.path error:error]) {
+            return NO;
+        }
+    }
     else {
+        BOOL allowNotFound = (delta.status == RPDiffDeltaStatusUntracked);
+        if (![self removeConflictsInIndex:index atPath:delta.newFile.path allowNotFound:allowNotFound error:error]) {
+            return NO;
+        }
+
         if (![index addFileAtPath:delta.newFile.path error:error]) {
             return NO;
         }
@@ -264,22 +295,36 @@
         return NO;
     }
 
-    int gitError = git_index_conflict_remove(index.gitIndex, delta.newFile.path.UTF8String);
-    if (gitError < 0) {
-        if (!(delta.status == RPDiffDeltaStatusDeleted && gitError == GIT_ENOTFOUND)) {
-            if (error) {
-                *error = [NSError rp_lastGitError];
-            }
+    if (delta.status == RPDiffDeltaStatusAdded) {
+        if (![self removeConflictsInIndex:index atPath:delta.newFile.path allowNotFound:NO error:error]) {
             return NO;
         }
-    }
 
-    if (delta.status == RPDiffDeltaStatusAdded) {
         if (![index removeFileAtPath:delta.newFile.path stage:0 error:error]) {
             return NO;
         }
     }
+    else if (delta.status == RPDiffDeltaStatusRenamed) {
+        if (![self removeConflictsInIndex:index atPath:delta.newFile.path allowNotFound:YES error:error]) {
+            return NO;
+        }
+        if (![self removeConflictsInIndex:index atPath:delta.oldFile.path allowNotFound:YES error:error]) {
+            return NO;
+        }
+
+        if (![index removeFileAtPath:delta.newFile.path stage:0 error:error]) {
+            return NO;
+        }
+        if (![index addDiffFile:delta.oldFile error:error]) {
+            return NO;
+        }
+    }
     else {
+        BOOL allowNotFound = (delta.status == RPDiffDeltaStatusDeleted);
+        if (![self removeConflictsInIndex:index atPath:delta.oldFile.path allowNotFound:allowNotFound error:error]) {
+            return NO;
+        }
+
         if (![index addDiffFile:delta.oldFile error:error]) {
             return NO;
         }
