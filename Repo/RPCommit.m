@@ -28,6 +28,12 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return NSUTF8StringEncoding;
 }
 
+@interface RPCommit () {
+    RPOID *_oid;
+}
+
+@end
+
 @implementation RPCommit
 
 + (instancetype)lookupOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error
@@ -112,8 +118,12 @@ static NSStringEncoding stringEncodingWithName(const char *name)
 
 - (RPOID *)oid
 {
-    const git_oid *oid = git_commit_id(self.gitCommit);
-    return [[RPOID alloc] initWithGitOID:oid];
+    if (!_oid) {
+        const git_oid *oid = git_commit_id(self.gitCommit);
+        _oid = [[RPOID alloc] initWithGitOID:oid];
+    }
+
+    return _oid;
 }
 
 - (RPOID *)treeOID
