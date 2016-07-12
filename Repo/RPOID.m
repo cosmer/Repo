@@ -23,8 +23,7 @@
 
 - (instancetype)init
 {
-    [NSException raise:NSGenericException format:@"%@ not available", NSStringFromSelector(_cmd)];
-    return nil;
+    return [super init];
 }
 
 - (instancetype)initWithGitOID:(const git_oid *)oid length:(NSInteger)length

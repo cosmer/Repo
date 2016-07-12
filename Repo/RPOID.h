@@ -16,7 +16,7 @@ typedef struct git_oid git_oid;
 
 @interface RPOID : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithGitOID:(const git_oid *)oid length:(NSInteger)length NS_DESIGNATED_INITIALIZER;
 
