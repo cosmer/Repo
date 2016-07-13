@@ -111,6 +111,11 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return [[RPSignature alloc] initWithGitSignature:sig];
 }
 
+- (int64_t)time
+{
+    return git_commit_time(self.gitCommit);
+}
+
 - (NSInteger)parentCount
 {
     return git_commit_parentcount(self.gitCommit);

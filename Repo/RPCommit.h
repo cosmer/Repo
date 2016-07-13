@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, readonly, nullable) NSString *summary;
 @property(nonatomic, strong, readonly) RPSignature *author;
 @property(nonatomic, strong, readonly) RPSignature *committer;
+@property(nonatomic, readonly) int64_t time;
 @property(nonatomic, readonly) NSInteger parentCount;
 
 @property(nonatomic, strong, readonly) RPOID *oid;
