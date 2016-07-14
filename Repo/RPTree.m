@@ -54,4 +54,35 @@
     return self;
 }
 
+- (RPOID *)oid
+{
+    const git_oid *oid = git_tree_id(self.gitTree);
+    return [[RPOID alloc] initWithGitOID:oid];
+}
+
+- (RPOID *)oidOfEntryAtPath:(NSString *)path error:(NSError **)error
+{
+    NSParameterAssert(path != nil);
+
+    git_tree_entry *entry = NULL;
+    int gitError = git_tree_entry_bypath(&entry, self.gitTree, path.UTF8String);
+    if (gitError != GIT_OK) {
+        if (gitError == GIT_ENOTFOUND) {
+            return [[RPOID alloc] init];
+        }
+
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    const git_oid *gitOID = git_tree_entry_id(entry);
+    RPOID *oid = [[RPOID alloc] initWithGitOID:gitOID];
+
+    git_tree_entry_free(entry);
+
+    return oid;
+}
+
 @end

@@ -25,7 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithGitTree:(git_tree *)tree NS_DESIGNATED_INITIALIZER;
 
+/// \return The entry's oid, or a zero oid if the entry doesn't exist.
+- (nullable RPOID *)oidOfEntryAtPath:(NSString *)path error:(NSError **)error;
+
 @property(nonatomic, readonly) git_tree *gitTree RP_RETURNS_INTERIOR_POINTER;
+
+@property(nonatomic, strong, readonly) RPOID *oid;
 
 @end
 
