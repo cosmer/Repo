@@ -46,7 +46,7 @@
     int gitError = git_submodule_lookup(&submodule, repo.gitRepository, path.UTF8String);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Submodule lookup failed"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

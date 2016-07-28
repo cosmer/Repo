@@ -49,7 +49,7 @@ static git_diff_options defaultDiffOptions(void)
     int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff index to working directory"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -70,7 +70,7 @@ static git_diff_options defaultDiffOptions(void)
     int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff tree to index"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -89,7 +89,7 @@ static git_diff_options defaultDiffOptions(void)
     int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, NULL, newTree.gitTree, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff tree"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -107,7 +107,7 @@ static git_diff_options defaultDiffOptions(void)
     int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, oldTree.gitTree, newTree.gitTree, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to diff trees"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -235,7 +235,7 @@ static git_diff_options defaultDiffOptions(void)
     int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Pull request diff failed"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -307,7 +307,7 @@ static git_diff_options defaultDiffOptions(void)
     int gitError = git_diff_find_similar(self.gitDiff, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find similarities in diff"];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }

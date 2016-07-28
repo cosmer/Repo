@@ -26,7 +26,7 @@
     int gitError = git_branch_iterator_new(&iterator, repo.gitRepository, (git_branch_t)types);
     if (gitError < GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to get branches for repo"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -79,7 +79,7 @@
     int gitError = git_branch_lookup(&ref, repo.gitRepository, self.name.UTF8String, (git_branch_t)self.type);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup reference for branch '%@'", self.name];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

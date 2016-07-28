@@ -18,7 +18,7 @@ NSString * const RPGitErrorDomain = @"RPGitErrorDomain";
 {
     const git_error *error = giterr_last();
     if (!error) {
-        return nil;
+        return [self rp_gitErrorForCode:0 description:@"An unknown error occurred."];
     }
 
     NSString *d = error->message ? @(error->message) : @"";

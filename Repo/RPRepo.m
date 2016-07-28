@@ -63,7 +63,7 @@
     int gitError = git_libgit2_init();
     if (gitError < 0) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"libgit2 initialization failed"];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }
@@ -106,7 +106,7 @@
     int gitError = git_repository_open(&repo, url.path.fileSystemRepresentation);
     if (gitError < GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to open repository at URL %@.", url];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -136,7 +136,7 @@
     int gitError = git_repository_head(&ref, self.gitRepository);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"The repository is headless"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -155,7 +155,7 @@
     int gitError = git_repository_index(&index, self.gitRepository);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find the repository's index."];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -172,7 +172,7 @@
     int gitError = git_merge_base(&base, self.gitRepository, oid1.gitOID, oid2.gitOID);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find merge base of %@ and %@.", oid1, oid2];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -189,7 +189,7 @@
     int gitError = git_merge_commits(&index, self.gitRepository, ourCommit.gitCommit, theirCommit.gitCommit, NULL);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to merge commits"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -211,7 +211,7 @@
     int gitError = git_checkout_index(self.gitRepository, index.gitIndex, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to checkout file %@", path];
+            *error = [NSError rp_lastGitError];
         }
         
         free(pathString);
@@ -341,7 +341,7 @@
     int gitError = git_revparse_single(&object, self.gitRepository, spec.UTF8String);
     if (gitError != GIT_OK){
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to parse revision string '%@'", spec];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

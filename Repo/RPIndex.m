@@ -44,7 +44,7 @@
     int gitError = git_index_add_bypath(self.gitIndex, path.UTF8String);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't add file at '%@'", path];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }

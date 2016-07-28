@@ -29,7 +29,7 @@
     int gitError = git_reference_lookup(&ref, repo.gitRepository, name.UTF8String);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup reference %@", name];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -45,7 +45,7 @@
     int gitError = git_reference_iterator_new(&it, repo.gitRepository);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to get references in repo"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -139,8 +139,7 @@
     int gitError = git_reference_peel(&object, self.gitReference, (git_otype)type);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError
-                                     description:@"Couldn't peel reference %@ to type %@", self.shortName, RPObjectTypeName(type)];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

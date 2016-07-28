@@ -45,7 +45,7 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     int gitError = git_commit_lookup(&commit, repo.gitRepository, oid.gitOID);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup commit %@", oid];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -147,7 +147,7 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     int gitError = git_commit_parent(&parent, self.gitCommit, (unsigned int)index);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't find parent of commit %@", self.oid];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -161,7 +161,7 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     int gitError = git_commit_tree(&tree, self.gitCommit);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't load tree for commit '%@'", self.oid];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

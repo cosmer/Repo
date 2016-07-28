@@ -14,7 +14,7 @@ extern NSString * const RPGitErrorDomain;
 
 @interface NSError (RPGitErrors)
 
-+ (nullable NSError *)rp_lastGitError;
++ (NSError *)rp_lastGitError;
 
 + (NSError *)rp_gitErrorForCode:(int)code description:(nullable NSString *)description, ...;
 

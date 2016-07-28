@@ -34,7 +34,7 @@
     int gitError = git_repository_config(&config, repo.gitRepository);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to open repository config"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

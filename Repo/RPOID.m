@@ -51,7 +51,7 @@
     int gitError = git_oid_fromstrp(&oid, string.UTF8String);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't parse oid '%@'", string];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -75,7 +75,7 @@
     int gitError = git_oid_fromstrp(&oid, utf8);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't parse oid '%@'", string];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

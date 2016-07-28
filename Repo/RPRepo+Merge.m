@@ -94,7 +94,7 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
     
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to merge conflict"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

@@ -43,7 +43,7 @@ _Static_assert(RPRevWalkSortOptionsReverse == GIT_SORT_REVERSE, "");
     int gitError = git_revwalk_new(&revwalk, repo.gitRepository);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to create revwalk."];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -77,7 +77,7 @@ _Static_assert(RPRevWalkSortOptionsReverse == GIT_SORT_REVERSE, "");
     int gitError = git_revwalk_push(self.gitRevwalk, oid.gitOID);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to push commit %@.", oid];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }
@@ -90,7 +90,7 @@ _Static_assert(RPRevWalkSortOptionsReverse == GIT_SORT_REVERSE, "");
     int gitError = git_revwalk_push_ref(self.gitRevwalk, reference.UTF8String);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to push reference %@.", reference];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }
@@ -103,7 +103,7 @@ _Static_assert(RPRevWalkSortOptionsReverse == GIT_SORT_REVERSE, "");
     int gitError = git_revwalk_hide(self.gitRevwalk, oid.gitOID);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to hide commit %@.", oid];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }

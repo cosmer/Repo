@@ -34,7 +34,7 @@ static const size_t RPStashNotFound = (size_t)(-1);
     
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to enumerate stashes"];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -89,7 +89,7 @@ static const size_t RPStashNotFound = (size_t)(-1);
     int gitError = git_stash_apply(repo.gitRepository, index, &options);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to apply stash at index %@", @(index)];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }
@@ -117,7 +117,7 @@ static const size_t RPStashNotFound = (size_t)(-1);
     int gitError = git_stash_drop(repo.gitRepository, index);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to drop stash at index %@", @(index)];
+            *error = [NSError rp_lastGitError];
         }
         return NO;
     }

@@ -29,7 +29,7 @@
     int gitError = git_object_lookup(&object, repo.gitRepository, oid.gitOID, (git_otype)type);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup %@ with type %@", oid, RPObjectTypeName(type)];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
@@ -63,7 +63,7 @@
     int gitError = git_object_peel(&peeled, self.gitObject, (git_otype)type);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Couldn't peel object %@ to type %@", self.OID, RPObjectTypeName(type)];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }

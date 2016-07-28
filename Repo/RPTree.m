@@ -26,7 +26,7 @@
     int gitError = git_tree_lookup(&tree, repo.gitRepository, oid.gitOID);
     if (gitError != GIT_OK) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:gitError description:@"Failed to lookup tree with id %@", oid.stringValue];
+            *error = [NSError rp_lastGitError];
         }
         return nil;
     }
