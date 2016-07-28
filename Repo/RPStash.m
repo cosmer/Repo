@@ -71,7 +71,7 @@ static const size_t RPStashNotFound = (size_t)(-1);
     const size_t index = [self indexOfStashWithCommitOID:commitOID inRepo:repo];
     if (index == RPStashNotFound) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:GIT_ENOTFOUND description:@"Couldn't find stash with oid %@", commitOID];
+            *error = [NSError rp_repoErrorWithDescription:@"Couldn't find stash with oid %@", commitOID];
         }
         return NO;
     }
@@ -104,7 +104,7 @@ static const size_t RPStashNotFound = (size_t)(-1);
     const size_t index = [self indexOfStashWithCommitOID:commitOID inRepo:repo];
     if (index == RPStashNotFound) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:GIT_ENOTFOUND description:@"Couldn't find stash with oid %@", commitOID];
+            *error = [NSError rp_repoErrorWithDescription:@"Couldn't find stash with oid %@", commitOID];
         }
         return NO;
     }

@@ -10,22 +10,36 @@
 
 #import <git2/errors.h>
 
-NSString * const RPGitErrorDomain = @"RPGitErrorDomain";
+NSString * const RPLibGit2ErrorDomain = @"RPLibGit2ErrorDomain";
+NSString * const RPRepoErrorDomain = @"RPRepoErrorDomain";
 
 @implementation NSError (RPGitErrors)
 
 + (NSError *)rp_lastGitError
 {
+    NSInteger code = -1;
+    NSString *description = nil;
+
     const git_error *error = giterr_last();
-    if (!error) {
-        return [self rp_gitErrorForCode:0 description:@"An unknown error occurred."];
+    if (error) {
+        code = error->klass;
+        if (error->message) {
+            description = @(error->message);
+        }
     }
 
-    NSString *d = error->message ? @(error->message) : @"";
-    return [self rp_gitErrorForCode:error->klass description:d];
+    NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+    if (description.length > 0) {
+        userInfo[NSLocalizedDescriptionKey] = description;
+    }
+    else {
+        userInfo[NSLocalizedDescriptionKey] = @"An unknown error occurred.";
+    }
+
+    return [[NSError alloc] initWithDomain:RPLibGit2ErrorDomain code:code userInfo:userInfo];
 }
 
-+ (NSError *)rp_gitErrorForCode:(int)code description:(NSString *)description, ...
++ (NSError *)rp_repoErrorWithDescription:(NSString *)description, ...
 {
     NSString *formattedDescription = nil;
     if (description) {
@@ -40,7 +54,7 @@ NSString * const RPGitErrorDomain = @"RPGitErrorDomain";
         userInfo[NSLocalizedDescriptionKey] = formattedDescription;
     }
     
-    return [[NSError alloc] initWithDomain:RPGitErrorDomain code:code userInfo:userInfo];
+    return [[NSError alloc] initWithDomain:RPRepoErrorDomain code:0 userInfo:userInfo];
 }
 
 @end

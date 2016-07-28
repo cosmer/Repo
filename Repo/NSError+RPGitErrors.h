@@ -10,13 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString * const RPGitErrorDomain;
+extern NSString * const RPLibGit2ErrorDomain;
+extern NSString * const RPRepoErrorDomain;
 
 @interface NSError (RPGitErrors)
 
 + (NSError *)rp_lastGitError;
 
-+ (NSError *)rp_gitErrorForCode:(int)code description:(nullable NSString *)description, ...;
++ (NSError *)rp_repoErrorWithDescription:(NSString *)description, ...;
 
 @end
 

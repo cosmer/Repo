@@ -66,7 +66,7 @@
     const char *utf8 = string.UTF8String;
     if (!utf8) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:GIT_EINVALID description:@"Couldn't parse oid '%@'", string];
+            *error = [NSError rp_repoErrorWithDescription:@"Couldn't parse oid %@", string];
         }
         return nil;
     }

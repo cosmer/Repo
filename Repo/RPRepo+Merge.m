@@ -40,7 +40,7 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
     RPBlob *ourBlob = [[RPBlob alloc] initWithOID:ours.oid inRepo:self error:error];
     if (!ourBlob) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, our blob is missing"];
+            *error = [NSError rp_repoErrorWithDescription:@"Can't merge conflict, our blob is missing"];
         }
         return nil;
     }
@@ -48,7 +48,7 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
     RPBlob *theirBlob = [[RPBlob alloc] initWithOID:theirs.oid inRepo:self error:error];
     if (!theirBlob) {
         if (error) {
-            *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, their blob is missing"];
+            *error = [NSError rp_repoErrorWithDescription:@"Can't merge conflict, their blob is missing"];
         }
         return nil;
     }
@@ -76,7 +76,7 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
         RPBlob *ancestorBlob = [[RPBlob alloc] initWithOID:ancestor.oid inRepo:self error:error];
         if (!ancestorBlob) {
             if (error) {
-                *error = [NSError rp_gitErrorForCode:GIT_EUSER description:@"Can't merge conflict, ancestor blob is missing"];
+                *error = [NSError rp_repoErrorWithDescription:@"Can't merge conflict, ancestor blob is missing"];
             }
             return nil;
         }
