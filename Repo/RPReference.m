@@ -147,10 +147,13 @@
     return [[RPObject alloc] initWithGitObject:object];
 }
 
-- (RPReference *)resolve
+- (RPReference *)resolveWithError:(NSError **)error
 {
     git_reference *resolved = NULL;
     if (git_reference_resolve(&resolved, self.gitReference) != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
         return nil;
     }
 

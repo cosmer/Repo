@@ -42,7 +42,7 @@ typedef struct git_reference git_reference;
 - (nullable RPObject *)peelToType:(RPObjectType)type error:(NSError **)error;
 
 /// Iteratively peels a symbolic reference until it resolves to a direct reference to an OID.
-- (nullable RPReference *)resolve;
+- (nullable RPReference *)resolveWithError:(NSError **)error;
 
 /// \returns The receiver's remote tracking branch.
 - (nullable RPReference *)upstream;
