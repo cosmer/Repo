@@ -333,7 +333,7 @@
     return [index writeWithError:error];
 }
 
-- (RPObject *)revParseSingle:(NSString *)spec error:(NSError **)error
+- (RPObject *)parseSingleRevision:(NSString *)spec error:(NSError **)error
 {
     NSParameterAssert(spec != nil);
     

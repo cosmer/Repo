@@ -62,7 +62,7 @@ typedef struct git_repository git_repository;
 - (BOOL)unstageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error;
 
 /// Find a single object, as specified by a revision string.
-- (nullable RPObject *)revParseSingle:(NSString *)spec error:(NSError **)error;
+- (nullable RPObject *)parseSingleRevision:(NSString *)spec error:(NSError **)error;
 
 /// \return YES if the submodule's status indicates its working directory is dirty.
 - (BOOL)isSubmoduleWorkingDirectoryDirty:(NSString *)path;
