@@ -11,34 +11,15 @@
 
 #import "RPOID.h"
 
-_Static_assert(sizeof(((RPDiffFileTime *)(NULL))->seconds) == sizeof(((git_diff_file_time *)(NULL))->seconds), "");
-_Static_assert(sizeof(((RPDiffFileTime *)(NULL))->nanoseconds) == sizeof(((git_diff_file_time *)(NULL))->nanoseconds), "");
+_Static_assert(sizeof(((RPFileTime *)(NULL))->seconds) == sizeof(((git_diff_file_time *)(NULL))->seconds), "");
+_Static_assert(sizeof(((RPFileTime *)(NULL))->nanoseconds) == sizeof(((git_diff_file_time *)(NULL))->nanoseconds), "");
 
-static RPDiffFileTime MakeFileTime(const git_diff_file_time *fileTime)
+static RPFileTime MakeFileTime(const git_diff_file_time *fileTime)
 {
-    return (RPDiffFileTime){
+    return (RPFileTime){
         .seconds = fileTime->seconds,
         .nanoseconds = fileTime->nanoseconds
     };
-}
-
-NSComparisonResult RPCompareDiffFileTimes(RPDiffFileTime left, RPDiffFileTime right)
-{
-    if (left.seconds < right.seconds) {
-        return NSOrderedAscending;
-    }
-    if (left.seconds > right.seconds) {
-        return NSOrderedDescending;
-    }
-    
-    if (left.nanoseconds < right.nanoseconds) {
-        return NSOrderedAscending;
-    }
-    if (left.nanoseconds > right.nanoseconds) {
-        return NSOrderedDescending;
-    }
-
-    return NSOrderedSame;
 }
 
 @interface RPDiffFile ()

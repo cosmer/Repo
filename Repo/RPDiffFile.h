@@ -9,15 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import <Repo/RPTypes.h>
+#import <Repo/RPFileTime.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef struct {
-    int32_t seconds;
-    uint32_t nanoseconds;
-} RPDiffFileTime;
-
-NSComparisonResult RPCompareDiffFileTimes(RPDiffFileTime left, RPDiffFileTime right);
 
 @class RPOID;
 
@@ -33,9 +27,9 @@ NSComparisonResult RPCompareDiffFileTimes(RPDiffFileTime left, RPDiffFileTime ri
 @property(nonatomic, readonly) RPFileMode mode;
 
 /// The receiver's creation time.
-@property(nonatomic, readonly) RPDiffFileTime ctime;
+@property(nonatomic, readonly) RPFileTime ctime;
 /// The receiver's modification time.
-@property(nonatomic, readonly) RPDiffFileTime mtime;
+@property(nonatomic, readonly) RPFileTime mtime;
 
 /// The receiver is treated as binary data.
 @property(nonatomic, readonly) BOOL isBinary;

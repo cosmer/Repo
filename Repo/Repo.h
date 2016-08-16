@@ -39,3 +39,4 @@ FOUNDATION_EXPORT const unsigned char RepoVersionString[];
 #import <Repo/RPLineDiff.h>
 #import <Repo/NSError+RPGitErrors.h>
 #import <Repo/RPMacros.h>
+#import <Repo/RPFileTime.h>
