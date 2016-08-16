@@ -13,26 +13,27 @@
 #import <git2/errors.h>
 #import <git2/index.h>
 
-@implementation RPConflictEntry
-
-- (instancetype)initWithOID:(RPOID *)oid path:(NSString *)path fileMode:(RPFileMode)mode
+static RPFileTime MakeFileTime(git_index_time indexTime)
 {
-    NSParameterAssert(oid != nil);
-    NSParameterAssert(path != nil);
-    if ((self = [super init])) {
-        _oid = oid;
-        _path = [path copy];
-        _mode = mode;
-    }
-    return self;
+    return (RPFileTime){
+        .seconds = indexTime.seconds,
+        .nanoseconds = indexTime.nanoseconds
+    };
 }
+
+@implementation RPConflictEntry
 
 - (instancetype)initWithGitIndexEntry:(const git_index_entry *)entry
 {
     NSParameterAssert(entry != NULL);
-    RPOID *oid = [[RPOID alloc] initWithGitOID:&entry->id];
-    NSString *path = [[NSString alloc] initWithUTF8String:entry->path ?: ""];
-    return [self initWithOID:oid path:path fileMode:entry->mode];
+    if ((self = [super init])) {
+        _oid = [[RPOID alloc] initWithGitOID:&entry->id];
+        _path = [[NSString alloc] initWithUTF8String:entry->path ?: ""];
+        _mode = entry->mode;
+        _mtime = MakeFileTime(entry->mtime);
+        _ctime = MakeFileTime(entry->ctime);
+    }
+    return self;
 }
 
 - (NSString *)description
