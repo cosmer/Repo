@@ -37,6 +37,23 @@
     return [[RPObject alloc] initWithGitObject:object];
 }
 
++ (NSNumber *)sizeOfObjectWithOID:(RPOID *)oid inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(oid != nil);
+    NSParameterAssert(repo != nil);
+
+    size_t len = 0;
+    int gitError = git_object_read_header(&len, NULL, repo.gitRepository, oid.gitOID);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    return @(len);
+}
+
 - (void)dealloc
 {
     git_object_free(_gitObject);
