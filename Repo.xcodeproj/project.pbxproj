@@ -59,8 +59,6 @@
 		EF663DF71CDE052A00E8A19D /* RPLineDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF663DF51CDE052A00E8A19D /* RPLineDiff.m */; };
 		EF790BB61C8B0C6A0050D59A /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB51C8B0C6A0050D59A /* libcurl.tbd */; };
 		EF790BB81C8B0C860050D59A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB71C8B0C860050D59A /* libz.tbd */; };
-		EF790BBA1C8B0C910050D59A /* libssl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB91C8B0C910050D59A /* libssl.tbd */; };
-		EF790BBC1C8B0C9E0050D59A /* libcrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BBB1C8B0C9E0050D59A /* libcrypto.tbd */; };
 		EF790BBE1C8B0CAB0050D59A /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */; };
 		EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9CAC141B9115EA00A7C511 /* RPFunctions.m */; };
 		EFB0CF8F1C6382E40044702D /* RPConflict.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB0CF8D1C6382E40044702D /* RPConflict.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -140,8 +138,6 @@
 		EF663DF51CDE052A00E8A19D /* RPLineDiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPLineDiff.m; sourceTree = "<group>"; };
 		EF790BB51C8B0C6A0050D59A /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		EF790BB71C8B0C860050D59A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		EF790BB91C8B0C910050D59A /* libssl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libssl.tbd; path = usr/lib/libssl.tbd; sourceTree = SDKROOT; };
-		EF790BBB1C8B0C9E0050D59A /* libcrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcrypto.tbd; path = usr/lib/libcrypto.tbd; sourceTree = SDKROOT; };
 		EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		EF9CAC141B9115EA00A7C511 /* RPFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFunctions.m; sourceTree = "<group>"; };
 		EF9CAC161B9115F700A7C511 /* RPFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPFunctions.h; sourceTree = "<group>"; };
@@ -163,8 +159,6 @@
 				6DC7A05F1A18E99D00D808ED /* libgit2.a in Frameworks */,
 				EF790BB61C8B0C6A0050D59A /* libcurl.tbd in Frameworks */,
 				EF790BBE1C8B0CAB0050D59A /* libiconv.tbd in Frameworks */,
-				EF790BBC1C8B0C9E0050D59A /* libcrypto.tbd in Frameworks */,
-				EF790BBA1C8B0C910050D59A /* libssl.tbd in Frameworks */,
 				EF790BB81C8B0C860050D59A /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,8 +290,6 @@
 				6DC7A05E1A18E99D00D808ED /* libgit2.a */,
 				EF790BB51C8B0C6A0050D59A /* libcurl.tbd */,
 				EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */,
-				EF790BBB1C8B0C9E0050D59A /* libcrypto.tbd */,
-				EF790BB91C8B0C910050D59A /* libssl.tbd */,
 				EF790BB71C8B0C860050D59A /* libz.tbd */,
 			);
 			name = Libraries;
@@ -388,7 +380,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Charles Osmer";
 				TargetAttributes = {
 					6DC7A0411A18E20000D808ED = {
@@ -501,8 +493,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -511,6 +505,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -551,8 +546,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
@@ -561,6 +558,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -597,6 +595,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cosmer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -627,6 +626,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cosmer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
