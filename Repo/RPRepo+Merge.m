@@ -9,6 +9,8 @@
 #import "RPRepo+Merge.h"
 
 #import "RPBlob.h"
+#import "RPIndex.h"
+#import "RPCommit.h"
 #import "RPConflict.h"
 #import "RPOID.h"
 #import "NSError+RPGitErrors.h"
@@ -27,6 +29,25 @@ _Static_assert(RPMergeFileFlagDiffPatience == GIT_MERGE_FILE_DIFF_PATIENCE, "");
 _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
 
 @implementation RPRepo (Merge)
+
+- (RPIndex *)mergeOurCommit:(RPCommit *)ourCommit
+            withTheirCommit:(RPCommit *)theirCommit
+                      error:(NSError **)error
+{
+    NSParameterAssert(ourCommit != nil);
+    NSParameterAssert(theirCommit != nil);
+
+    git_index *index = NULL;
+    int gitError = git_merge_commits(&index, self.gitRepository, ourCommit.gitCommit, theirCommit.gitCommit, NULL);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    return [[RPIndex alloc] initWithGitIndex:index];
+}
 
 - (NSData *)mergeConflictEntriesWithAncestor:(RPConflictEntry *)ancestor
                                         ours:(RPConflictEntry *)ours

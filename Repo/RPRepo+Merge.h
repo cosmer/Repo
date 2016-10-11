@@ -8,6 +8,8 @@
 
 #import <Repo/Repo.h>
 
+@class RPIndex;
+@class RPCommit;
 @class RPConflictEntry;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -35,6 +37,11 @@ typedef NS_OPTIONS(NSUInteger, RPMergeFileFlag) {
 @end
 
 @interface RPRepo (Merge)
+
+/// \return An index that reflects the result of the merge.
+- (nullable RPIndex *)mergeOurCommit:(RPCommit *)ourCommit
+                     withTheirCommit:(RPCommit *)theirCommit
+                               error:(NSError **)error;
 
 - (nullable NSData *)mergeConflictEntriesWithAncestor:(nullable RPConflictEntry *)ancestor
                                                  ours:(RPConflictEntry *)ours

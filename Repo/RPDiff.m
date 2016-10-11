@@ -9,6 +9,7 @@
 #import "RPDiff.h"
 
 #import "RPRepo.h"
+#import "RPRepo+Merge.h"
 #import "RPDiffDelta.h"
 #import "RPOID.h"
 #import "RPObject.h"
