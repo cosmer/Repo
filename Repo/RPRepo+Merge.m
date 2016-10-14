@@ -18,6 +18,11 @@
 #import <git2/errors.h>
 #import <git2/merge.h>
 
+_Static_assert(RPMergeFlagFindRenames == GIT_MERGE_FIND_RENAMES, "");
+_Static_assert(RPMergeFlagFailOnConflict == GIT_MERGE_FAIL_ON_CONFLICT, "");
+_Static_assert(RPMergeFlagSkipREUC == GIT_MERGE_SKIP_REUC, "");
+_Static_assert(RPMergeFlagNoRecursive == GIT_MERGE_NO_RECURSIVE, "");
+
 _Static_assert(RPMergeFileFlagDefault == GIT_MERGE_FILE_DEFAULT, "");
 _Static_assert(RPMergeFileFlagStyleMerge == GIT_MERGE_FILE_STYLE_MERGE, "");
 _Static_assert(RPMergeFileFlagStyleDiff3 == GIT_MERGE_FILE_STYLE_DIFF3, "");
@@ -32,13 +37,20 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
 
 - (RPIndex *)mergeOurCommit:(RPCommit *)ourCommit
             withTheirCommit:(RPCommit *)theirCommit
+                    options:(RPMergeOptions *)options
                       error:(NSError **)error
 {
     NSParameterAssert(ourCommit != nil);
     NSParameterAssert(theirCommit != nil);
 
+    git_merge_options gitOptions = GIT_MERGE_OPTIONS_INIT;
+    if (options) {
+        gitOptions.flags = (git_merge_flag_t)options.flags;
+        gitOptions.file_flags = (git_merge_file_flag_t)options.fileFlags;
+    }
+
     git_index *index = NULL;
-    int gitError = git_merge_commits(&index, self.gitRepository, ourCommit.gitCommit, theirCommit.gitCommit, NULL);
+    int gitError = git_merge_commits(&index, self.gitRepository, ourCommit.gitCommit, theirCommit.gitCommit, &gitOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
@@ -57,6 +69,7 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
 {
     NSParameterAssert(ours != nil);
     NSParameterAssert(theirs != nil);
+    NSParameterAssert(options != nil);
     
     RPBlob *ourBlob = [[RPBlob alloc] initWithOID:ours.oid inRepo:self error:error];
     if (!ourBlob) {
@@ -125,6 +138,10 @@ _Static_assert(RPMergeFileFlagDiffMinimal == GIT_MERGE_FILE_DIFF_MINIMAL, "");
     
     return data;
 }
+
+@end
+
+@implementation RPMergeOptions
 
 @end
 

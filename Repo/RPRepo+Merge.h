@@ -14,6 +14,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_OPTIONS(NSUInteger, RPMergeFlag) {
+    RPMergeFlagFindRenames      = 1 << 0,
+    RPMergeFlagFailOnConflict   = 1 << 1,
+    RPMergeFlagSkipREUC         = 1 << 2,
+    RPMergeFlagNoRecursive      = 1 << 3,
+};
+
 typedef NS_OPTIONS(NSUInteger, RPMergeFileFlag) {
     RPMergeFileFlagDefault                  = 0,
     RPMergeFileFlagStyleMerge               = 1 << 0,
@@ -25,6 +32,13 @@ typedef NS_OPTIONS(NSUInteger, RPMergeFileFlag) {
     RPMergeFileFlagDiffPatience             = 1 << 6,
     RPMergeFileFlagDiffMinimal              = 1 << 7,
 };
+
+@interface RPMergeOptions : NSObject
+
+@property(nonatomic) RPMergeFlag flags;
+@property(nonatomic) RPMergeFileFlag fileFlags;
+
+@end
 
 @interface RPMergeFileOptions : NSObject
 
@@ -41,6 +55,7 @@ typedef NS_OPTIONS(NSUInteger, RPMergeFileFlag) {
 /// \return An index that reflects the result of the merge.
 - (nullable RPIndex *)mergeOurCommit:(RPCommit *)ourCommit
                      withTheirCommit:(RPCommit *)theirCommit
+                             options:(nullable RPMergeOptions *)options
                                error:(NSError **)error;
 
 - (nullable NSData *)mergeConflictEntriesWithAncestor:(nullable RPConflictEntry *)ancestor

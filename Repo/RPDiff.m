@@ -224,16 +224,19 @@ static git_diff_options defaultDiffOptions(void)
     if (!tree) {
         return nil;
     }
-    
-    RPIndex *index = [repo mergeOurCommit:ourCommit withTheirCommit:theirCommit error:error];
+
+    RPMergeOptions *mergeOptions = [[RPMergeOptions alloc] init];
+    mergeOptions.flags = RPMergeFlagSkipREUC;
+
+    RPIndex *index = [repo mergeOurCommit:ourCommit withTheirCommit:theirCommit options:mergeOptions error:error];
     if (!index) {
         return nil;
     }
     
-    git_diff_options options = defaultDiffOptions();
+    git_diff_options diffOptions = defaultDiffOptions();
     
     git_diff *diff = NULL;
-    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
+    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &diffOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
