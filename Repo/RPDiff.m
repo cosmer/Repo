@@ -25,12 +25,35 @@
 #import <git2/index.h>
 #import <git2/errors.h>
 
-static git_diff_options defaultDiffOptions(void)
-{
-    git_diff_options options = GIT_DIFF_OPTIONS_INIT;
-    options.flags = GIT_DIFF_PATIENCE | GIT_DIFF_INCLUDE_UNTRACKED | GIT_DIFF_RECURSE_UNTRACKED_DIRS | GIT_DIFF_IGNORE_CASE;
-    return options;
-}
+_Static_assert(RPDiffFlagNormal == GIT_DIFF_NORMAL, "");
+_Static_assert(RPDiffFlagReverse == GIT_DIFF_REVERSE, "");
+_Static_assert(RPDiffFlagIncludeIgnored == GIT_DIFF_INCLUDE_IGNORED, "");
+_Static_assert(RPDiffFlagRecurseIgnoredDirs == GIT_DIFF_RECURSE_IGNORED_DIRS, "");
+_Static_assert(RPDiffFlagIncludeUntracked == GIT_DIFF_INCLUDE_UNTRACKED, "");
+_Static_assert(RPDiffFlagRecurseUntrackedDirs == GIT_DIFF_RECURSE_UNTRACKED_DIRS, "");
+_Static_assert(RPDiffFlagIncludeUnmodified == GIT_DIFF_INCLUDE_UNMODIFIED, "");
+_Static_assert(RPDiffFlagIncludeTypechange == GIT_DIFF_INCLUDE_TYPECHANGE, "");
+_Static_assert(RPDiffFlagIncludeTypechangeTrees == GIT_DIFF_INCLUDE_TYPECHANGE_TREES, "");
+_Static_assert(RPDiffFlagIgnoreFilemode == GIT_DIFF_IGNORE_FILEMODE, "");
+_Static_assert(RPDiffFlagIgnoreSubmodules == GIT_DIFF_IGNORE_SUBMODULES, "");
+_Static_assert(RPDiffFlagIgnoreCase == GIT_DIFF_IGNORE_CASE, "");
+_Static_assert(RPDiffFlagIncludeCasechange == GIT_DIFF_INCLUDE_CASECHANGE, "");
+_Static_assert(RPDiffFlagDisablePathspecMatch == GIT_DIFF_DISABLE_PATHSPEC_MATCH, "");
+_Static_assert(RPDiffFlagSkipBinaryCheck == GIT_DIFF_SKIP_BINARY_CHECK, "");
+_Static_assert(RPDiffFlagEnableFastUntrackedDirs == GIT_DIFF_ENABLE_FAST_UNTRACKED_DIRS, "");
+_Static_assert(RPDiffFlagUpdateIndex == GIT_DIFF_UPDATE_INDEX, "");
+_Static_assert(RPDiffFlagIncludeUnreadable == GIT_DIFF_INCLUDE_UNREADABLE, "");
+_Static_assert(RPDiffFlagIncludeUnreadableAsUntracked == GIT_DIFF_INCLUDE_UNREADABLE_AS_UNTRACKED, "");
+_Static_assert(RPDiffFlagForceText == GIT_DIFF_FORCE_TEXT, "");
+_Static_assert(RPDiffFlagForceBinary == GIT_DIFF_FORCE_BINARY, "");
+_Static_assert(RPDiffFlagIgnoreWhitespace == GIT_DIFF_IGNORE_WHITESPACE, "");
+_Static_assert(RPDiffFlagIgnoreWhitespaceChange == GIT_DIFF_IGNORE_WHITESPACE_CHANGE, "");
+_Static_assert(RPDiffFlagIgnoreWhitespaceEOL == GIT_DIFF_IGNORE_WHITESPACE_EOL, "");
+_Static_assert(RPDiffFlagShowUntrackedContext == GIT_DIFF_SHOW_UNTRACKED_CONTENT, "");
+_Static_assert(RPDiffFlagShowUnmodified == GIT_DIFF_SHOW_UNMODIFIED, "");
+_Static_assert(RPDiffFlagPatience == GIT_DIFF_PATIENCE, "");
+_Static_assert(RPDiffFlagMinimal == GIT_DIFF_MINIMAL, "");
+_Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
 
 @implementation RPDiff
 
@@ -39,15 +62,21 @@ static git_diff_options defaultDiffOptions(void)
     git_diff_free(_gitDiff);
 }
 
-+ (instancetype)diffIndex:(RPIndex *)index toWorkdirInRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffIndex:(RPIndex *)index
+          toWorkdirInRepo:(RPRepo *)repo
+                  options:(RPDiffOptions *)options
+                    error:(NSError **)error
 {
     NSParameterAssert(index != nil);
     NSParameterAssert(repo != nil);
     
-    git_diff_options options = defaultDiffOptions();
+    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
+    if (options) {
+        gitOptions.flags = options.flags;
+    }
     
     git_diff *diff = NULL;
-    int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, index.gitIndex, &options);
+    int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, index.gitIndex, &gitOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
@@ -59,16 +88,25 @@ static git_diff_options defaultDiffOptions(void)
     return [[self alloc] initWithGitDiff:diff location:RPDiffLocationWorkdir conflicts:conflicts repo:repo];
 }
 
-+ (instancetype)diffTree:(RPTree *)tree toIndex:(RPIndex *)index inRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffTree:(RPTree *)tree
+                 toIndex:(RPIndex *)index
+                  inRepo:(RPRepo *)repo
+                 options:(RPDiffOptions *)options
+                   error:(NSError **)error
 {
+    NSParameterAssert(tree != nil);
+    NSParameterAssert(index != nil);
     NSParameterAssert(repo != nil);
     
     git_index_read(index.gitIndex, 0);
     
-    git_diff_options options = defaultDiffOptions();
-    
+    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
+    if (options) {
+        gitOptions.flags = options.flags;
+    }
+
     git_diff *diff = NULL;
-    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &options);
+    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &gitOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
@@ -80,14 +118,20 @@ static git_diff_options defaultDiffOptions(void)
     return [[self alloc] initWithGitDiff:diff location:RPDiffLocationIndex conflicts:conflicts repo:repo];
 }
 
-+ (instancetype)diffNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffNewTree:(RPTree *)newTree
+                     inRepo:(RPRepo *)repo
+                    options:(RPDiffOptions *)options
+                      error:(NSError **)error
 {
     NSParameterAssert(newTree != nil);
     
-    git_diff_options options = defaultDiffOptions();
+    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
+    if (options) {
+        gitOptions.flags = options.flags;
+    }
     
     git_diff *diff = NULL;
-    int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, NULL, newTree.gitTree, &options);
+    int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, NULL, newTree.gitTree, &gitOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
@@ -97,15 +141,22 @@ static git_diff_options defaultDiffOptions(void)
     
     return [[self alloc] initWithGitDiff:diff location:RPDiffLocationOther repo:repo];}
 
-+ (instancetype)diffOldTree:(RPTree *)oldTree toNewTree:(RPTree *)newTree inRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffOldTree:(RPTree *)oldTree
+                  toNewTree:(RPTree *)newTree
+                     inRepo:(RPRepo *)repo
+                    options:(RPDiffOptions *)options
+                      error:(NSError **)error
 {
     NSParameterAssert(oldTree != nil);
     NSParameterAssert(newTree != nil);
     
-    git_diff_options options = defaultDiffOptions();
+    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
+    if (options) {
+        gitOptions.flags = options.flags;
+    }
     
     git_diff *diff = NULL;
-    int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, oldTree.gitTree, newTree.gitTree, &options);
+    int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, oldTree.gitTree, newTree.gitTree, &gitOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
@@ -116,7 +167,11 @@ static git_diff_options defaultDiffOptions(void)
     return [[self alloc] initWithGitDiff:diff location:RPDiffLocationOther repo:repo];
 }
 
-+ (instancetype)diffOldTreeOID:(RPOID *)oldOID toNewTreeOID:(RPOID *)newOID inRepo:(RPRepo *)repo error:(NSError **)error
++ (instancetype)diffOldTreeOID:(RPOID *)oldOID
+                  toNewTreeOID:(RPOID *)newOID
+                        inRepo:(RPRepo *)repo
+                       options:(RPDiffOptions *)options
+                         error:(NSError **)error
 {
     NSParameterAssert(oldOID != nil);
     NSParameterAssert(newOID != nil);
@@ -131,12 +186,13 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
 
-    return [self diffOldTree:oldTree toNewTree:newTree inRepo:repo error:error];
+    return [self diffOldTree:oldTree toNewTree:newTree inRepo:repo options:options error:error];
 }
 
 + (instancetype)diffOldObject:(RPObject *)oldObject
                   toNewObject:(RPObject *)newObject
                        inRepo:(RPRepo *)repo
+                      options:(RPDiffOptions *)options
                         error:(NSError **)error
 {
     RPObject *oldTree = [oldObject peelToType:RPObjectTypeTree error:error];
@@ -149,12 +205,13 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    return [self diffOldTreeOID:oldTree.OID toNewTreeOID:newTree.OID inRepo:repo error:error];
+    return [self diffOldTreeOID:oldTree.OID toNewTreeOID:newTree.OID inRepo:repo options:options error:error];
 }
 
 + (instancetype)diffMergeBaseOfOldObject:(RPObject *)oldObject
                              toNewObject:(RPObject *)newObject
                                   inRepo:(RPRepo *)repo
+                                 options:(RPDiffOptions *)options
                                    error:(NSError **)error
 {
     RPObject *oldCommit = [oldObject peelToType:RPObjectTypeCommit error:error];
@@ -187,12 +244,13 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    return [self diffOldTreeOID:oldTreeObject.OID toNewTreeOID:newTreeObject.OID inRepo:repo error:error];
+    return [self diffOldTreeOID:oldTreeObject.OID toNewTreeOID:newTreeObject.OID inRepo:repo options:options error:error];
 }
 
 + (instancetype)diffPullRequestOfOurObject:(RPObject *)ourObject
                              toTheirObject:(RPObject *)theirObject
                                     inRepo:(RPRepo *)repo
+                                   options:(RPDiffOptions *)options
                                      error:(NSError **)error
 {
     RPObject *theirCommitObject = [theirObject peelToType:RPObjectTypeCommit error:error];
@@ -233,10 +291,13 @@ static git_diff_options defaultDiffOptions(void)
         return nil;
     }
     
-    git_diff_options diffOptions = defaultDiffOptions();
+    git_diff_options gitDiffOptions = GIT_DIFF_OPTIONS_INIT;
+    if (options) {
+        gitDiffOptions.flags = options.flags;
+    }
     
     git_diff *diff = NULL;
-    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &diffOptions);
+    int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &gitDiffOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
@@ -317,5 +378,9 @@ static git_diff_options defaultDiffOptions(void)
     }
     return YES;
 }
+
+@end
+
+@implementation RPDiffOptions
 
 @end
