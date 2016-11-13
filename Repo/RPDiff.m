@@ -118,6 +118,31 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
     return [[self alloc] initWithGitDiff:diff location:RPDiffLocationIndex conflicts:conflicts repo:repo];
 }
 
++ (nullable instancetype)diffTree:(RPTree *)tree
+         toWorkdirWithIndexInRepo:(RPRepo *)repo
+                          options:(RPDiffOptions *)options
+                            error:(NSError **)error
+{
+    NSParameterAssert(tree != nil);
+    NSParameterAssert(repo != nil);
+
+    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
+    if (options) {
+        gitOptions.flags = options.flags;
+    }
+
+    git_diff *diff = NULL;
+    int gitError = git_diff_tree_to_workdir_with_index(&diff, repo.gitRepository, tree.gitTree, &gitOptions);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationOther repo:repo];
+}
+
 + (instancetype)diffNewTree:(RPTree *)newTree
                      inRepo:(RPRepo *)repo
                     options:(RPDiffOptions *)options

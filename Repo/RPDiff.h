@@ -74,6 +74,11 @@ typedef NS_OPTIONS(uint32_t, RPDiffFlag) {
                           options:(nullable RPDiffOptions *)options
                             error:(NSError **)error;
 
++ (nullable instancetype)diffTree:(RPTree *)tree
+         toWorkdirWithIndexInRepo:(RPRepo *)repo
+                          options:(nullable RPDiffOptions *)options
+                            error:(NSError **)error;
+
 + (nullable instancetype)diffNewTree:(RPTree *)newTree
                               inRepo:(RPRepo *)repo
                              options:(nullable RPDiffOptions *)options
