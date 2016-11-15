@@ -37,6 +37,23 @@
     return [[RPReference alloc] initWithGitReference:ref];
 }
 
++ (instancetype)lookupShortName:(NSString *)name inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(name != nil);
+    NSParameterAssert(repo != nil);
+
+    git_reference *ref = NULL;
+    int gitError = git_reference_dwim(&ref, repo.gitRepository, name.UTF8String);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    return [[RPReference alloc] initWithGitReference:ref];
+}
+
 + (NSArray<RPReference *> *)referencesInRepo:(RPRepo *)repo error:(NSError **)error
 {
     NSParameterAssert(repo != nil);

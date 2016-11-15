@@ -30,6 +30,7 @@ typedef struct git_reference git_reference;
 @interface RPReference : NSObject
 
 + (nullable instancetype)lookupName:(NSString *)name inRepo:(RPRepo *)repo error:(NSError **)error;
++ (nullable instancetype)lookupShortName:(NSString *)name inRepo:(RPRepo *)repo error:(NSError **)error;
 
 /// \return All references in the repository.
 + (nullable NSArray<RPReference *> *)referencesInRepo:(RPRepo *)repo error:(NSError **)error;
