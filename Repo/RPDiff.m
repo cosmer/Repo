@@ -140,7 +140,7 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
         return nil;
     }
 
-    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationOther repo:repo];
+    return [[self alloc] initWithGitDiff:diff location:RPDiffLocationWorkdirWithIndex repo:repo];
 }
 
 + (instancetype)diffNewTree:(RPTree *)newTree

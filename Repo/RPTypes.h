@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, RPDiffLocation) {
     RPDiffLocationOther,
     RPDiffLocationIndex,
     RPDiffLocationWorkdir,
+    RPDiffLocationWorkdirWithIndex,
 };
 
 NSString *RPFileModeName(RPFileMode mode);
