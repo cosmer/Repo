@@ -55,6 +55,42 @@ _Static_assert(RPDiffFlagPatience == GIT_DIFF_PATIENCE, "");
 _Static_assert(RPDiffFlagMinimal == GIT_DIFF_MINIMAL, "");
 _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
 
+static git_diff_options makeGitDiffOptions(RPDiffOptions *options)
+{
+    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
+    if (!options) {
+        return gitOptions;
+    }
+
+    gitOptions.flags = options.flags;
+
+    NSArray<NSString *> *pathspecs = options.pathspecs;
+    if (pathspecs.count > 0) {
+        const size_t count = (size_t)pathspecs.count;
+        gitOptions.pathspec.count = count;
+        gitOptions.pathspec.strings = calloc(count, sizeof(char *));
+
+        for (size_t i = 0; i < count; i++) {
+            gitOptions.pathspec.strings[i] = strdup(pathspecs[i].UTF8String);
+        }
+    }
+
+    return gitOptions;
+}
+
+static void cleanupGitDiffOptions(git_diff_options *options)
+{
+    if (options->pathspec.count > 0) {
+        for (size_t i = 0; i < options->pathspec.count; i++) {
+            free(options->pathspec.strings[i]);
+        }
+
+        free(options->pathspec.strings);
+    }
+}
+
+#define CLEANUP_DIFF_OPTIONS __attribute__ ((__cleanup__(cleanupGitDiffOptions)))
+
 @implementation RPDiff
 
 - (void)dealloc
@@ -70,10 +106,7 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
     NSParameterAssert(index != nil);
     NSParameterAssert(repo != nil);
     
-    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
-    if (options) {
-        gitOptions.flags = options.flags;
-    }
+    CLEANUP_DIFF_OPTIONS git_diff_options gitOptions = makeGitDiffOptions(options);
     
     git_diff *diff = NULL;
     int gitError = git_diff_index_to_workdir(&diff, repo.gitRepository, index.gitIndex, &gitOptions);
@@ -100,10 +133,7 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
     
     git_index_read(index.gitIndex, 0);
     
-    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
-    if (options) {
-        gitOptions.flags = options.flags;
-    }
+    CLEANUP_DIFF_OPTIONS git_diff_options gitOptions = makeGitDiffOptions(options);
 
     git_diff *diff = NULL;
     int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &gitOptions);
@@ -126,10 +156,7 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
     NSParameterAssert(tree != nil);
     NSParameterAssert(repo != nil);
 
-    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
-    if (options) {
-        gitOptions.flags = options.flags;
-    }
+    CLEANUP_DIFF_OPTIONS git_diff_options gitOptions = makeGitDiffOptions(options);
 
     git_diff *diff = NULL;
     int gitError = git_diff_tree_to_workdir_with_index(&diff, repo.gitRepository, tree.gitTree, &gitOptions);
@@ -150,10 +177,7 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
 {
     NSParameterAssert(newTree != nil);
     
-    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
-    if (options) {
-        gitOptions.flags = options.flags;
-    }
+    CLEANUP_DIFF_OPTIONS git_diff_options gitOptions = makeGitDiffOptions(options);
     
     git_diff *diff = NULL;
     int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, NULL, newTree.gitTree, &gitOptions);
@@ -175,10 +199,7 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
     NSParameterAssert(oldTree != nil);
     NSParameterAssert(newTree != nil);
     
-    git_diff_options gitOptions = GIT_DIFF_OPTIONS_INIT;
-    if (options) {
-        gitOptions.flags = options.flags;
-    }
+    CLEANUP_DIFF_OPTIONS git_diff_options gitOptions = makeGitDiffOptions(options);
     
     git_diff *diff = NULL;
     int gitError = git_diff_tree_to_tree(&diff, repo.gitRepository, oldTree.gitTree, newTree.gitTree, &gitOptions);
@@ -316,10 +337,7 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
         return nil;
     }
     
-    git_diff_options gitDiffOptions = GIT_DIFF_OPTIONS_INIT;
-    if (options) {
-        gitDiffOptions.flags = options.flags;
-    }
+    CLEANUP_DIFF_OPTIONS git_diff_options gitDiffOptions = makeGitDiffOptions(options);
     
     git_diff *diff = NULL;
     int gitError = git_diff_tree_to_index(&diff, repo.gitRepository, tree.gitTree, index.gitIndex, &gitDiffOptions);
@@ -407,5 +425,13 @@ _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
 @end
 
 @implementation RPDiffOptions
+
+- (instancetype)init
+{
+    if ((self = [super init])) {
+        _pathspecs = @[];
+    }
+    return self;
+}
 
 @end

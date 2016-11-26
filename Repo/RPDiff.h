@@ -59,6 +59,8 @@ typedef NS_OPTIONS(uint32_t, RPDiffFlag) {
 
 @property(nonatomic) RPDiffFlag flags;
 
+@property(nonatomic, copy) NSArray<NSString *> *pathspecs;
+
 @end
 
 @interface RPDiff : NSObject
