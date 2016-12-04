@@ -93,6 +93,8 @@ static RPFileTime MakeFileTime(git_index_time indexTime)
                             ours:(RPConflictEntry *)ours
                           theirs:(RPConflictEntry *)theirs
 {
+    NSParameterAssert(ancestor || ours || theirs);
+
     if ((self = [super init])) {
         _ancestor = ancestor;
         _ours = ours;

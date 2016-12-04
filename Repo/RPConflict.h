@@ -39,9 +39,9 @@ NS_ASSUME_NONNULL_BEGIN;
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithAncestor:(RPConflictEntry *)ancestor
-                            ours:(RPConflictEntry *)ours
-                          theirs:(RPConflictEntry *)theirs NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAncestor:(nullable RPConflictEntry *)ancestor
+                            ours:(nullable RPConflictEntry *)ours
+                          theirs:(nullable RPConflictEntry *)theirs NS_DESIGNATED_INITIALIZER;
 
 @property(nullable, nonatomic, strong, readonly) RPConflictEntry *ancestor;
 @property(nullable, nonatomic, strong, readonly) RPConflictEntry *ours;
