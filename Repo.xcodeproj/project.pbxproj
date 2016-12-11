@@ -143,6 +143,7 @@
 		EF9CAC161B9115F700A7C511 /* RPFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPFunctions.h; sourceTree = "<group>"; };
 		EFB0CF8D1C6382E40044702D /* RPConflict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPConflict.h; sourceTree = "<group>"; };
 		EFB0CF8E1C6382E40044702D /* RPConflict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPConflict.m; sourceTree = "<group>"; };
+		EFCE76DE1DFD7AF5005F13A8 /* RPCleanup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPCleanup.h; sourceTree = "<group>"; };
 		EFD87A781B8694BF0012FF11 /* RPStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPStash.h; sourceTree = "<group>"; };
 		EFD87A791B8694BF0012FF11 /* RPStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPStash.m; sourceTree = "<group>"; };
 		EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPRevWalker.h; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				6DC7A0471A18E20000D808ED /* Repo.h */,
+				EFCE76DE1DFD7AF5005F13A8 /* RPCleanup.h */,
 				EFB0CF8D1C6382E40044702D /* RPConflict.h */,
 				EFB0CF8E1C6382E40044702D /* RPConflict.m */,
 				6DC7A0611A18F2B900D808ED /* RPRepo.h */,

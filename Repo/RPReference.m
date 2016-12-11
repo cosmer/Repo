@@ -11,6 +11,7 @@
 #import "RPRepo.h"
 #import "RPObject.h"
 #import "RPOID.h"
+#import "RPCleanup.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/buffer.h>
@@ -44,6 +45,32 @@
 
     git_reference *ref = NULL;
     int gitError = git_reference_dwim(&ref, repo.gitRepository, name.UTF8String);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    return [[RPReference alloc] initWithGitReference:ref];
+}
+
++ (nullable instancetype)upstreamReferenceForReferenceNamed:(NSString *)name inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(name != nil);
+    NSParameterAssert(repo != nil);
+
+    CLEANUP_GIT_BUF git_buf buf = { 0 };
+    int gitError = git_branch_upstream_name(&buf, repo.gitRepository, name.UTF8String);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    git_reference *ref = NULL;
+    gitError = git_reference_lookup(&ref, repo.gitRepository, buf.ptr);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
