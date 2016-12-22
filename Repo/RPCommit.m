@@ -155,6 +155,15 @@ static NSStringEncoding stringEncodingWithName(const char *name)
     return [[RPCommit alloc] initWithGitCommit:parent];
 }
 
+- (RPOID *)parentOIDAtIndex:(NSInteger)index
+{
+    const git_oid *oid = git_commit_parent_id(self.gitCommit, (unsigned int)index);
+    if (!oid) {
+        return nil;
+    }
+    return [[RPOID alloc] initWithGitOID:oid];
+}
+
 - (RPTree *)tree:(NSError **)error
 {
     git_tree *tree = NULL;

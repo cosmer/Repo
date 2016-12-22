@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// \return Parent commit or nil.
 - (nullable RPCommit *)parentAtIndex:(NSInteger)index error:(NSError **)error;
 
+/// \return Parent oid or nil.
+- (nullable RPOID *)parentOIDAtIndex:(NSInteger)index;
+
 /// \return The tree pointed to by this commit or nil.
 - (nullable RPTree *)tree:(NSError **)error;
 
