@@ -10,6 +10,7 @@
 
 #import "RPOID.h"
 #import "RPRepo.h"
+#import "RPTreeEntry.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/tree.h>
@@ -58,6 +59,20 @@
 {
     const git_oid *oid = git_tree_id(self.gitTree);
     return [[RPOID alloc] initWithGitOID:oid];
+}
+
+- (NSInteger)entryCount
+{
+    return git_tree_entrycount(self.gitTree);
+}
+
+- (RPTreeEntry *)entryAtIndex:(NSInteger)index
+{
+    const git_tree_entry *entry = git_tree_entry_byindex(self.gitTree, index);
+    if (!entry) {
+        [NSException raise:NSRangeException format:@"Null tree entry at index %@ with count %@", @(index), @(self.entryCount)];
+    }
+    return [[RPTreeEntry alloc] initWithGitTreeEntry:entry];
 }
 
 - (RPOID *)oidOfEntryAtPath:(NSString *)path error:(NSError **)error
