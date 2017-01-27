@@ -45,6 +45,7 @@ static RPFileTime MakeFileTime(const git_diff_file_time *fileTime)
         _mode = diffFile.mode;
         _ctime = MakeFileTime(&diffFile.ctime);
         _mtime = MakeFileTime(&diffFile.mtime);
+        _size = diffFile.size;
     }
     return self;
 }

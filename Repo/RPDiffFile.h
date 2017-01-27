@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// The receiver's modification time.
 @property(nonatomic, readonly) RPFileTime mtime;
 
+/// File size in bytes. Not guaranteed to be set.
+@property(nonatomic, readonly) int64_t size;
+
 /// The receiver is treated as binary data.
 @property(nonatomic, readonly) BOOL isBinary;
 /// The receiver is treated as text.
