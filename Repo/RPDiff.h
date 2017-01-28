@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class RPObject;
 @class RPDiffStats;
 @class RPConflict;
+@class RPDiffFindOptions;
 
 typedef struct git_diff git_diff;
 
@@ -125,7 +126,7 @@ typedef NS_OPTIONS(uint32_t, RPDiffFlag) {
 
 /// Transform a diff marking file renames, copies, etc.
 /// \return YES if the find succeeded, NO if an error occurred.
-- (BOOL)findSimilar:(NSError **)error;
+- (BOOL)findSimilarWithOptions:(nullable RPDiffFindOptions *)options error:(NSError **)error;
 
 @property(nonatomic, readonly) git_diff *gitDiff RP_RETURNS_INTERIOR_POINTER;
 @property(nonatomic, readonly) RPDiffLocation location;

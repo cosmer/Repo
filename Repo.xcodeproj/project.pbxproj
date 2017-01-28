@@ -63,6 +63,9 @@
 		EF93F77A1E152D50002BD6CF /* RPTreeEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = EF93F7781E152D50002BD6CF /* RPTreeEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF93F77B1E152D51002BD6CF /* RPTreeEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EF93F7791E152D50002BD6CF /* RPTreeEntry.m */; };
 		EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9CAC141B9115EA00A7C511 /* RPFunctions.m */; };
+		EFA76A6F1E3CC5550038E86F /* RPDiffFindOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA76A6D1E3CC5550038E86F /* RPDiffFindOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFA76A701E3CC5550038E86F /* RPDiffFindOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA76A6E1E3CC5550038E86F /* RPDiffFindOptions.m */; };
+		EFA76A721E3CD4EF0038E86F /* RPDiffFindOptions+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA76A711E3CC6730038E86F /* RPDiffFindOptions+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EFB0CF8F1C6382E40044702D /* RPConflict.h in Headers */ = {isa = PBXBuildFile; fileRef = EFB0CF8D1C6382E40044702D /* RPConflict.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFB0CF901C6382E40044702D /* RPConflict.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB0CF8E1C6382E40044702D /* RPConflict.m */; };
 		EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD87A781B8694BF0012FF11 /* RPStash.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -145,6 +148,9 @@
 		EF93F7791E152D50002BD6CF /* RPTreeEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTreeEntry.m; sourceTree = "<group>"; };
 		EF9CAC141B9115EA00A7C511 /* RPFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFunctions.m; sourceTree = "<group>"; };
 		EF9CAC161B9115F700A7C511 /* RPFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPFunctions.h; sourceTree = "<group>"; };
+		EFA76A6D1E3CC5550038E86F /* RPDiffFindOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDiffFindOptions.h; sourceTree = "<group>"; };
+		EFA76A6E1E3CC5550038E86F /* RPDiffFindOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDiffFindOptions.m; sourceTree = "<group>"; };
+		EFA76A711E3CC6730038E86F /* RPDiffFindOptions+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPDiffFindOptions+Private.h"; sourceTree = "<group>"; };
 		EFB0CF8D1C6382E40044702D /* RPConflict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPConflict.h; sourceTree = "<group>"; };
 		EFB0CF8E1C6382E40044702D /* RPConflict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPConflict.m; sourceTree = "<group>"; };
 		EFCE76DE1DFD7AF5005F13A8 /* RPCleanup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPCleanup.h; sourceTree = "<group>"; };
@@ -225,6 +231,9 @@
 				6D310BAF1A1AC6D1001DCDB1 /* RPDiffFile.m */,
 				EF397E111BC1BBFE0055CBE8 /* RPDiffStats.h */,
 				EF397E121BC1BBFE0055CBE8 /* RPDiffStats.m */,
+				EFA76A6D1E3CC5550038E86F /* RPDiffFindOptions.h */,
+				EFA76A711E3CC6730038E86F /* RPDiffFindOptions+Private.h */,
+				EFA76A6E1E3CC5550038E86F /* RPDiffFindOptions.m */,
 				EF28B2061D629B0C00CE8A65 /* RPFileTime.h */,
 				EF28B2071D629B5F00CE8A65 /* RPFileTime.m */,
 				6D307FAB1A201EBA003DE0BD /* RPBlob.h */,
@@ -337,9 +346,11 @@
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
 				EF663DF61CDE052A00E8A19D /* RPLineDiff.h in Headers */,
 				6D38CD0F1A1C14F700F67BB8 /* RPMacros.h in Headers */,
+				EFA76A6F1E3CC5550038E86F /* RPDiffFindOptions.h in Headers */,
 				EF28B2091D629BC700CE8A65 /* RPFileTime.h in Headers */,
 				6DFFE1491A62E56900A8E617 /* NSException+RPExceptions.h in Headers */,
 				6D310BB31A1AD29E001DCDB1 /* RPDiffFile+Private.h in Headers */,
+				EFA76A721E3CD4EF0038E86F /* RPDiffFindOptions+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +454,7 @@
 				EF1339521BC0198700D66689 /* RPSignature.m in Sources */,
 				6DF929561A90CE6B0087E7D3 /* RPReference.m in Sources */,
 				EFB0CF901C6382E40044702D /* RPConflict.m in Sources */,
+				EFA76A701E3CC5550038E86F /* RPDiffFindOptions.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
 				EFF303EC1BD3D67700914FBA /* RPCommitWalker.m in Sources */,
 				EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */,

@@ -18,6 +18,7 @@
 #import "RPIndex.h"
 #import "RPDiffStats.h"
 #import "RPConflict.h"
+#import "RPDiffFindOptions+Private.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/diff.h>
@@ -407,12 +408,14 @@ static void cleanupGitDiffOptions(git_diff_options *options)
     }
 }
 
-- (BOOL)findSimilar:(NSError **)error
+- (BOOL)findSimilarWithOptions:(nullable RPDiffFindOptions *)options error:(NSError **)error
 {
-    git_diff_find_options options = GIT_DIFF_FIND_OPTIONS_INIT;
-    options.flags = GIT_DIFF_FIND_RENAMES | GIT_DIFF_FIND_FOR_UNTRACKED;
-    
-    int gitError = git_diff_find_similar(self.gitDiff, &options);
+    git_diff_find_options gitOptions = GIT_DIFF_FIND_OPTIONS_INIT;
+    if (options) {
+        gitOptions = options.gitOptions;
+    }
+
+    int gitError = git_diff_find_similar(self.gitDiff, &gitOptions);
     if (gitError != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
