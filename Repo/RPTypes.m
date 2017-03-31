@@ -87,3 +87,19 @@ NSString *RPBranchTypeName(RPBranchType type)
     
     return [NSString stringWithFormat:@"RPBranchType{%ld}", (long)type];
 }
+
+NSString *RPDiffLocationName(RPDiffLocation location)
+{
+    switch (location) {
+        case RPDiffLocationOther:
+            return @"Other";
+        case RPDiffLocationIndex:
+            return @"Index";
+        case RPDiffLocationWorkdir:
+            return @"Workdir";
+        case RPDiffLocationWorkdirWithIndex:
+            return @"WorkdirWithIndex";
+    }
+
+    return [NSString stringWithFormat:@"RPDiffLocation{%@}", @(location)];
+}

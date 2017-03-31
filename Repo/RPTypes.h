@@ -46,5 +46,6 @@ typedef NS_ENUM(NSInteger, RPDiffLocation) {
 NSString *RPFileModeName(RPFileMode mode);
 NSString *RPObjectTypeName(RPObjectType type);
 NSString *RPBranchTypeName(RPBranchType type);
+NSString *RPDiffLocationName(RPDiffLocation location);
 
 NS_ASSUME_NONNULL_END
