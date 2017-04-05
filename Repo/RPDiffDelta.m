@@ -75,6 +75,26 @@ NSString *RPDiffDeltaStatusLetter(RPDiffDeltaStatus status)
     return nil;
 }
 
+- (instancetype)initWithDelta:(RPDiffDelta *)delta
+{
+    if ((self = [super init])) {
+        _location = delta.location;
+        _apparentLocation = delta.apparentLocation;
+        _status = delta.status;
+        _oldFile = delta.oldFile;
+        _newFile = delta.newFile;
+    }
+    return self;
+}
+
+- (instancetype)initWithDelta:(RPDiffDelta *)delta apparentLocation:(RPDiffLocation)apparentLocation
+{
+    if ((self = [self initWithDelta:delta])) {
+        _apparentLocation = apparentLocation;
+    }
+    return self;
+}
+
 - (instancetype)initWithDiff:(RPDiff *)diff deltaIndex:(NSUInteger)deltaIndex location:(RPDiffLocation)location
 {
     NSParameterAssert(diff != nil);
@@ -87,6 +107,7 @@ NSString *RPDiffDeltaStatusLetter(RPDiffDeltaStatus status)
     NSParameterAssert(delta != NULL);
     if ((self = [super init])) {
         _location = location;
+        _apparentLocation = location;
         _status = (RPDiffDeltaStatus)delta->status;
         _oldFile = [[RPDiffFile alloc] initWithGitDiffFile:delta->old_file];
         _newFile = [[RPDiffFile alloc] initWithGitDiffFile:delta->new_file];
