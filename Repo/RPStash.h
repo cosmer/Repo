@@ -13,6 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// RPStash is immutable and thread safe.
 @interface RPStash : NSObject
 
 + (nullable NSArray<RPStash *> *)stashesInRepo:(RPRepo *)repo error:(NSError **)error;
