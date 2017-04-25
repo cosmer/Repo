@@ -14,3 +14,7 @@ typedef struct git_repository git_repository;
 typedef int (^stash_block)(size_t index, const char *message, const git_oid *stash_id);
 
 int git_stash_foreach_block(git_repository *repo, stash_block block);
+
+typedef int (^tag_block)(const char *name, const git_oid *tag_id);
+
+int git_tag_foreach_block(git_repository *repo, tag_block block);

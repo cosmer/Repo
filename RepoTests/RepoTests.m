@@ -9,32 +9,24 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
+#import "Utilities.h"
+
 @interface RepoTests : XCTestCase
 
 @end
 
 @implementation RepoTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
+- (void)testExample
+{
+    XCTAssertTrue(strcmp(remove_prefix("", ""), "") == 0);
+    XCTAssertTrue(strcmp(remove_prefix("foo", ""), "foo") == 0);
+    XCTAssertTrue(strcmp(remove_prefix("foo", "foo"), "") == 0);
+    XCTAssertTrue(strcmp(remove_prefix("foo/bar", "foo/"), "bar") == 0);
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+    XCTAssertEqual(remove_prefix("", "bar"), NULL);
+    XCTAssertEqual(remove_prefix("foo", "bar"), NULL);
+    XCTAssertEqual(remove_prefix("foo", "foo/bar"), NULL);
 }
 
 @end
