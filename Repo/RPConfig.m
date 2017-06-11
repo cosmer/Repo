@@ -51,6 +51,20 @@
     return self;
 }
 
+- (nullable RPConfig *)snapshotWithError:(NSError **)error
+{
+    git_config *snapshot = NULL;
+    int gitError = git_config_snapshot(&snapshot, self.gitConfig);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    return [[RPConfig alloc] initWithGitConfig:snapshot];
+}
+
 - (NSString *)stringWithName:(NSString *)name
 {
     NSParameterAssert(name.length > 0);

@@ -25,6 +25,9 @@ typedef struct git_config git_config;
 
 - (nullable instancetype)initWithRepo:(RPRepo *)repo error:(NSError **)error;
 
+/// \return An immutable snapshot of the receiver.
+- (nullable RPConfig *)snapshotWithError:(NSError **)error;
+
 /// \return String value, or nil if no value is set.
 - (nullable NSString *)stringWithName:(NSString *)name;
 
