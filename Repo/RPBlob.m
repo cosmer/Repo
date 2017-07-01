@@ -10,6 +10,7 @@
 
 #import "RPRepo.h"
 #import "RPOID.h"
+#import "RPCommit.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/blob.h>
@@ -60,6 +61,24 @@
         return nil;
     }
     
+    return [self initWithGitObject:object inRepo:repo];
+}
+
+- (nullable instancetype)initWithCommit:(RPCommit *)commit path:(NSString *)path inRepo:(RPRepo *)repo error:(NSError **)error
+{
+    NSParameterAssert(commit != nil);
+    NSParameterAssert(path != nil);
+    NSParameterAssert(repo != nil);
+
+    git_object *object = NULL;
+    int gitError = git_object_lookup_bypath(&object, (const git_object *)commit.gitCommit, path.UTF8String, GIT_OBJ_BLOB);
+    if (gitError != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
     return [self initWithGitObject:object inRepo:repo];
 }
 
