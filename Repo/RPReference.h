@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, RPReferenceNamespace) {
     RPReferenceNamespaceRemote,
     RPReferenceNamespaceTag,
     RPReferenceNamespaceNote,
+    RPReferenceNamespaceHEAD,
 };
 
 NS_ASSUME_NONNULL_BEGIN

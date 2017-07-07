@@ -173,6 +173,13 @@
     if (git_reference_is_note(self.gitReference)) {
         return RPReferenceNamespaceNote;
     }
+
+    if (self.isSymbolic) {
+        const char *name = git_reference_name(self.gitReference);
+        if (name && strcmp(name, "HEAD") == 0) {
+            return RPReferenceNamespaceHEAD;
+        }
+    }
     
     return RPReferenceNamespaceUnknown;
 }
