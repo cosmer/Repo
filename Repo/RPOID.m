@@ -162,6 +162,15 @@ static CFHashCode HashBytes(const uint8_t *bytes, SInt32 length)
     return git_oid_equal(self.gitOID, other.gitOID) != 0;
 }
 
+- (BOOL)isEqualToOID:(RPOID *)oid
+{
+    if (oid == self) {
+        return YES;
+    }
+
+    return git_oid_equal(self.gitOID, oid.gitOID) != 0;
+}
+
 - (NSUInteger)hash
 {
     return HashBytes(self.gitOID->id, GIT_OID_RAWSZ);
