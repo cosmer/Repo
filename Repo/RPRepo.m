@@ -66,6 +66,9 @@
         }
         return NO;
     }
+
+    git_libgit2_opts(GIT_OPT_ENABLE_STRICT_HASH_VERIFICATION, 0);
+
     return YES;
 }
 
