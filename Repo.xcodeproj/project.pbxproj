@@ -60,6 +60,7 @@
 		EF790BB61C8B0C6A0050D59A /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB51C8B0C6A0050D59A /* libcurl.tbd */; };
 		EF790BB81C8B0C860050D59A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BB71C8B0C860050D59A /* libz.tbd */; };
 		EF790BBE1C8B0CAB0050D59A /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */; };
+		EF827FFC1F1240AD00E67F3E /* RPCleanup.m in Sources */ = {isa = PBXBuildFile; fileRef = EF827FFB1F1240AD00E67F3E /* RPCleanup.m */; };
 		EF93F77A1E152D50002BD6CF /* RPTreeEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = EF93F7781E152D50002BD6CF /* RPTreeEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF93F77B1E152D51002BD6CF /* RPTreeEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EF93F7791E152D50002BD6CF /* RPTreeEntry.m */; };
 		EF9CAC151B9115EA00A7C511 /* RPFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9CAC141B9115EA00A7C511 /* RPFunctions.m */; };
@@ -150,6 +151,7 @@
 		EF790BB51C8B0C6A0050D59A /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		EF790BB71C8B0C860050D59A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EF790BBD1C8B0CAB0050D59A /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		EF827FFB1F1240AD00E67F3E /* RPCleanup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPCleanup.m; sourceTree = "<group>"; };
 		EF93F7781E152D50002BD6CF /* RPTreeEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTreeEntry.h; sourceTree = "<group>"; };
 		EF93F7791E152D50002BD6CF /* RPTreeEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTreeEntry.m; sourceTree = "<group>"; };
 		EF9CAC141B9115EA00A7C511 /* RPFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPFunctions.m; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				6DC7A0471A18E20000D808ED /* Repo.h */,
 				EFCE76DE1DFD7AF5005F13A8 /* RPCleanup.h */,
+				EF827FFB1F1240AD00E67F3E /* RPCleanup.m */,
 				EFB0CF8D1C6382E40044702D /* RPConflict.h */,
 				EFB0CF8E1C6382E40044702D /* RPConflict.m */,
 				6DC7A0611A18F2B900D808ED /* RPRepo.h */,
@@ -481,6 +484,7 @@
 				EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */,
 				EFF26E281EEAB9C900D6C818 /* RPBlame.m in Sources */,
 				EF663DF71CDE052A00E8A19D /* RPLineDiff.m in Sources */,
+				EF827FFC1F1240AD00E67F3E /* RPCleanup.m in Sources */,
 				EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,

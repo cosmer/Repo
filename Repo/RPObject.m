@@ -10,9 +10,12 @@
 
 #import "RPOID.h"
 #import "RPRepo.h"
+#import "RPCleanup.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/object.h>
+#import <git2/repository.h>
+#import <git2/odb.h>
 #import <git2/errors.h>
 
 @implementation RPObject
@@ -42,9 +45,17 @@
     NSParameterAssert(oid != nil);
     NSParameterAssert(repo != nil);
 
+    CLEANUP_GIT_ODB git_odb *odb = NULL;
+    if (git_repository_odb(&odb, repo.gitRepository) != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
     size_t len = 0;
-    int gitError = git_object_read_header(&len, NULL, repo.gitRepository, oid.gitOID);
-    if (gitError != GIT_OK) {
+    git_otype type = 0;
+    if (git_odb_read_header(&len, &type, odb, oid.gitOID) != GIT_OK) {
         if (error) {
             *error = [NSError rp_lastGitError];
         }
