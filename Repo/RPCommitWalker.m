@@ -32,7 +32,7 @@
 {
     git_oid oid;
     if (![self.revWalker nextGitOID:&oid]) {
-        return NO;
+        return nil;
     }
 
     git_commit *commit = NULL;
