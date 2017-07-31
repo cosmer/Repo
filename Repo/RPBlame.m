@@ -97,6 +97,7 @@
         _range = NSMakeRange(hunk->final_start_line_number - 1, hunk->lines_in_hunk);
         _commit = [[RPOID alloc] initWithGitOID:&hunk->final_commit_id];
         _signature = [[RPSignature alloc] initWithGitSignature:hunk->final_signature];
+        _path = @(hunk->orig_path ?: "");
     }
     return self;
 }

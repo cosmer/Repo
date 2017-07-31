@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSRange range;
 @property(nonatomic, strong, readonly) RPOID *commit;
 @property(nonatomic, strong, readonly) RPSignature *signature;
+@property(nonatomic, strong, readonly) NSString *path;
 
 @end
 
