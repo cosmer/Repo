@@ -25,6 +25,8 @@ typedef struct git_submodule git_submodule;
 
 - (nullable instancetype)initWithRepo:(RPRepo *)repo path:(NSString *)path error:(NSError **)error;
 
+- (nullable RPRepo *)openWithError:(NSError **)error;
+
 @property(nonatomic, readonly) git_submodule *gitSubmodule RP_RETURNS_INTERIOR_POINTER;
 
 @end

@@ -54,4 +54,17 @@
     return [self initWithGitSubmodule:submodule];
 }
 
+- (RPRepo *)openWithError:(NSError **)error
+{
+    git_repository *repo = NULL;
+    if (git_submodule_open(&repo, self.gitSubmodule) != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return nil;
+    }
+
+    return [[RPRepo alloc] initWithGitRepository:repo];
+}
+
 @end
