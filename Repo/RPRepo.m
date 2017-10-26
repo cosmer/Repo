@@ -28,33 +28,28 @@
 
 @implementation RPRepo
 
-+ (BOOL)isRepositoryAtURL:(NSURL *)url
++ (NSURL *)discoverRepositoryAtURL:(NSURL *)searchURL
 {
-    NSParameterAssert(url != nil);
-    
-    BOOL isDir = NO;
-    NSFileManager *fm = [[NSFileManager alloc] init];
-    
-    NSURL *gitURL = [url URLByAppendingPathComponent:@".git"];
-    if (![fm fileExistsAtPath:gitURL.path isDirectory:&isDir]) {
-        return NO;
-    }
-    
-    if (!isDir) {
-        return YES; // submodule
-    }
-    
-    NSURL *headURL = [gitURL URLByAppendingPathComponent:@"HEAD"];
-    if (![fm fileExistsAtPath:headURL.path isDirectory:&isDir] || isDir) {
-        return NO;
-    }
-    
-    NSURL *objectsURL = [gitURL URLByAppendingPathComponent:@"objects"];
-    if (![fm fileExistsAtPath:objectsURL.path isDirectory:&isDir] || !isDir) {
-        return NO;
+    NSParameterAssert(searchURL != nil);
+
+    const char *searchPath = searchURL.path.UTF8String;
+    if (!searchPath) {
+        return nil;
     }
 
-    return YES;
+    git_buf buf = {0};
+    if (git_repository_discover(&buf, searchPath, 0, searchPath) != GIT_OK) {
+        return nil;
+    }
+
+    if (!buf.ptr) {
+        return nil;
+    }
+
+    NSString *repoPath = [NSString stringWithUTF8String:buf.ptr];
+    git_buf_free(&buf);
+
+    return [NSURL fileURLWithPath:repoPath];
 }
 
 + (BOOL)startupWithError:(NSError **)error
