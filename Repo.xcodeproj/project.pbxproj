@@ -580,7 +580,7 @@
 					"\"$(SRCROOT)/External/libgit2/include\"",
 					"\"$(SRCROOT)/External/libgit2/src/xdiff\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -633,7 +633,7 @@
 					"\"$(SRCROOT)/External/libgit2/include\"",
 					"\"$(SRCROOT)/External/libgit2/src/xdiff\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
