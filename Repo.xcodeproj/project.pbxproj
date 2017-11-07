@@ -73,7 +73,7 @@
 		EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD87A791B8694BF0012FF11 /* RPStash.m */; };
 		EFE010BF1BD3CFD400D4101A /* RPRevWalker.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */; };
-		EFE36BCB1EAF5EC100A4560E /* Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = EFE36BC91EAF5EC100A4560E /* Utilities.c */; };
+		EFE36BCB1EAF5EC100A4560E /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE36BC91EAF5EC100A4560E /* Utilities.m */; };
 		EFE36BCC1EAF5EC100A4560E /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE36BCA1EAF5EC100A4560E /* Utilities.h */; };
 		EFF26E271EEAB9C900D6C818 /* RPBlame.h in Headers */ = {isa = PBXBuildFile; fileRef = EFF26E251EEAB9C900D6C818 /* RPBlame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFF26E281EEAB9C900D6C818 /* RPBlame.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF26E261EEAB9C900D6C818 /* RPBlame.m */; };
@@ -166,7 +166,7 @@
 		EFD87A791B8694BF0012FF11 /* RPStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPStash.m; sourceTree = "<group>"; };
 		EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPRevWalker.h; sourceTree = "<group>"; };
 		EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPRevWalker.m; sourceTree = "<group>"; };
-		EFE36BC91EAF5EC100A4560E /* Utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Utilities.c; sourceTree = "<group>"; };
+		EFE36BC91EAF5EC100A4560E /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		EFE36BCA1EAF5EC100A4560E /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		EFF26E251EEAB9C900D6C818 /* RPBlame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBlame.h; sourceTree = "<group>"; };
 		EFF26E261EEAB9C900D6C818 /* RPBlame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPBlame.m; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 				6DFFE1481A62E56900A8E617 /* NSException+RPExceptions.m */,
 				6D310BA51A1AB949001DCDB1 /* RPMacros.h */,
 				EFE36BCA1EAF5EC100A4560E /* Utilities.h */,
-				EFE36BC91EAF5EC100A4560E /* Utilities.c */,
+				EFE36BC91EAF5EC100A4560E /* Utilities.m */,
 				6DC7A0451A18E20000D808ED /* Supporting Files */,
 			);
 			path = Repo;
@@ -494,7 +494,7 @@
 				6D310BAD1A1AC256001DCDB1 /* RPDiffDelta.m in Sources */,
 				6DC7A0681A18F5B300D808ED /* NSError+RPGitErrors.m in Sources */,
 				6D310BA91A1ABE95001DCDB1 /* RPDiff.m in Sources */,
-				EFE36BCB1EAF5EC100A4560E /* Utilities.c in Sources */,
+				EFE36BCB1EAF5EC100A4560E /* Utilities.m in Sources */,
 				EF0176A61AE5CDAA0092618D /* RPIndex.m in Sources */,
 				EF28B2081D629B5F00CE8A65 /* RPFileTime.m in Sources */,
 				EF397E141BC1BBFE0055CBE8 /* RPDiffStats.m in Sources */,

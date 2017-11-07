@@ -14,6 +14,7 @@
 #import "RPObject.h"
 #import "RPDiffDelta.h"
 #import "RPDiffFile.h"
+#import "Utilities.h"
 #import "NSError+RPGitErrors.h"
 
 #import <git2/global.h>
@@ -311,6 +312,40 @@
     }
 
     return [index writeWithError:error];
+}
+
+- (BOOL)resetDefaultToObject:(RPObject *)object matchingPathspecs:(NSArray<NSString *> *)pathspecs error:(NSError **)error
+{
+    if (pathspecs.count == 0) {
+        if (error) {
+            *error = [NSError rp_repoErrorWithDescription:@"At least one pathspec is required."];
+        }
+        return NO;
+    }
+
+    CLEANUP_GIT_STR_ARRAY git_strarray array = {0};
+    copy_to_git_str_array(&array, pathspecs);
+
+    if (git_reset_default(self.gitRepository, object.gitObject, &array) != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return NO;
+    }
+
+    return YES;
+}
+
+- (BOOL)resetMixedToObject:(RPObject *)object error:(NSError **)error
+{
+    if (git_reset(self.gitRepository, object.gitObject, GIT_RESET_MIXED, NULL) != GIT_OK) {
+        if (error) {
+            *error = [NSError rp_lastGitError];
+        }
+        return NO;
+    }
+
+    return YES;
 }
 
 - (RPObject *)parseSingleRevision:(NSString *)spec error:(NSError **)error

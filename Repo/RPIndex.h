@@ -14,6 +14,12 @@
 
 typedef struct git_index git_index;
 
+typedef NS_OPTIONS(NSUInteger, RPIndexAddOption) {
+    RPIndexAddOptionForce                   = 1 << 0,
+    RPIndexAddOptionDisablePathspecMatch    = 1 << 1,
+    RPIndexAddOptionCheckPathspec           = 1 << 2,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RPIndex : NSObject
@@ -31,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Remove file at path relative to the repo's working directory.
 - (BOOL)removeFileAtPath:(NSString *)path stage:(int)stage error:(NSError **)error;
+
+/// Add all files matching the given pathspecs, or all files if no pathspecs are given.
+- (BOOL)addFilesMatchingPathspecs:(NSArray<NSString *> *)pathspecs withOptions:(RPIndexAddOption)options error:(NSError **)error;
 
 /// Write index to disk.
 - (BOOL)writeWithError:(NSError **)error;

@@ -57,6 +57,11 @@ typedef struct git_repository git_repository;
 /// Unstage changes in diff delta.
 - (BOOL)unstageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error;
 
+/// Reset the index to match given commit tree.
+- (BOOL)resetDefaultToObject:(RPObject *)object matchingPathspecs:(NSArray<NSString *> *)pathspecs error:(NSError **)error;
+/// Update HEAD and reset the index to match.
+- (BOOL)resetMixedToObject:(RPObject *)object error:(NSError **)error;
+
 /// Find a single object, as specified by a revision string.
 - (nullable RPObject *)parseSingleRevision:(NSString *)spec error:(NSError **)error;
 

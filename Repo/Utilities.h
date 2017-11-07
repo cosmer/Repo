@@ -6,9 +6,13 @@
 //  Copyright © 2017 Charles Osmer. All rights reserved.
 //
 
-#ifndef Utilities_h
-#define Utilities_h
+#import <Foundation/Foundation.h>
+
+#define CLEANUP_GIT_STR_ARRAY __attribute__ ((__cleanup__(free_git_str_array)))
+
+typedef struct git_strarray git_strarray;
 
 const char *remove_prefix(const char *str, const char *prefix);
 
-#endif /* Utilities_h */
+void copy_to_git_str_array(git_strarray *array, NSArray<NSString *> *strings);
+void free_git_str_array(git_strarray *array);
