@@ -16,6 +16,7 @@ _Static_assert(RPLineDiffOptionIgnoreWhitespaceChange == XDF_IGNORE_WHITESPACE_C
 _Static_assert(RPLineDiffOptionIgnoreWhitespaceAtEOL == XDF_IGNORE_WHITESPACE_AT_EOL, "");
 _Static_assert(RPLineDiffOptionPatienceDiff == XDF_PATIENCE_DIFF, "");
 _Static_assert(RPLineDiffOptionHistogramDiff == XDF_HISTOGRAM_DIFF, "");
+_Static_assert(RPLineDiffOptionIndentHeuristic == XDF_INDENT_HEURISTIC, "");
 
 @implementation RPLineDiff
 

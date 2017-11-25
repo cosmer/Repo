@@ -25,6 +25,8 @@ typedef NS_OPTIONS(NSUInteger, RPLineDiffOption) {
     
     RPLineDiffOptionPatienceDiff            = (1 << 5),
     RPLineDiffOptionHistogramDiff           = (1 << 6),
+    
+    RPLineDiffOptionIndentHeuristic         = (1 << 8),
 };
 
 typedef void(^RPLineDiffCallback)(NSString *line, RPLineChange change);

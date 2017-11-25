@@ -55,6 +55,7 @@ _Static_assert(RPDiffFlagShowUnmodified == GIT_DIFF_SHOW_UNMODIFIED, "");
 _Static_assert(RPDiffFlagPatience == GIT_DIFF_PATIENCE, "");
 _Static_assert(RPDiffFlagMinimal == GIT_DIFF_MINIMAL, "");
 _Static_assert(RPDiffFlagShowBinary == GIT_DIFF_SHOW_BINARY, "");
+_Static_assert(RPDiffFlagIndentHeuristic == GIT_DIFF_INDENT_HEURISTIC, "");
 
 static git_diff_options makeGitDiffOptions(RPDiffOptions *options)
 {

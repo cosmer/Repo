@@ -52,8 +52,9 @@ typedef NS_OPTIONS(uint32_t, RPDiffFlag) {
     RPDiffFlagShowUntrackedContext          = (1u << 25),
     RPDiffFlagShowUnmodified                = (1u << 26),
     RPDiffFlagPatience                      = (1u << 28),
-    RPDiffFlagMinimal                       = (1 << 29),
-    RPDiffFlagShowBinary                    = (1 << 30),
+    RPDiffFlagMinimal                       = (1u << 29),
+    RPDiffFlagShowBinary                    = (1u << 30),
+    RPDiffFlagIndentHeuristic               = (1u << 31),
 };
 
 @interface RPDiffOptions : NSObject
