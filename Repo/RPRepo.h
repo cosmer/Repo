@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class RPOID;
 @class RPIndex;
 @class RPObject;
-@class RPDiffDelta;
 
 typedef struct git_repository git_repository;
 
@@ -50,12 +49,6 @@ typedef struct git_repository git_repository;
 
 /// Replace a file in the workspace with the version of the file in the index.
 - (BOOL)forceCheckoutFileFromIndex:(nullable RPIndex *)index atPath:(NSString *)path error:(NSError **)error;
-
-/// Stage changes in diff delta.
-- (BOOL)stageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error;
-
-/// Unstage changes in diff delta.
-- (BOOL)unstageDiffDelta:(RPDiffDelta *)delta error:(NSError **)error;
 
 /// Reset the index to match given commit tree.
 - (BOOL)resetDefaultToObject:(RPObject *)object matchingPathspecs:(NSArray<NSString *> *)pathspecs error:(NSError **)error;

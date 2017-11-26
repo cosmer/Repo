@@ -10,8 +10,6 @@
 
 #import "RPMacros.h"
 
-@class RPDiffFile;
-
 typedef struct git_index git_index;
 
 typedef NS_OPTIONS(NSUInteger, RPIndexAddOption) {
@@ -31,9 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Add or update file at path relative to the repo's working directory.
 - (BOOL)addFileAtPath:(NSString *)path error:(NSError **)error;
-
-/// Add or update index entry with the contents of a diff file.
-- (BOOL)addDiffFile:(RPDiffFile *)file error:(NSError **)error;
 
 /// Remove file at path relative to the repo's working directory.
 - (BOOL)removeFileAtPath:(NSString *)path stage:(int)stage error:(NSError **)error;

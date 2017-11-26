@@ -8,8 +8,6 @@
 
 #import "RPIndex.h"
 
-#import "RPOID.h"
-#import "RPDiffFile.h"
 #import "Utilities.h"
 #import "NSError+RPGitErrors.h"
 
@@ -54,23 +52,6 @@ _Static_assert(RPIndexAddOptionCheckPathspec == GIT_INDEX_ADD_CHECK_PATHSPEC, ""
         return NO;
     }
 
-    return YES;
-}
-
-- (BOOL)addDiffFile:(RPDiffFile *)file error:(NSError **)error
-{
-    git_index_entry entry = {0};
-    entry.mode = file.mode;
-    entry.path = file.path.UTF8String;
-    git_oid_cpy(&entry.id, file.oid.gitOID);
-
-    int gitError = git_index_add(self.gitIndex, &entry);
-    if (gitError < 0) {
-        if (error) {
-            *error = [NSError rp_lastGitError];
-        }
-        return NO;
-    }
     return YES;
 }
 
