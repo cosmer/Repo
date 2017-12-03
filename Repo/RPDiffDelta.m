@@ -12,6 +12,7 @@
 #import "RPDiff.h"
 #import "RPDiffFile.h"
 #import "RPDiffFile+Private.h"
+#import "NSException+RPExceptions.h"
 
 #import <git2/diff.h>
 
@@ -113,6 +114,26 @@ NSString *RPDiffDeltaStatusLetter(RPDiffDeltaStatus status)
         _newFile = [[RPDiffFile alloc] initWithGitDiffFile:delta->new_file];
     }
     return self;
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object class] != [RPDiffDelta class]) {
+        return NO;
+    }
+
+    RPDiffDelta *delta = object;
+    return (self.location == delta.location &&
+            self.apparentLocation == delta.apparentLocation &&
+            self.status == delta.status &&
+            [self.oldFile isEqual:delta.oldFile] &&
+            [self.newFile isEqual:delta.newFile]);
+}
+
+- (NSUInteger)hash
+{
+    [NSException rp_raiseSelector:_cmd notImplementedForClass:self.class];
+    return 0;
 }
 
 @end

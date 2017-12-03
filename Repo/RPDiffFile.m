@@ -10,6 +10,7 @@
 #import "RPDiffFile+Private.h"
 
 #import "RPOID.h"
+#import "NSException+RPExceptions.h"
 
 _Static_assert(sizeof(((RPFileTime *)(NULL))->seconds) == sizeof(((git_diff_file_time *)(NULL))->seconds), "");
 _Static_assert(sizeof(((RPFileTime *)(NULL))->nanoseconds) == sizeof(((git_diff_file_time *)(NULL))->nanoseconds), "");
@@ -73,6 +74,28 @@ static RPFileTime MakeFileTime(const git_diff_file_time *fileTime)
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"Diff file \"%@\" [%@]", self.path, RPFileModeName(self.mode)];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object class] != [RPDiffFile class]) {
+        return NO;
+    }
+
+    RPDiffFile *file = object;
+    return ([self.path isEqualToString:file.path] &&
+            [self.oid isEqualToOID:file.oid] &&
+            self.flags == file.flags &&
+            self.mode == file.mode &&
+            RPFileTimesEqual(self.ctime, file.ctime) &&
+            RPFileTimesEqual(self.mtime, file.mtime) &&
+            self.size == file.size);
+}
+
+- (NSUInteger)hash
+{
+    [NSException rp_raiseSelector:_cmd notImplementedForClass:self.class];
+    return 0;
 }
 
 @end

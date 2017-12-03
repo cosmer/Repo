@@ -26,3 +26,8 @@ NSComparisonResult RPCompareFileTimes(RPFileTime left, RPFileTime right)
 
     return NSOrderedSame;
 }
+
+BOOL RPFileTimesEqual(RPFileTime a, RPFileTime b)
+{
+    return a.seconds == b.seconds && a.nanoseconds == b.nanoseconds;
+}

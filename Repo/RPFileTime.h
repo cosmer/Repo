@@ -14,3 +14,4 @@ typedef struct {
 } RPFileTime;
 
 NSComparisonResult RPCompareFileTimes(RPFileTime left, RPFileTime right);
+BOOL RPFileTimesEqual(RPFileTime a, RPFileTime b);

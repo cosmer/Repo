@@ -9,6 +9,7 @@
 #import "RPConflict.h"
 
 #import "RPOID.h"
+#import "NSException+RPExceptions.h"
 
 #import <git2/errors.h>
 #import <git2/index.h>
@@ -19,6 +20,17 @@ static RPFileTime MakeFileTime(git_index_time indexTime)
         .seconds = indexTime.seconds,
         .nanoseconds = indexTime.nanoseconds
     };
+}
+
+static BOOL ConflictEntriesEqual(RPConflictEntry *a, RPConflictEntry *b)
+{
+    if (!a && !b) {
+        return YES;
+    }
+    if (!a || !b) {
+        return NO;
+    }
+    return [a isEqual:b];
 }
 
 @implementation RPConflictEntry
@@ -40,6 +52,26 @@ static RPFileTime MakeFileTime(git_index_time indexTime)
 {
     return [NSString stringWithFormat:@"{ oid = %@, path = %@, mode = %@ }",
             self.oid.shortStringValue, self.path, RPFileModeName(self.mode)];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object class] != [RPConflictEntry class]) {
+        return NO;
+    }
+
+    RPConflictEntry *entry = object;
+    return ([self.oid isEqualToOID:entry.oid] &&
+            [self.path isEqualToString:entry.path] &&
+            self.mode == entry.mode &&
+            RPFileTimesEqual(self.mtime, entry.mtime) &&
+            RPFileTimesEqual(self.ctime, entry.ctime));
+}
+
+- (NSUInteger)hash
+{
+    [NSException rp_raiseSelector:_cmd notImplementedForClass:self.class];
+    return 0;
 }
 
 @end
@@ -109,6 +141,24 @@ static RPFileTime MakeFileTime(git_index_time indexTime)
     NSString *ours = [NSString stringWithFormat:@"{ ours     = %@ }", self.ours.description];
     NSString *theirs = [NSString stringWithFormat:@"{ theirs   = %@ }", self.theirs.description];
     return [@[@"conflict = ", ancestor, ours, theirs] componentsJoinedByString:@",\r"];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object class] != [RPConflictEntry class]) {
+        return NO;
+    }
+
+    RPConflict *conflict = object;
+    return (ConflictEntriesEqual(self.ancestor, conflict.ancestor) &&
+            ConflictEntriesEqual(self.ours, conflict.ours) &&
+            ConflictEntriesEqual(self.theirs, conflict.theirs));
+}
+
+- (NSUInteger)hash
+{
+    [NSException rp_raiseSelector:_cmd notImplementedForClass:self.class];
+    return 0;
 }
 
 @end
