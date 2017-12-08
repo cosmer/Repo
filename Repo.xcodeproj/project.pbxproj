@@ -77,8 +77,6 @@
 		EFE36BCC1EAF5EC100A4560E /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE36BCA1EAF5EC100A4560E /* Utilities.h */; };
 		EFF26E271EEAB9C900D6C818 /* RPBlame.h in Headers */ = {isa = PBXBuildFile; fileRef = EFF26E251EEAB9C900D6C818 /* RPBlame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFF26E281EEAB9C900D6C818 /* RPBlame.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF26E261EEAB9C900D6C818 /* RPBlame.m */; };
-		EFF303EB1BD3D67700914FBA /* RPCommitWalker.h in Headers */ = {isa = PBXBuildFile; fileRef = EFF303E91BD3D67700914FBA /* RPCommitWalker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFF303EC1BD3D67700914FBA /* RPCommitWalker.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF303EA1BD3D67700914FBA /* RPCommitWalker.m */; };
 		EFF5E4F21EAE148D002813DD /* RPTag.h in Headers */ = {isa = PBXBuildFile; fileRef = EFF5E4F01EAE148D002813DD /* RPTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFF5E4F31EAE148D002813DD /* RPTag.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF5E4F11EAE148D002813DD /* RPTag.m */; };
 /* End PBXBuildFile section */
@@ -170,8 +168,6 @@
 		EFE36BCA1EAF5EC100A4560E /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		EFF26E251EEAB9C900D6C818 /* RPBlame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBlame.h; sourceTree = "<group>"; };
 		EFF26E261EEAB9C900D6C818 /* RPBlame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPBlame.m; sourceTree = "<group>"; };
-		EFF303E91BD3D67700914FBA /* RPCommitWalker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPCommitWalker.h; sourceTree = "<group>"; };
-		EFF303EA1BD3D67700914FBA /* RPCommitWalker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPCommitWalker.m; sourceTree = "<group>"; };
 		EFF5E4F01EAE148D002813DD /* RPTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPTag.h; sourceTree = "<group>"; };
 		EFF5E4F11EAE148D002813DD /* RPTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPTag.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -273,8 +269,6 @@
 				6DF929541A90CE6B0087E7D3 /* RPReference.m */,
 				EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */,
 				EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */,
-				EFF303E91BD3D67700914FBA /* RPCommitWalker.h */,
-				EFF303EA1BD3D67700914FBA /* RPCommitWalker.m */,
 				EF13394F1BC0198700D66689 /* RPSignature.h */,
 				EF1339501BC0198700D66689 /* RPSignature.m */,
 				EFD87A781B8694BF0012FF11 /* RPStash.h */,
@@ -358,7 +352,6 @@
 				EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */,
 				EFB0CF8F1C6382E40044702D /* RPConflict.h in Headers */,
 				EF1339511BC0198700D66689 /* RPSignature.h in Headers */,
-				EFF303EB1BD3D67700914FBA /* RPCommitWalker.h in Headers */,
 				6D310BB61A1B7144001DCDB1 /* RPOID.h in Headers */,
 				EF93F77A1E152D50002BD6CF /* RPTreeEntry.h in Headers */,
 				EFE36BCC1EAF5EC100A4560E /* Utilities.h in Headers */,
@@ -480,7 +473,6 @@
 				EFB0CF901C6382E40044702D /* RPConflict.m in Sources */,
 				EFA76A701E3CC5550038E86F /* RPDiffFindOptions.m in Sources */,
 				6D310BB71A1B7144001DCDB1 /* RPOID.m in Sources */,
-				EFF303EC1BD3D67700914FBA /* RPCommitWalker.m in Sources */,
 				EF58D7981C70B7FB000B94E8 /* RPRepo+Merge.m in Sources */,
 				EFF26E281EEAB9C900D6C818 /* RPBlame.m in Sources */,
 				EF663DF71CDE052A00E8A19D /* RPLineDiff.m in Sources */,
