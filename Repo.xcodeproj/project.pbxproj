@@ -71,8 +71,6 @@
 		EFB0CF901C6382E40044702D /* RPConflict.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB0CF8E1C6382E40044702D /* RPConflict.m */; };
 		EFD87A7A1B8694BF0012FF11 /* RPStash.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD87A781B8694BF0012FF11 /* RPStash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD87A791B8694BF0012FF11 /* RPStash.m */; };
-		EFE010BF1BD3CFD400D4101A /* RPRevWalker.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */; };
 		EFE36BCB1EAF5EC100A4560E /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE36BC91EAF5EC100A4560E /* Utilities.m */; };
 		EFE36BCC1EAF5EC100A4560E /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = EFE36BCA1EAF5EC100A4560E /* Utilities.h */; };
 		EFF26E271EEAB9C900D6C818 /* RPBlame.h in Headers */ = {isa = PBXBuildFile; fileRef = EFF26E251EEAB9C900D6C818 /* RPBlame.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,8 +160,6 @@
 		EFCE76DE1DFD7AF5005F13A8 /* RPCleanup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPCleanup.h; sourceTree = "<group>"; };
 		EFD87A781B8694BF0012FF11 /* RPStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPStash.h; sourceTree = "<group>"; };
 		EFD87A791B8694BF0012FF11 /* RPStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPStash.m; sourceTree = "<group>"; };
-		EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPRevWalker.h; sourceTree = "<group>"; };
-		EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPRevWalker.m; sourceTree = "<group>"; };
 		EFE36BC91EAF5EC100A4560E /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		EFE36BCA1EAF5EC100A4560E /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		EFF26E251EEAB9C900D6C818 /* RPBlame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPBlame.h; sourceTree = "<group>"; };
@@ -267,8 +263,6 @@
 				6D310BB51A1B7144001DCDB1 /* RPOID.m */,
 				6DF929531A90CE6B0087E7D3 /* RPReference.h */,
 				6DF929541A90CE6B0087E7D3 /* RPReference.m */,
-				EFE010BD1BD3CFD400D4101A /* RPRevWalker.h */,
-				EFE010BE1BD3CFD400D4101A /* RPRevWalker.m */,
 				EF13394F1BC0198700D66689 /* RPSignature.h */,
 				EF1339501BC0198700D66689 /* RPSignature.m */,
 				EFD87A781B8694BF0012FF11 /* RPStash.h */,
@@ -357,7 +351,6 @@
 				EFE36BCC1EAF5EC100A4560E /* Utilities.h in Headers */,
 				EF0176A51AE5CDAA0092618D /* RPIndex.h in Headers */,
 				EF36106C1AC888A700861AE9 /* RPTypes.h in Headers */,
-				EFE010BF1BD3CFD400D4101A /* RPRevWalker.h in Headers */,
 				6DC7A0671A18F5B300D808ED /* NSError+RPGitErrors.h in Headers */,
 				EFF26E271EEAB9C900D6C818 /* RPBlame.h in Headers */,
 				EF663DF61CDE052A00E8A19D /* RPLineDiff.h in Headers */,
@@ -477,7 +470,6 @@
 				EFF26E281EEAB9C900D6C818 /* RPBlame.m in Sources */,
 				EF663DF71CDE052A00E8A19D /* RPLineDiff.m in Sources */,
 				EF827FFC1F1240AD00E67F3E /* RPCleanup.m in Sources */,
-				EFE010C01BD3CFD400D4101A /* RPRevWalker.m in Sources */,
 				EF0176AA1AE5DBFB0092618D /* RPCommit.m in Sources */,
 				6DC7A0641A18F2B900D808ED /* RPRepo.m in Sources */,
 				EFD87A7B1B8694BF0012FF11 /* RPStash.m in Sources */,
