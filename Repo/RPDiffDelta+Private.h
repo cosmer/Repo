@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPDiffDelta ()
 
-- (instancetype)init NS_UNAVAILABLE;
-
 /// Does not assume ownership of `delta`.
 - (instancetype)initWithGitDiffDelta:(const git_diff_delta *)delta location:(RPDiffLocation)location NS_DESIGNATED_INITIALIZER;
 
