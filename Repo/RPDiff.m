@@ -397,7 +397,7 @@ static void cleanupGitDiffOptions(git_diff_options *options)
     return git_diff_num_deltas(self.gitDiff);
 }
 
-- (void)enumerateDeltasUsingBlock:(void (^)(RPDiffDelta *delta))block
+- (void)enumerateDeltasUsingBlock:(RP_NO_ESCAPE void (^)(RPDiffDelta *delta))block
 {
     NSParameterAssert(block != nil);
     

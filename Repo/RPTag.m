@@ -44,7 +44,7 @@ static const char *extract_shortname(const char *name)
     return [[RPTag alloc] initWithGitTag:tag];
 }
 
-+ (void)enumerateTagsInRepo:(RPRepo *)repo callback:(RPTagCallback)callback
++ (void)enumerateTagsInRepo:(RPRepo *)repo callback:(RP_NO_ESCAPE RPTagCallback)callback
 {
     NSParameterAssert(repo != nil);
     NSParameterAssert(callback != nil);
